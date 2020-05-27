@@ -1,7 +1,7 @@
 # distutils: language = c++
 # distutils: sources = DoublyLinkedList.cpp
 from matrix import Matrix
-cdef extern from "DoublyLinkedList.cpp":
+cdef extern from "DoublyLinkedList.cpp":    # wrapping of C++ class
     struct Node:
         int value
         int weight
@@ -19,12 +19,12 @@ cdef extern from "DoublyLinkedList.cpp":
         Node remove(int)
         Node get(int)
 
-cdef class PNode:
+cdef class PNode:   # node of list of lists
     cpdef PNode _prev
     cpdef PNode _next
     cpdef DoublyLinkedList* value
 
-cdef class ListGraphRoot:
+cdef class ListGraphRoot:   # list of lists
     cdef PNode front
     cdef PNode rear
     cdef int size

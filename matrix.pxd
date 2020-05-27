@@ -1,4 +1,4 @@
-cdef extern from "DynamicArray.cpp":
+cdef extern from "DynamicArray.cpp":    # wrapping of C++ class
     cppclass DynamicArray:
         int* array
         int size

@@ -1,7 +1,7 @@
 # distutils: language = c++
 # distutils: sources = Heap.cpp
 
-cdef extern from "Heap.cpp":
+cdef extern from "Heap.cpp":    # wrapping of C++ class
     struct Node:
         int data
         int start
@@ -13,7 +13,7 @@ cdef extern from "Heap.cpp":
         Node* pop_min()
         int change_key(int, int)
 
-cdef class CNode:
+cdef class CNode:   # heap node wrapper usable in python code
     cdef public int data
     cdef public int start
     cdef public int end

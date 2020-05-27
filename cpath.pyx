@@ -14,7 +14,7 @@ cdef class CPath:
         self.first = n_next
         self.maxnode = max(self.maxnode, n_next.s, n_next.e)
 
-    def get_edges(self):
+    def get_edges(self):    # represents path as graph and returns it's edges, compatibility with other functions using ListGraph and Matrix
         curr = self.first
         if self.mode == 'list':
             result = ListGraph(self.maxnode+1)

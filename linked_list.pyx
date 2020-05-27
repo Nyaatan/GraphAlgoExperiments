@@ -161,10 +161,10 @@ cdef class ListGraph:
     cpdef void remove_connection(self, int begin, int end):
         self.root.get(begin).remove(end)
 
-    cdef DoublyLinkedList* get_connections(self, int node_id):
+    cdef DoublyLinkedList* get_connections(self, int node_id):  # returns neighbors of given node
         return self.root.get(node_id)
 
-    def get_edges(self):
+    def get_edges(self):    # returns all edges of graph as python list
         result = []
         for x in range(self.root.size):
             for y in range(self.root.get(x).size):

@@ -1393,13 +1393,6 @@ static void __Pyx_CppExn2PyErr() {
 }
 #endif
 
-/* Print.proto */
-static int __Pyx_Print(PyObject*, PyObject *, int);
-#if CYTHON_COMPILING_IN_PYPY || PY_MAJOR_VERSION >= 3
-static PyObject* __pyx_print = 0;
-static PyObject* __pyx_print_kwargs = 0;
-#endif
-
 /* CIntFromPy.proto */
 static CYTHON_INLINE int __Pyx_PyInt_As_int(PyObject *);
 
@@ -1408,9 +1401,6 @@ static CYTHON_INLINE size_t __Pyx_PyInt_As_size_t(PyObject *);
 
 /* CIntFromPy.proto */
 static CYTHON_INLINE long __Pyx_PyInt_As_long(PyObject *);
-
-/* PrintOne.proto */
-static int __Pyx_PrintOne(PyObject* stream, PyObject *o);
 
 /* FastTypeChecks.proto */
 #if CYTHON_COMPILING_IN_CPYTHON
@@ -1457,24 +1447,23 @@ static int __pyx_v_10algorithms_MAX_INT;
 static struct __pyx_obj_11linked_list_ListGraph *__pyx_f_10algorithms_prim_list(struct __pyx_obj_11linked_list_ListGraph *, PyObject *, int __pyx_skip_dispatch); /*proto*/
 static struct __pyx_obj_6matrix_Matrix *__pyx_f_10algorithms_prim_matrix(struct __pyx_obj_6matrix_Matrix *, PyObject *, int __pyx_skip_dispatch); /*proto*/
 static struct __pyx_obj_11linked_list_ListGraph *__pyx_f_10algorithms_kruskal_list(struct __pyx_obj_11linked_list_ListGraph *, PyObject *, int __pyx_skip_dispatch); /*proto*/
+static struct __pyx_obj_6matrix_Matrix *__pyx_f_10algorithms_kruskal_matrix(struct __pyx_obj_6matrix_Matrix *, PyObject *, int __pyx_skip_dispatch); /*proto*/
 static struct __pyx_obj_5cpath_CPath *__pyx_f_10algorithms_dijkstra_list(struct __pyx_obj_11linked_list_ListGraph *, PyObject *, int __pyx_skip_dispatch); /*proto*/
 static struct __pyx_obj_5cpath_CPath *__pyx_f_10algorithms_dijkstra_matrix(struct __pyx_obj_6matrix_Matrix *, PyObject *, int __pyx_skip_dispatch); /*proto*/
-static struct __pyx_obj_11linked_list_ListGraph *__pyx_f_10algorithms_ford_bellman(struct __pyx_obj_11linked_list_ListGraph *, PyObject *, int __pyx_skip_dispatch); /*proto*/
+static struct __pyx_obj_5cpath_CPath *__pyx_f_10algorithms_ford_bellman_list(struct __pyx_obj_11linked_list_ListGraph *, PyObject *, int __pyx_skip_dispatch); /*proto*/
+static struct __pyx_obj_5cpath_CPath *__pyx_f_10algorithms_ford_bellman_matrix(struct __pyx_obj_6matrix_Matrix *, PyObject *, int __pyx_skip_dispatch); /*proto*/
 #define __Pyx_MODULE_NAME "algorithms"
 extern int __pyx_module_is_main_algorithms;
 int __pyx_module_is_main_algorithms = 0;
 
 /* Implementation of 'algorithms' */
 static PyObject *__pyx_builtin_range;
-static const char __pyx_k_end[] = "end";
 static const char __pyx_k_args[] = "args";
-static const char __pyx_k_file[] = "file";
 static const char __pyx_k_list[] = "list";
 static const char __pyx_k_main[] = "__main__";
 static const char __pyx_k_name[] = "__name__";
 static const char __pyx_k_test[] = "__test__";
 static const char __pyx_k_graph[] = "graph";
-static const char __pyx_k_print[] = "print";
 static const char __pyx_k_range[] = "range";
 static const char __pyx_k_timer[] = "timer";
 static const char __pyx_k_import[] = "__import__";
@@ -1492,8 +1481,6 @@ static PyObject *__pyx_n_s_PriorityQueue;
 static PyObject *__pyx_n_s_args;
 static PyObject *__pyx_n_s_cline_in_traceback;
 static PyObject *__pyx_n_s_default_timer;
-static PyObject *__pyx_n_s_end;
-static PyObject *__pyx_n_s_file;
 static PyObject *__pyx_n_s_graph;
 static PyObject *__pyx_n_s_import;
 static PyObject *__pyx_n_s_linked_list;
@@ -1501,7 +1488,6 @@ static PyObject *__pyx_n_s_list;
 static PyObject *__pyx_n_s_main;
 static PyObject *__pyx_n_s_matrix;
 static PyObject *__pyx_n_s_name;
-static PyObject *__pyx_n_s_print;
 static PyObject *__pyx_n_s_priorityqueue;
 static PyObject *__pyx_n_s_pyx_vtable;
 static PyObject *__pyx_n_s_range;
@@ -1511,9 +1497,11 @@ static PyObject *__pyx_n_s_timer;
 static PyObject *__pyx_pf_10algorithms_prim_list(CYTHON_UNUSED PyObject *__pyx_self, struct __pyx_obj_11linked_list_ListGraph *__pyx_v_graph, PyObject *__pyx_v_args); /* proto */
 static PyObject *__pyx_pf_10algorithms_2prim_matrix(CYTHON_UNUSED PyObject *__pyx_self, struct __pyx_obj_6matrix_Matrix *__pyx_v_graph, PyObject *__pyx_v_args); /* proto */
 static PyObject *__pyx_pf_10algorithms_4kruskal_list(CYTHON_UNUSED PyObject *__pyx_self, struct __pyx_obj_11linked_list_ListGraph *__pyx_v_graph, PyObject *__pyx_v_args); /* proto */
-static PyObject *__pyx_pf_10algorithms_6dijkstra_list(CYTHON_UNUSED PyObject *__pyx_self, struct __pyx_obj_11linked_list_ListGraph *__pyx_v_graph, PyObject *__pyx_v_args); /* proto */
-static PyObject *__pyx_pf_10algorithms_8dijkstra_matrix(CYTHON_UNUSED PyObject *__pyx_self, struct __pyx_obj_6matrix_Matrix *__pyx_v_graph, PyObject *__pyx_v_args); /* proto */
-static PyObject *__pyx_pf_10algorithms_10ford_bellman(CYTHON_UNUSED PyObject *__pyx_self, struct __pyx_obj_11linked_list_ListGraph *__pyx_v_graph, PyObject *__pyx_v_args); /* proto */
+static PyObject *__pyx_pf_10algorithms_6kruskal_matrix(CYTHON_UNUSED PyObject *__pyx_self, struct __pyx_obj_6matrix_Matrix *__pyx_v_graph, PyObject *__pyx_v_args); /* proto */
+static PyObject *__pyx_pf_10algorithms_8dijkstra_list(CYTHON_UNUSED PyObject *__pyx_self, struct __pyx_obj_11linked_list_ListGraph *__pyx_v_graph, PyObject *__pyx_v_args); /* proto */
+static PyObject *__pyx_pf_10algorithms_10dijkstra_matrix(CYTHON_UNUSED PyObject *__pyx_self, struct __pyx_obj_6matrix_Matrix *__pyx_v_graph, PyObject *__pyx_v_args); /* proto */
+static PyObject *__pyx_pf_10algorithms_12ford_bellman_list(CYTHON_UNUSED PyObject *__pyx_self, struct __pyx_obj_11linked_list_ListGraph *__pyx_v_graph, PyObject *__pyx_v_args); /* proto */
+static PyObject *__pyx_pf_10algorithms_14ford_bellman_matrix(CYTHON_UNUSED PyObject *__pyx_self, struct __pyx_obj_6matrix_Matrix *__pyx_v_graph, PyObject *__pyx_v_args); /* proto */
 static PyObject *__pyx_tuple_;
 static PyObject *__pyx_tuple__2;
 /* Late includes */
@@ -1732,32 +1720,32 @@ static struct __pyx_obj_11linked_list_ListGraph *__pyx_f_10algorithms_prim_list(
  * 
  * 
  *     cdef CNode next_node = queue.queue_pop()             # <<<<<<<<<<<<<<
- *     cdef DoublyLinkedList* connections = new DoublyLinkedList()
  * 
+ *     cdef DoublyLinkedList* connections = new DoublyLinkedList()
  */
   __pyx_t_3 = ((PyObject *)((struct __pyx_vtabstruct_13priorityqueue_PriorityQueue *)__pyx_v_queue->__pyx_vtab)->queue_pop(__pyx_v_queue)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 45, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_v_next_node = ((struct __pyx_obj_13priorityqueue_CNode *)__pyx_t_3);
   __pyx_t_3 = 0;
 
-  /* "algorithms.pyx":46
- * 
+  /* "algorithms.pyx":47
  *     cdef CNode next_node = queue.queue_pop()
- *     cdef DoublyLinkedList* connections = new DoublyLinkedList()             # <<<<<<<<<<<<<<
  * 
+ *     cdef DoublyLinkedList* connections = new DoublyLinkedList()             # <<<<<<<<<<<<<<
  *     while next_node is not None:
+ *         connections = graph.get_connections(next_node.end)
  */
   try {
     __pyx_t_4 = new DoublyLinkedList();
   } catch(...) {
     __Pyx_CppExn2PyErr();
-    __PYX_ERR(0, 46, __pyx_L1_error)
+    __PYX_ERR(0, 47, __pyx_L1_error)
   }
   __pyx_v_connections = __pyx_t_4;
 
   /* "algorithms.pyx":48
- *     cdef DoublyLinkedList* connections = new DoublyLinkedList()
  * 
+ *     cdef DoublyLinkedList* connections = new DoublyLinkedList()
  *     while next_node is not None:             # <<<<<<<<<<<<<<
  *         connections = graph.get_connections(next_node.end)
  *         i = 0
@@ -1768,7 +1756,7 @@ static struct __pyx_obj_11linked_list_ListGraph *__pyx_f_10algorithms_prim_list(
     if (!__pyx_t_8) break;
 
     /* "algorithms.pyx":49
- * 
+ *     cdef DoublyLinkedList* connections = new DoublyLinkedList()
  *     while next_node is not None:
  *         connections = graph.get_connections(next_node.end)             # <<<<<<<<<<<<<<
  *         i = 0
@@ -1840,41 +1828,41 @@ static struct __pyx_obj_11linked_list_ListGraph *__pyx_f_10algorithms_prim_list(
  *         if not visited[next_node.end]:
  *             # print(i)
  *             visited[next_node.end] = True             # <<<<<<<<<<<<<<
- *             visited_count += 1
  *             result.add_connection(next_node.start, next_node.end, next_node.data)
+ *             result.add_connection(next_node.end, next_node.start, next_node.data)
  */
       (__pyx_v_visited[__pyx_v_next_node->end]) = 1;
 
       /* "algorithms.pyx":59
  *             # print(i)
  *             visited[next_node.end] = True
- *             visited_count += 1             # <<<<<<<<<<<<<<
- *             result.add_connection(next_node.start, next_node.end, next_node.data)
- *             result.add_connection(next_node.end, next_node.start, next_node.data)
- */
-      __pyx_v_visited_count = (__pyx_v_visited_count + 1);
-
-      /* "algorithms.pyx":60
- *             visited[next_node.end] = True
- *             visited_count += 1
  *             result.add_connection(next_node.start, next_node.end, next_node.data)             # <<<<<<<<<<<<<<
  *             result.add_connection(next_node.end, next_node.start, next_node.data)
- *             if visited_count == graph.size:
+ *             visited_count += 1
  */
       ((struct __pyx_vtabstruct_11linked_list_ListGraph *)__pyx_v_result->__pyx_vtab)->add_connection(__pyx_v_result, __pyx_v_next_node->start, __pyx_v_next_node->end, __pyx_v_next_node->data, 0);
 
-      /* "algorithms.pyx":61
- *             visited_count += 1
+      /* "algorithms.pyx":60
+ *             visited[next_node.end] = True
  *             result.add_connection(next_node.start, next_node.end, next_node.data)
  *             result.add_connection(next_node.end, next_node.start, next_node.data)             # <<<<<<<<<<<<<<
+ *             visited_count += 1
  *             if visited_count == graph.size:
- *                 break
  */
       ((struct __pyx_vtabstruct_11linked_list_ListGraph *)__pyx_v_result->__pyx_vtab)->add_connection(__pyx_v_result, __pyx_v_next_node->end, __pyx_v_next_node->start, __pyx_v_next_node->data, 0);
 
-      /* "algorithms.pyx":62
+      /* "algorithms.pyx":61
  *             result.add_connection(next_node.start, next_node.end, next_node.data)
  *             result.add_connection(next_node.end, next_node.start, next_node.data)
+ *             visited_count += 1             # <<<<<<<<<<<<<<
+ *             if visited_count == graph.size:
+ *                 break
+ */
+      __pyx_v_visited_count = (__pyx_v_visited_count + 1);
+
+      /* "algorithms.pyx":62
+ *             result.add_connection(next_node.end, next_node.start, next_node.data)
+ *             visited_count += 1
  *             if visited_count == graph.size:             # <<<<<<<<<<<<<<
  *                 break
  *         next_node = queue.queue_pop()
@@ -1883,7 +1871,7 @@ static struct __pyx_obj_11linked_list_ListGraph *__pyx_f_10algorithms_prim_list(
       if (__pyx_t_8) {
 
         /* "algorithms.pyx":63
- *             result.add_connection(next_node.end, next_node.start, next_node.data)
+ *             visited_count += 1
  *             if visited_count == graph.size:
  *                 break             # <<<<<<<<<<<<<<
  *         next_node = queue.queue_pop()
@@ -1892,8 +1880,8 @@ static struct __pyx_obj_11linked_list_ListGraph *__pyx_f_10algorithms_prim_list(
         goto __pyx_L10_break;
 
         /* "algorithms.pyx":62
- *             result.add_connection(next_node.start, next_node.end, next_node.data)
  *             result.add_connection(next_node.end, next_node.start, next_node.data)
+ *             visited_count += 1
  *             if visited_count == graph.size:             # <<<<<<<<<<<<<<
  *                 break
  *         next_node = queue.queue_pop()
@@ -2591,74 +2579,133 @@ static PyObject *__pyx_pf_10algorithms_2prim_matrix(CYTHON_UNUSED PyObject *__py
  * 
  * cpdef ListGraph kruskal_list(ListGraph graph, tuple args):             # <<<<<<<<<<<<<<
  *     cdef int i = 0
- *     cdef PriorityQueue queue = PriorityQueue()
+ *     cdef int visited_count = 0
  */
 
 static PyObject *__pyx_pw_10algorithms_5kruskal_list(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
 static struct __pyx_obj_11linked_list_ListGraph *__pyx_f_10algorithms_kruskal_list(struct __pyx_obj_11linked_list_ListGraph *__pyx_v_graph, CYTHON_UNUSED PyObject *__pyx_v_args, CYTHON_UNUSED int __pyx_skip_dispatch) {
   int __pyx_v_i;
+  int __pyx_v_visited_count;
+  struct __pyx_obj_11linked_list_ListGraph *__pyx_v_result = 0;
   struct __pyx_obj_13priorityqueue_PriorityQueue *__pyx_v_queue = 0;
   DoublyLinkedList *__pyx_v_connections;
+  int __pyx_v_max_group;
   int __pyx_v_j;
   int *__pyx_v_groups;
-  int *__pyx_v_group_aliases;
-  CYTHON_UNUSED int __pyx_v_group_iter;
+  struct __pyx_obj_13priorityqueue_CNode *__pyx_v_next_node = 0;
+  int __pyx_v_old_group;
   struct __pyx_obj_11linked_list_ListGraph *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
-  int __pyx_t_2;
+  PyObject *__pyx_t_2 = NULL;
   int __pyx_t_3;
   int __pyx_t_4;
   int __pyx_t_5;
   int __pyx_t_6;
   int __pyx_t_7;
-  DoublyLinkedList *__pyx_t_8;
+  int __pyx_t_8;
+  int __pyx_t_9;
+  int __pyx_t_10;
+  long __pyx_t_11;
+  long __pyx_t_12;
+  PyObject *__pyx_t_13 = NULL;
   __Pyx_RefNannySetupContext("kruskal_list", 0);
 
   /* "algorithms.pyx":106
  * 
  * cpdef ListGraph kruskal_list(ListGraph graph, tuple args):
  *     cdef int i = 0             # <<<<<<<<<<<<<<
- *     cdef PriorityQueue queue = PriorityQueue()
- *     cdef DoublyLinkedList* connections
+ *     cdef int visited_count = 0
+ *     cpdef ListGraph result = ListGraph(graph.getsize())
  */
   __pyx_v_i = 0;
 
   /* "algorithms.pyx":107
  * cpdef ListGraph kruskal_list(ListGraph graph, tuple args):
  *     cdef int i = 0
+ *     cdef int visited_count = 0             # <<<<<<<<<<<<<<
+ *     cpdef ListGraph result = ListGraph(graph.getsize())
+ *     cdef PriorityQueue queue = PriorityQueue()
+ */
+  __pyx_v_visited_count = 0;
+
+  /* "algorithms.pyx":108
+ *     cdef int i = 0
+ *     cdef int visited_count = 0
+ *     cpdef ListGraph result = ListGraph(graph.getsize())             # <<<<<<<<<<<<<<
+ *     cdef PriorityQueue queue = PriorityQueue()
+ *     cdef DoublyLinkedList* connections
+ */
+  __pyx_t_1 = ((struct __pyx_vtabstruct_11linked_list_ListGraph *)__pyx_v_graph->__pyx_vtab)->getsize(__pyx_v_graph, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 108, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_2 = __Pyx_PyObject_CallOneArg(((PyObject *)__pyx_ptype_11linked_list_ListGraph), __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 108, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_v_result = ((struct __pyx_obj_11linked_list_ListGraph *)__pyx_t_2);
+  __pyx_t_2 = 0;
+
+  /* "algorithms.pyx":109
+ *     cdef int visited_count = 0
+ *     cpdef ListGraph result = ListGraph(graph.getsize())
  *     cdef PriorityQueue queue = PriorityQueue()             # <<<<<<<<<<<<<<
  *     cdef DoublyLinkedList* connections
- *     cdef int j
+ *     cdef int max_group = 0
  */
-  __pyx_t_1 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_13priorityqueue_PriorityQueue)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 107, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_v_queue = ((struct __pyx_obj_13priorityqueue_PriorityQueue *)__pyx_t_1);
-  __pyx_t_1 = 0;
+  __pyx_t_2 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_13priorityqueue_PriorityQueue)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 109, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_v_queue = ((struct __pyx_obj_13priorityqueue_PriorityQueue *)__pyx_t_2);
+  __pyx_t_2 = 0;
 
-  /* "algorithms.pyx":110
+  /* "algorithms.pyx":111
+ *     cdef PriorityQueue queue = PriorityQueue()
  *     cdef DoublyLinkedList* connections
+ *     cdef int max_group = 0             # <<<<<<<<<<<<<<
  *     cdef int j
+ *     cdef int* groups = <int*> PyMem_Malloc(graph.size*sizeof(int))
+ */
+  __pyx_v_max_group = 0;
+
+  /* "algorithms.pyx":113
+ *     cdef int max_group = 0
+ *     cdef int j
+ *     cdef int* groups = <int*> PyMem_Malloc(graph.size*sizeof(int))             # <<<<<<<<<<<<<<
+ *     for i in range(graph.size):
+ *         groups[i] = -1
+ */
+  __pyx_v_groups = ((int *)PyMem_Malloc((__pyx_v_graph->size * (sizeof(int)))));
+
+  /* "algorithms.pyx":114
+ *     cdef int j
+ *     cdef int* groups = <int*> PyMem_Malloc(graph.size*sizeof(int))
  *     for i in range(graph.size):             # <<<<<<<<<<<<<<
+ *         groups[i] = -1
+ *         connections = graph.get_connections(i)
+ */
+  __pyx_t_3 = __pyx_v_graph->size;
+  __pyx_t_4 = __pyx_t_3;
+  for (__pyx_t_5 = 0; __pyx_t_5 < __pyx_t_4; __pyx_t_5+=1) {
+    __pyx_v_i = __pyx_t_5;
+
+    /* "algorithms.pyx":115
+ *     cdef int* groups = <int*> PyMem_Malloc(graph.size*sizeof(int))
+ *     for i in range(graph.size):
+ *         groups[i] = -1             # <<<<<<<<<<<<<<
  *         connections = graph.get_connections(i)
  *         j = 0
  */
-  __pyx_t_2 = __pyx_v_graph->size;
-  __pyx_t_3 = __pyx_t_2;
-  for (__pyx_t_4 = 0; __pyx_t_4 < __pyx_t_3; __pyx_t_4+=1) {
-    __pyx_v_i = __pyx_t_4;
+    (__pyx_v_groups[__pyx_v_i]) = -1;
 
-    /* "algorithms.pyx":111
- *     cdef int j
+    /* "algorithms.pyx":116
  *     for i in range(graph.size):
+ *         groups[i] = -1
  *         connections = graph.get_connections(i)             # <<<<<<<<<<<<<<
  *         j = 0
  *         for j in range(connections.size):
  */
     __pyx_v_connections = ((struct __pyx_vtabstruct_11linked_list_ListGraph *)__pyx_v_graph->__pyx_vtab)->get_connections(__pyx_v_graph, __pyx_v_i);
 
-    /* "algorithms.pyx":112
- *     for i in range(graph.size):
+    /* "algorithms.pyx":117
+ *         groups[i] = -1
  *         connections = graph.get_connections(i)
  *         j = 0             # <<<<<<<<<<<<<<
  *         for j in range(connections.size):
@@ -2666,151 +2713,464 @@ static struct __pyx_obj_11linked_list_ListGraph *__pyx_f_10algorithms_kruskal_li
  */
     __pyx_v_j = 0;
 
-    /* "algorithms.pyx":113
+    /* "algorithms.pyx":118
  *         connections = graph.get_connections(i)
  *         j = 0
  *         for j in range(connections.size):             # <<<<<<<<<<<<<<
  *             queue.add(connections.get(j).weight, i, connections.get(j).value)
- *     cdef int* groups = <int*> PyMem_Malloc(graph.size*sizeof(int))
+ *     cdef CNode next_node = queue.queue_pop()
  */
-    __pyx_t_5 = __pyx_v_connections->size;
-    __pyx_t_6 = __pyx_t_5;
-    for (__pyx_t_7 = 0; __pyx_t_7 < __pyx_t_6; __pyx_t_7+=1) {
-      __pyx_v_j = __pyx_t_7;
+    __pyx_t_6 = __pyx_v_connections->size;
+    __pyx_t_7 = __pyx_t_6;
+    for (__pyx_t_8 = 0; __pyx_t_8 < __pyx_t_7; __pyx_t_8+=1) {
+      __pyx_v_j = __pyx_t_8;
 
-      /* "algorithms.pyx":114
+      /* "algorithms.pyx":119
  *         j = 0
  *         for j in range(connections.size):
  *             queue.add(connections.get(j).weight, i, connections.get(j).value)             # <<<<<<<<<<<<<<
- *     cdef int* groups = <int*> PyMem_Malloc(graph.size*sizeof(int))
- *     cdef int* group_aliases = <int*> PyMem_Malloc(graph.size*sizeof(int))
+ *     cdef CNode next_node = queue.queue_pop()
+ *     visited_count += 1
  */
       (void)(((struct __pyx_vtabstruct_13priorityqueue_PriorityQueue *)__pyx_v_queue->__pyx_vtab)->add(__pyx_v_queue, __pyx_v_connections->get(__pyx_v_j).weight, __pyx_v_i, __pyx_v_connections->get(__pyx_v_j).value, 0));
     }
   }
 
-  /* "algorithms.pyx":115
+  /* "algorithms.pyx":120
  *         for j in range(connections.size):
  *             queue.add(connections.get(j).weight, i, connections.get(j).value)
- *     cdef int* groups = <int*> PyMem_Malloc(graph.size*sizeof(int))             # <<<<<<<<<<<<<<
- *     cdef int* group_aliases = <int*> PyMem_Malloc(graph.size*sizeof(int))
- *     i = 0
+ *     cdef CNode next_node = queue.queue_pop()             # <<<<<<<<<<<<<<
+ *     visited_count += 1
+ *     cdef int old_group
  */
-  __pyx_v_groups = ((int *)PyMem_Malloc((__pyx_v_graph->size * (sizeof(int)))));
+  __pyx_t_2 = ((PyObject *)((struct __pyx_vtabstruct_13priorityqueue_PriorityQueue *)__pyx_v_queue->__pyx_vtab)->queue_pop(__pyx_v_queue)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 120, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_v_next_node = ((struct __pyx_obj_13priorityqueue_CNode *)__pyx_t_2);
+  __pyx_t_2 = 0;
 
-  /* "algorithms.pyx":116
+  /* "algorithms.pyx":121
  *             queue.add(connections.get(j).weight, i, connections.get(j).value)
- *     cdef int* groups = <int*> PyMem_Malloc(graph.size*sizeof(int))
- *     cdef int* group_aliases = <int*> PyMem_Malloc(graph.size*sizeof(int))             # <<<<<<<<<<<<<<
- *     i = 0
- *     for i in range(graph.size):
+ *     cdef CNode next_node = queue.queue_pop()
+ *     visited_count += 1             # <<<<<<<<<<<<<<
+ *     cdef int old_group
+ *     while next_node is not None:
  */
-  __pyx_v_group_aliases = ((int *)PyMem_Malloc((__pyx_v_graph->size * (sizeof(int)))));
-
-  /* "algorithms.pyx":117
- *     cdef int* groups = <int*> PyMem_Malloc(graph.size*sizeof(int))
- *     cdef int* group_aliases = <int*> PyMem_Malloc(graph.size*sizeof(int))
- *     i = 0             # <<<<<<<<<<<<<<
- *     for i in range(graph.size):
- *         groups[i] = -1
- */
-  __pyx_v_i = 0;
-
-  /* "algorithms.pyx":118
- *     cdef int* group_aliases = <int*> PyMem_Malloc(graph.size*sizeof(int))
- *     i = 0
- *     for i in range(graph.size):             # <<<<<<<<<<<<<<
- *         groups[i] = -1
- *         group_aliases[i] = <int> new DoublyLinkedList()
- */
-  __pyx_t_2 = __pyx_v_graph->size;
-  __pyx_t_3 = __pyx_t_2;
-  for (__pyx_t_4 = 0; __pyx_t_4 < __pyx_t_3; __pyx_t_4+=1) {
-    __pyx_v_i = __pyx_t_4;
-
-    /* "algorithms.pyx":119
- *     i = 0
- *     for i in range(graph.size):
- *         groups[i] = -1             # <<<<<<<<<<<<<<
- *         group_aliases[i] = <int> new DoublyLinkedList()
- *         print(i)
- */
-    (__pyx_v_groups[__pyx_v_i]) = -1;
-
-    /* "algorithms.pyx":120
- *     for i in range(graph.size):
- *         groups[i] = -1
- *         group_aliases[i] = <int> new DoublyLinkedList()             # <<<<<<<<<<<<<<
- *         print(i)
- *         (<DoublyLinkedList*> group_aliases[i]).add(1, 1, 1)
- */
-    try {
-      __pyx_t_8 = new DoublyLinkedList();
-    } catch(...) {
-      __Pyx_CppExn2PyErr();
-      __PYX_ERR(0, 120, __pyx_L1_error)
-    }
-    (__pyx_v_group_aliases[__pyx_v_i]) = ((int)__pyx_t_8);
-
-    /* "algorithms.pyx":121
- *         groups[i] = -1
- *         group_aliases[i] = <int> new DoublyLinkedList()
- *         print(i)             # <<<<<<<<<<<<<<
- *         (<DoublyLinkedList*> group_aliases[i]).add(1, 1, 1)
- *     cdef int group_iter = 0
- */
-    __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_i); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 121, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
-    if (__Pyx_PrintOne(0, __pyx_t_1) < 0) __PYX_ERR(0, 121, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-
-    /* "algorithms.pyx":122
- *         group_aliases[i] = <int> new DoublyLinkedList()
- *         print(i)
- *         (<DoublyLinkedList*> group_aliases[i]).add(1, 1, 1)             # <<<<<<<<<<<<<<
- *     cdef int group_iter = 0
- *     PyMem_Free(groups)
- */
-    ((DoublyLinkedList *)(__pyx_v_group_aliases[__pyx_v_i]))->add(1, 1, 1);
-  }
+  __pyx_v_visited_count = (__pyx_v_visited_count + 1);
 
   /* "algorithms.pyx":123
- *         print(i)
- *         (<DoublyLinkedList*> group_aliases[i]).add(1, 1, 1)
- *     cdef int group_iter = 0             # <<<<<<<<<<<<<<
- *     PyMem_Free(groups)
- *     PyMem_Free(group_aliases)
+ *     visited_count += 1
+ *     cdef int old_group
+ *     while next_node is not None:             # <<<<<<<<<<<<<<
+ *         if groups[next_node.start] == -1 and groups[next_node.end] == -1:
+ *             groups[next_node.start] = max_group
  */
-  __pyx_v_group_iter = 0;
+  while (1) {
+    __pyx_t_9 = (((PyObject *)__pyx_v_next_node) != Py_None);
+    __pyx_t_10 = (__pyx_t_9 != 0);
+    if (!__pyx_t_10) break;
 
-  /* "algorithms.pyx":124
- *         (<DoublyLinkedList*> group_aliases[i]).add(1, 1, 1)
- *     cdef int group_iter = 0
+    /* "algorithms.pyx":124
+ *     cdef int old_group
+ *     while next_node is not None:
+ *         if groups[next_node.start] == -1 and groups[next_node.end] == -1:             # <<<<<<<<<<<<<<
+ *             groups[next_node.start] = max_group
+ *             groups[next_node.end] = max_group
+ */
+    __pyx_t_9 = (((__pyx_v_groups[__pyx_v_next_node->start]) == -1L) != 0);
+    if (__pyx_t_9) {
+    } else {
+      __pyx_t_10 = __pyx_t_9;
+      goto __pyx_L10_bool_binop_done;
+    }
+    __pyx_t_9 = (((__pyx_v_groups[__pyx_v_next_node->end]) == -1L) != 0);
+    __pyx_t_10 = __pyx_t_9;
+    __pyx_L10_bool_binop_done:;
+    if (__pyx_t_10) {
+
+      /* "algorithms.pyx":125
+ *     while next_node is not None:
+ *         if groups[next_node.start] == -1 and groups[next_node.end] == -1:
+ *             groups[next_node.start] = max_group             # <<<<<<<<<<<<<<
+ *             groups[next_node.end] = max_group
+ *             max_group += 1
+ */
+      (__pyx_v_groups[__pyx_v_next_node->start]) = __pyx_v_max_group;
+
+      /* "algorithms.pyx":126
+ *         if groups[next_node.start] == -1 and groups[next_node.end] == -1:
+ *             groups[next_node.start] = max_group
+ *             groups[next_node.end] = max_group             # <<<<<<<<<<<<<<
+ *             max_group += 1
+ *             result.add_connection(next_node.start, next_node.end, next_node.data)
+ */
+      (__pyx_v_groups[__pyx_v_next_node->end]) = __pyx_v_max_group;
+
+      /* "algorithms.pyx":127
+ *             groups[next_node.start] = max_group
+ *             groups[next_node.end] = max_group
+ *             max_group += 1             # <<<<<<<<<<<<<<
+ *             result.add_connection(next_node.start, next_node.end, next_node.data)
+ *             result.add_connection(next_node.end, next_node.start, next_node.data)
+ */
+      __pyx_v_max_group = (__pyx_v_max_group + 1);
+
+      /* "algorithms.pyx":128
+ *             groups[next_node.end] = max_group
+ *             max_group += 1
+ *             result.add_connection(next_node.start, next_node.end, next_node.data)             # <<<<<<<<<<<<<<
+ *             result.add_connection(next_node.end, next_node.start, next_node.data)
+ *             visited_count += 1
+ */
+      ((struct __pyx_vtabstruct_11linked_list_ListGraph *)__pyx_v_result->__pyx_vtab)->add_connection(__pyx_v_result, __pyx_v_next_node->start, __pyx_v_next_node->end, __pyx_v_next_node->data, 0);
+
+      /* "algorithms.pyx":129
+ *             max_group += 1
+ *             result.add_connection(next_node.start, next_node.end, next_node.data)
+ *             result.add_connection(next_node.end, next_node.start, next_node.data)             # <<<<<<<<<<<<<<
+ *             visited_count += 1
+ *         elif groups[next_node.start] != -1 and groups[next_node.end] == -1 \
+ */
+      ((struct __pyx_vtabstruct_11linked_list_ListGraph *)__pyx_v_result->__pyx_vtab)->add_connection(__pyx_v_result, __pyx_v_next_node->end, __pyx_v_next_node->start, __pyx_v_next_node->data, 0);
+
+      /* "algorithms.pyx":130
+ *             result.add_connection(next_node.start, next_node.end, next_node.data)
+ *             result.add_connection(next_node.end, next_node.start, next_node.data)
+ *             visited_count += 1             # <<<<<<<<<<<<<<
+ *         elif groups[next_node.start] != -1 and groups[next_node.end] == -1 \
+ *                 or groups[next_node.start] == -1 and groups[next_node.end] != -1:
+ */
+      __pyx_v_visited_count = (__pyx_v_visited_count + 1);
+
+      /* "algorithms.pyx":124
+ *     cdef int old_group
+ *     while next_node is not None:
+ *         if groups[next_node.start] == -1 and groups[next_node.end] == -1:             # <<<<<<<<<<<<<<
+ *             groups[next_node.start] = max_group
+ *             groups[next_node.end] = max_group
+ */
+      goto __pyx_L9;
+    }
+
+    /* "algorithms.pyx":131
+ *             result.add_connection(next_node.end, next_node.start, next_node.data)
+ *             visited_count += 1
+ *         elif groups[next_node.start] != -1 and groups[next_node.end] == -1 \             # <<<<<<<<<<<<<<
+ *                 or groups[next_node.start] == -1 and groups[next_node.end] != -1:
+ *             groups[next_node.start] = max(groups[next_node.start], groups[next_node.end])
+ */
+    __pyx_t_9 = (((__pyx_v_groups[__pyx_v_next_node->start]) != -1L) != 0);
+    if (!__pyx_t_9) {
+      goto __pyx_L13_next_or;
+    } else {
+    }
+    __pyx_t_9 = (((__pyx_v_groups[__pyx_v_next_node->end]) == -1L) != 0);
+    if (!__pyx_t_9) {
+    } else {
+      __pyx_t_10 = __pyx_t_9;
+      goto __pyx_L12_bool_binop_done;
+    }
+    __pyx_L13_next_or:;
+
+    /* "algorithms.pyx":132
+ *             visited_count += 1
+ *         elif groups[next_node.start] != -1 and groups[next_node.end] == -1 \
+ *                 or groups[next_node.start] == -1 and groups[next_node.end] != -1:             # <<<<<<<<<<<<<<
+ *             groups[next_node.start] = max(groups[next_node.start], groups[next_node.end])
+ *             groups[next_node.end] = max(groups[next_node.start], groups[next_node.end])
+ */
+    __pyx_t_9 = (((__pyx_v_groups[__pyx_v_next_node->start]) == -1L) != 0);
+    if (__pyx_t_9) {
+    } else {
+      __pyx_t_10 = __pyx_t_9;
+      goto __pyx_L12_bool_binop_done;
+    }
+    __pyx_t_9 = (((__pyx_v_groups[__pyx_v_next_node->end]) != -1L) != 0);
+    __pyx_t_10 = __pyx_t_9;
+    __pyx_L12_bool_binop_done:;
+
+    /* "algorithms.pyx":131
+ *             result.add_connection(next_node.end, next_node.start, next_node.data)
+ *             visited_count += 1
+ *         elif groups[next_node.start] != -1 and groups[next_node.end] == -1 \             # <<<<<<<<<<<<<<
+ *                 or groups[next_node.start] == -1 and groups[next_node.end] != -1:
+ *             groups[next_node.start] = max(groups[next_node.start], groups[next_node.end])
+ */
+    if (__pyx_t_10) {
+
+      /* "algorithms.pyx":133
+ *         elif groups[next_node.start] != -1 and groups[next_node.end] == -1 \
+ *                 or groups[next_node.start] == -1 and groups[next_node.end] != -1:
+ *             groups[next_node.start] = max(groups[next_node.start], groups[next_node.end])             # <<<<<<<<<<<<<<
+ *             groups[next_node.end] = max(groups[next_node.start], groups[next_node.end])
+ *             result.add_connection(next_node.start, next_node.end, next_node.data)
+ */
+      __pyx_t_3 = (__pyx_v_groups[__pyx_v_next_node->end]);
+      __pyx_t_4 = (__pyx_v_groups[__pyx_v_next_node->start]);
+      if (((__pyx_t_3 > __pyx_t_4) != 0)) {
+        __pyx_t_5 = __pyx_t_3;
+      } else {
+        __pyx_t_5 = __pyx_t_4;
+      }
+      (__pyx_v_groups[__pyx_v_next_node->start]) = __pyx_t_5;
+
+      /* "algorithms.pyx":134
+ *                 or groups[next_node.start] == -1 and groups[next_node.end] != -1:
+ *             groups[next_node.start] = max(groups[next_node.start], groups[next_node.end])
+ *             groups[next_node.end] = max(groups[next_node.start], groups[next_node.end])             # <<<<<<<<<<<<<<
+ *             result.add_connection(next_node.start, next_node.end, next_node.data)
+ *             result.add_connection(next_node.end, next_node.start, next_node.data)
+ */
+      __pyx_t_5 = (__pyx_v_groups[__pyx_v_next_node->end]);
+      __pyx_t_3 = (__pyx_v_groups[__pyx_v_next_node->start]);
+      if (((__pyx_t_5 > __pyx_t_3) != 0)) {
+        __pyx_t_4 = __pyx_t_5;
+      } else {
+        __pyx_t_4 = __pyx_t_3;
+      }
+      (__pyx_v_groups[__pyx_v_next_node->end]) = __pyx_t_4;
+
+      /* "algorithms.pyx":135
+ *             groups[next_node.start] = max(groups[next_node.start], groups[next_node.end])
+ *             groups[next_node.end] = max(groups[next_node.start], groups[next_node.end])
+ *             result.add_connection(next_node.start, next_node.end, next_node.data)             # <<<<<<<<<<<<<<
+ *             result.add_connection(next_node.end, next_node.start, next_node.data)
+ *             visited_count += 1
+ */
+      ((struct __pyx_vtabstruct_11linked_list_ListGraph *)__pyx_v_result->__pyx_vtab)->add_connection(__pyx_v_result, __pyx_v_next_node->start, __pyx_v_next_node->end, __pyx_v_next_node->data, 0);
+
+      /* "algorithms.pyx":136
+ *             groups[next_node.end] = max(groups[next_node.start], groups[next_node.end])
+ *             result.add_connection(next_node.start, next_node.end, next_node.data)
+ *             result.add_connection(next_node.end, next_node.start, next_node.data)             # <<<<<<<<<<<<<<
+ *             visited_count += 1
+ *         elif groups[next_node.start] != -1 and groups[next_node.end] != -1:
+ */
+      ((struct __pyx_vtabstruct_11linked_list_ListGraph *)__pyx_v_result->__pyx_vtab)->add_connection(__pyx_v_result, __pyx_v_next_node->end, __pyx_v_next_node->start, __pyx_v_next_node->data, 0);
+
+      /* "algorithms.pyx":137
+ *             result.add_connection(next_node.start, next_node.end, next_node.data)
+ *             result.add_connection(next_node.end, next_node.start, next_node.data)
+ *             visited_count += 1             # <<<<<<<<<<<<<<
+ *         elif groups[next_node.start] != -1 and groups[next_node.end] != -1:
+ *             if groups[next_node.start] != groups[next_node.end]:
+ */
+      __pyx_v_visited_count = (__pyx_v_visited_count + 1);
+
+      /* "algorithms.pyx":131
+ *             result.add_connection(next_node.end, next_node.start, next_node.data)
+ *             visited_count += 1
+ *         elif groups[next_node.start] != -1 and groups[next_node.end] == -1 \             # <<<<<<<<<<<<<<
+ *                 or groups[next_node.start] == -1 and groups[next_node.end] != -1:
+ *             groups[next_node.start] = max(groups[next_node.start], groups[next_node.end])
+ */
+      goto __pyx_L9;
+    }
+
+    /* "algorithms.pyx":138
+ *             result.add_connection(next_node.end, next_node.start, next_node.data)
+ *             visited_count += 1
+ *         elif groups[next_node.start] != -1 and groups[next_node.end] != -1:             # <<<<<<<<<<<<<<
+ *             if groups[next_node.start] != groups[next_node.end]:
+ *                 j = 0
+ */
+    __pyx_t_9 = (((__pyx_v_groups[__pyx_v_next_node->start]) != -1L) != 0);
+    if (__pyx_t_9) {
+    } else {
+      __pyx_t_10 = __pyx_t_9;
+      goto __pyx_L16_bool_binop_done;
+    }
+    __pyx_t_9 = (((__pyx_v_groups[__pyx_v_next_node->end]) != -1L) != 0);
+    __pyx_t_10 = __pyx_t_9;
+    __pyx_L16_bool_binop_done:;
+    if (__pyx_t_10) {
+
+      /* "algorithms.pyx":139
+ *             visited_count += 1
+ *         elif groups[next_node.start] != -1 and groups[next_node.end] != -1:
+ *             if groups[next_node.start] != groups[next_node.end]:             # <<<<<<<<<<<<<<
+ *                 j = 0
+ *                 old_group = groups[next_node.end]
+ */
+      __pyx_t_10 = (((__pyx_v_groups[__pyx_v_next_node->start]) != (__pyx_v_groups[__pyx_v_next_node->end])) != 0);
+      if (__pyx_t_10) {
+
+        /* "algorithms.pyx":140
+ *         elif groups[next_node.start] != -1 and groups[next_node.end] != -1:
+ *             if groups[next_node.start] != groups[next_node.end]:
+ *                 j = 0             # <<<<<<<<<<<<<<
+ *                 old_group = groups[next_node.end]
+ *                 for j in range(graph.getsize()):
+ */
+        __pyx_v_j = 0;
+
+        /* "algorithms.pyx":141
+ *             if groups[next_node.start] != groups[next_node.end]:
+ *                 j = 0
+ *                 old_group = groups[next_node.end]             # <<<<<<<<<<<<<<
+ *                 for j in range(graph.getsize()):
+ *                     if groups[j] == old_group:
+ */
+        __pyx_v_old_group = (__pyx_v_groups[__pyx_v_next_node->end]);
+
+        /* "algorithms.pyx":142
+ *                 j = 0
+ *                 old_group = groups[next_node.end]
+ *                 for j in range(graph.getsize()):             # <<<<<<<<<<<<<<
+ *                     if groups[j] == old_group:
+ *                         groups[j] = groups[next_node.start]
+ */
+        __pyx_t_2 = ((struct __pyx_vtabstruct_11linked_list_ListGraph *)__pyx_v_graph->__pyx_vtab)->getsize(__pyx_v_graph, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 142, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_2);
+        __pyx_t_11 = __Pyx_PyInt_As_long(__pyx_t_2); if (unlikely((__pyx_t_11 == (long)-1) && PyErr_Occurred())) __PYX_ERR(0, 142, __pyx_L1_error)
+        __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+        __pyx_t_12 = __pyx_t_11;
+        for (__pyx_t_4 = 0; __pyx_t_4 < __pyx_t_12; __pyx_t_4+=1) {
+          __pyx_v_j = __pyx_t_4;
+
+          /* "algorithms.pyx":143
+ *                 old_group = groups[next_node.end]
+ *                 for j in range(graph.getsize()):
+ *                     if groups[j] == old_group:             # <<<<<<<<<<<<<<
+ *                         groups[j] = groups[next_node.start]
+ *                 result.add_connection(next_node.start, next_node.end, next_node.data)
+ */
+          __pyx_t_10 = (((__pyx_v_groups[__pyx_v_j]) == __pyx_v_old_group) != 0);
+          if (__pyx_t_10) {
+
+            /* "algorithms.pyx":144
+ *                 for j in range(graph.getsize()):
+ *                     if groups[j] == old_group:
+ *                         groups[j] = groups[next_node.start]             # <<<<<<<<<<<<<<
+ *                 result.add_connection(next_node.start, next_node.end, next_node.data)
+ *                 result.add_connection(next_node.end, next_node.start, next_node.data)
+ */
+            (__pyx_v_groups[__pyx_v_j]) = (__pyx_v_groups[__pyx_v_next_node->start]);
+
+            /* "algorithms.pyx":143
+ *                 old_group = groups[next_node.end]
+ *                 for j in range(graph.getsize()):
+ *                     if groups[j] == old_group:             # <<<<<<<<<<<<<<
+ *                         groups[j] = groups[next_node.start]
+ *                 result.add_connection(next_node.start, next_node.end, next_node.data)
+ */
+          }
+        }
+
+        /* "algorithms.pyx":145
+ *                     if groups[j] == old_group:
+ *                         groups[j] = groups[next_node.start]
+ *                 result.add_connection(next_node.start, next_node.end, next_node.data)             # <<<<<<<<<<<<<<
+ *                 result.add_connection(next_node.end, next_node.start, next_node.data)
+ *                 visited_count += 1
+ */
+        ((struct __pyx_vtabstruct_11linked_list_ListGraph *)__pyx_v_result->__pyx_vtab)->add_connection(__pyx_v_result, __pyx_v_next_node->start, __pyx_v_next_node->end, __pyx_v_next_node->data, 0);
+
+        /* "algorithms.pyx":146
+ *                         groups[j] = groups[next_node.start]
+ *                 result.add_connection(next_node.start, next_node.end, next_node.data)
+ *                 result.add_connection(next_node.end, next_node.start, next_node.data)             # <<<<<<<<<<<<<<
+ *                 visited_count += 1
+ *         if visited_count == graph.getsize():
+ */
+        ((struct __pyx_vtabstruct_11linked_list_ListGraph *)__pyx_v_result->__pyx_vtab)->add_connection(__pyx_v_result, __pyx_v_next_node->end, __pyx_v_next_node->start, __pyx_v_next_node->data, 0);
+
+        /* "algorithms.pyx":147
+ *                 result.add_connection(next_node.start, next_node.end, next_node.data)
+ *                 result.add_connection(next_node.end, next_node.start, next_node.data)
+ *                 visited_count += 1             # <<<<<<<<<<<<<<
+ *         if visited_count == graph.getsize():
+ *             break
+ */
+        __pyx_v_visited_count = (__pyx_v_visited_count + 1);
+
+        /* "algorithms.pyx":139
+ *             visited_count += 1
+ *         elif groups[next_node.start] != -1 and groups[next_node.end] != -1:
+ *             if groups[next_node.start] != groups[next_node.end]:             # <<<<<<<<<<<<<<
+ *                 j = 0
+ *                 old_group = groups[next_node.end]
+ */
+      }
+
+      /* "algorithms.pyx":138
+ *             result.add_connection(next_node.end, next_node.start, next_node.data)
+ *             visited_count += 1
+ *         elif groups[next_node.start] != -1 and groups[next_node.end] != -1:             # <<<<<<<<<<<<<<
+ *             if groups[next_node.start] != groups[next_node.end]:
+ *                 j = 0
+ */
+    }
+    __pyx_L9:;
+
+    /* "algorithms.pyx":148
+ *                 result.add_connection(next_node.end, next_node.start, next_node.data)
+ *                 visited_count += 1
+ *         if visited_count == graph.getsize():             # <<<<<<<<<<<<<<
+ *             break
+ * 
+ */
+    __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_v_visited_count); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 148, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_2);
+    __pyx_t_1 = ((struct __pyx_vtabstruct_11linked_list_ListGraph *)__pyx_v_graph->__pyx_vtab)->getsize(__pyx_v_graph, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 148, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __pyx_t_13 = PyObject_RichCompare(__pyx_t_2, __pyx_t_1, Py_EQ); __Pyx_XGOTREF(__pyx_t_13); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 148, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+    __pyx_t_10 = __Pyx_PyObject_IsTrue(__pyx_t_13); if (unlikely(__pyx_t_10 < 0)) __PYX_ERR(0, 148, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
+    if (__pyx_t_10) {
+
+      /* "algorithms.pyx":149
+ *                 visited_count += 1
+ *         if visited_count == graph.getsize():
+ *             break             # <<<<<<<<<<<<<<
+ * 
+ *         next_node = queue.queue_pop()
+ */
+      goto __pyx_L8_break;
+
+      /* "algorithms.pyx":148
+ *                 result.add_connection(next_node.end, next_node.start, next_node.data)
+ *                 visited_count += 1
+ *         if visited_count == graph.getsize():             # <<<<<<<<<<<<<<
+ *             break
+ * 
+ */
+    }
+
+    /* "algorithms.pyx":151
+ *             break
+ * 
+ *         next_node = queue.queue_pop()             # <<<<<<<<<<<<<<
+ * 
+ *     PyMem_Free(groups)
+ */
+    __pyx_t_13 = ((PyObject *)((struct __pyx_vtabstruct_13priorityqueue_PriorityQueue *)__pyx_v_queue->__pyx_vtab)->queue_pop(__pyx_v_queue)); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 151, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_13);
+    __Pyx_DECREF_SET(__pyx_v_next_node, ((struct __pyx_obj_13priorityqueue_CNode *)__pyx_t_13));
+    __pyx_t_13 = 0;
+  }
+  __pyx_L8_break:;
+
+  /* "algorithms.pyx":153
+ *         next_node = queue.queue_pop()
+ * 
  *     PyMem_Free(groups)             # <<<<<<<<<<<<<<
- *     PyMem_Free(group_aliases)
- *     return graph
+ *     return result
+ * 
  */
   PyMem_Free(__pyx_v_groups);
 
-  /* "algorithms.pyx":125
- *     cdef int group_iter = 0
+  /* "algorithms.pyx":154
+ * 
  *     PyMem_Free(groups)
- *     PyMem_Free(group_aliases)             # <<<<<<<<<<<<<<
- *     return graph
+ *     return result             # <<<<<<<<<<<<<<
  * 
- */
-  PyMem_Free(__pyx_v_group_aliases);
-
-  /* "algorithms.pyx":126
- *     PyMem_Free(groups)
- *     PyMem_Free(group_aliases)
- *     return graph             # <<<<<<<<<<<<<<
- * 
- * 
+ * cpdef Matrix kruskal_matrix(Matrix graph, tuple args):
  */
   __Pyx_XDECREF(((PyObject *)__pyx_r));
-  __Pyx_INCREF(((PyObject *)__pyx_v_graph));
-  __pyx_r = __pyx_v_graph;
+  __Pyx_INCREF(((PyObject *)__pyx_v_result));
+  __pyx_r = __pyx_v_result;
   goto __pyx_L0;
 
   /* "algorithms.pyx":105
@@ -2818,16 +3178,20 @@ static struct __pyx_obj_11linked_list_ListGraph *__pyx_f_10algorithms_kruskal_li
  * 
  * cpdef ListGraph kruskal_list(ListGraph graph, tuple args):             # <<<<<<<<<<<<<<
  *     cdef int i = 0
- *     cdef PriorityQueue queue = PriorityQueue()
+ *     cdef int visited_count = 0
  */
 
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_XDECREF(__pyx_t_13);
   __Pyx_AddTraceback("algorithms.kruskal_list", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = 0;
   __pyx_L0:;
+  __Pyx_XDECREF((PyObject *)__pyx_v_result);
   __Pyx_XDECREF((PyObject *)__pyx_v_queue);
+  __Pyx_XDECREF((PyObject *)__pyx_v_next_node);
   __Pyx_XGIVEREF((PyObject *)__pyx_r);
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
@@ -2923,7 +3287,730 @@ static PyObject *__pyx_pf_10algorithms_4kruskal_list(CYTHON_UNUSED PyObject *__p
   return __pyx_r;
 }
 
-/* "algorithms.pyx":129
+/* "algorithms.pyx":156
+ *     return result
+ * 
+ * cpdef Matrix kruskal_matrix(Matrix graph, tuple args):             # <<<<<<<<<<<<<<
+ *     cdef int i = 03
+ *     cdef int visited_count = 0
+ */
+
+static PyObject *__pyx_pw_10algorithms_7kruskal_matrix(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static struct __pyx_obj_6matrix_Matrix *__pyx_f_10algorithms_kruskal_matrix(struct __pyx_obj_6matrix_Matrix *__pyx_v_graph, CYTHON_UNUSED PyObject *__pyx_v_args, CYTHON_UNUSED int __pyx_skip_dispatch) {
+  int __pyx_v_i;
+  int __pyx_v_visited_count;
+  struct __pyx_obj_6matrix_Matrix *__pyx_v_result = 0;
+  struct __pyx_obj_13priorityqueue_PriorityQueue *__pyx_v_queue = 0;
+  int __pyx_v_max_group;
+  int __pyx_v_j;
+  int *__pyx_v_groups;
+  struct __pyx_obj_13priorityqueue_CNode *__pyx_v_next_node = 0;
+  int __pyx_v_old_group;
+  struct __pyx_obj_6matrix_Matrix *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  PyObject *__pyx_t_2 = NULL;
+  int __pyx_t_3;
+  int __pyx_t_4;
+  int __pyx_t_5;
+  long __pyx_t_6;
+  long __pyx_t_7;
+  int __pyx_t_8;
+  int __pyx_t_9;
+  int __pyx_t_10;
+  PyObject *__pyx_t_11 = NULL;
+  __Pyx_RefNannySetupContext("kruskal_matrix", 0);
+
+  /* "algorithms.pyx":157
+ * 
+ * cpdef Matrix kruskal_matrix(Matrix graph, tuple args):
+ *     cdef int i = 03             # <<<<<<<<<<<<<<
+ *     cdef int visited_count = 0
+ *     cpdef Matrix result = Matrix(graph.getsize())
+ */
+  __pyx_v_i = 03;
+
+  /* "algorithms.pyx":158
+ * cpdef Matrix kruskal_matrix(Matrix graph, tuple args):
+ *     cdef int i = 03
+ *     cdef int visited_count = 0             # <<<<<<<<<<<<<<
+ *     cpdef Matrix result = Matrix(graph.getsize())
+ *     cdef PriorityQueue queue = PriorityQueue()
+ */
+  __pyx_v_visited_count = 0;
+
+  /* "algorithms.pyx":159
+ *     cdef int i = 03
+ *     cdef int visited_count = 0
+ *     cpdef Matrix result = Matrix(graph.getsize())             # <<<<<<<<<<<<<<
+ *     cdef PriorityQueue queue = PriorityQueue()
+ *     cdef int max_group = 0
+ */
+  __pyx_t_1 = ((struct __pyx_vtabstruct_6matrix_Matrix *)__pyx_v_graph->__pyx_vtab)->getsize(__pyx_v_graph, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 159, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_2 = __Pyx_PyObject_CallOneArg(((PyObject *)__pyx_ptype_6matrix_Matrix), __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 159, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_v_result = ((struct __pyx_obj_6matrix_Matrix *)__pyx_t_2);
+  __pyx_t_2 = 0;
+
+  /* "algorithms.pyx":160
+ *     cdef int visited_count = 0
+ *     cpdef Matrix result = Matrix(graph.getsize())
+ *     cdef PriorityQueue queue = PriorityQueue()             # <<<<<<<<<<<<<<
+ *     cdef int max_group = 0
+ *     cdef int j
+ */
+  __pyx_t_2 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_13priorityqueue_PriorityQueue)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 160, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_v_queue = ((struct __pyx_obj_13priorityqueue_PriorityQueue *)__pyx_t_2);
+  __pyx_t_2 = 0;
+
+  /* "algorithms.pyx":161
+ *     cpdef Matrix result = Matrix(graph.getsize())
+ *     cdef PriorityQueue queue = PriorityQueue()
+ *     cdef int max_group = 0             # <<<<<<<<<<<<<<
+ *     cdef int j
+ *     cdef int* groups = <int*> PyMem_Malloc(graph.size*sizeof(int))
+ */
+  __pyx_v_max_group = 0;
+
+  /* "algorithms.pyx":163
+ *     cdef int max_group = 0
+ *     cdef int j
+ *     cdef int* groups = <int*> PyMem_Malloc(graph.size*sizeof(int))             # <<<<<<<<<<<<<<
+ *     for i in range(graph.size):
+ *         groups[i] = -1
+ */
+  __pyx_v_groups = ((int *)PyMem_Malloc((__pyx_v_graph->size * (sizeof(int)))));
+
+  /* "algorithms.pyx":164
+ *     cdef int j
+ *     cdef int* groups = <int*> PyMem_Malloc(graph.size*sizeof(int))
+ *     for i in range(graph.size):             # <<<<<<<<<<<<<<
+ *         groups[i] = -1
+ *         j = 0
+ */
+  __pyx_t_3 = __pyx_v_graph->size;
+  __pyx_t_4 = __pyx_t_3;
+  for (__pyx_t_5 = 0; __pyx_t_5 < __pyx_t_4; __pyx_t_5+=1) {
+    __pyx_v_i = __pyx_t_5;
+
+    /* "algorithms.pyx":165
+ *     cdef int* groups = <int*> PyMem_Malloc(graph.size*sizeof(int))
+ *     for i in range(graph.size):
+ *         groups[i] = -1             # <<<<<<<<<<<<<<
+ *         j = 0
+ *         for j in range(i+1, graph.getsize()):
+ */
+    (__pyx_v_groups[__pyx_v_i]) = -1;
+
+    /* "algorithms.pyx":166
+ *     for i in range(graph.size):
+ *         groups[i] = -1
+ *         j = 0             # <<<<<<<<<<<<<<
+ *         for j in range(i+1, graph.getsize()):
+ *             if graph.get(i, j) != 0:
+ */
+    __pyx_v_j = 0;
+
+    /* "algorithms.pyx":167
+ *         groups[i] = -1
+ *         j = 0
+ *         for j in range(i+1, graph.getsize()):             # <<<<<<<<<<<<<<
+ *             if graph.get(i, j) != 0:
+ *                 queue.add(graph.get(i, j), i, j)
+ */
+    __pyx_t_2 = ((struct __pyx_vtabstruct_6matrix_Matrix *)__pyx_v_graph->__pyx_vtab)->getsize(__pyx_v_graph, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 167, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_2);
+    __pyx_t_6 = __Pyx_PyInt_As_long(__pyx_t_2); if (unlikely((__pyx_t_6 == (long)-1) && PyErr_Occurred())) __PYX_ERR(0, 167, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __pyx_t_7 = __pyx_t_6;
+    for (__pyx_t_8 = (__pyx_v_i + 1); __pyx_t_8 < __pyx_t_7; __pyx_t_8+=1) {
+      __pyx_v_j = __pyx_t_8;
+
+      /* "algorithms.pyx":168
+ *         j = 0
+ *         for j in range(i+1, graph.getsize()):
+ *             if graph.get(i, j) != 0:             # <<<<<<<<<<<<<<
+ *                 queue.add(graph.get(i, j), i, j)
+ *     cdef CNode next_node = queue.queue_pop()
+ */
+      __pyx_t_9 = ((((struct __pyx_vtabstruct_6matrix_Matrix *)__pyx_v_graph->__pyx_vtab)->get(__pyx_v_graph, __pyx_v_i, __pyx_v_j, 0) != 0) != 0);
+      if (__pyx_t_9) {
+
+        /* "algorithms.pyx":169
+ *         for j in range(i+1, graph.getsize()):
+ *             if graph.get(i, j) != 0:
+ *                 queue.add(graph.get(i, j), i, j)             # <<<<<<<<<<<<<<
+ *     cdef CNode next_node = queue.queue_pop()
+ *     visited_count += 1
+ */
+        (void)(((struct __pyx_vtabstruct_13priorityqueue_PriorityQueue *)__pyx_v_queue->__pyx_vtab)->add(__pyx_v_queue, ((struct __pyx_vtabstruct_6matrix_Matrix *)__pyx_v_graph->__pyx_vtab)->get(__pyx_v_graph, __pyx_v_i, __pyx_v_j, 0), __pyx_v_i, __pyx_v_j, 0));
+
+        /* "algorithms.pyx":168
+ *         j = 0
+ *         for j in range(i+1, graph.getsize()):
+ *             if graph.get(i, j) != 0:             # <<<<<<<<<<<<<<
+ *                 queue.add(graph.get(i, j), i, j)
+ *     cdef CNode next_node = queue.queue_pop()
+ */
+      }
+    }
+  }
+
+  /* "algorithms.pyx":170
+ *             if graph.get(i, j) != 0:
+ *                 queue.add(graph.get(i, j), i, j)
+ *     cdef CNode next_node = queue.queue_pop()             # <<<<<<<<<<<<<<
+ *     visited_count += 1
+ *     cdef int old_group
+ */
+  __pyx_t_2 = ((PyObject *)((struct __pyx_vtabstruct_13priorityqueue_PriorityQueue *)__pyx_v_queue->__pyx_vtab)->queue_pop(__pyx_v_queue)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 170, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_v_next_node = ((struct __pyx_obj_13priorityqueue_CNode *)__pyx_t_2);
+  __pyx_t_2 = 0;
+
+  /* "algorithms.pyx":171
+ *                 queue.add(graph.get(i, j), i, j)
+ *     cdef CNode next_node = queue.queue_pop()
+ *     visited_count += 1             # <<<<<<<<<<<<<<
+ *     cdef int old_group
+ *     while next_node is not None:
+ */
+  __pyx_v_visited_count = (__pyx_v_visited_count + 1);
+
+  /* "algorithms.pyx":173
+ *     visited_count += 1
+ *     cdef int old_group
+ *     while next_node is not None:             # <<<<<<<<<<<<<<
+ *         if groups[next_node.start] == -1 and groups[next_node.end] == -1:
+ *             groups[next_node.start] = max_group
+ */
+  while (1) {
+    __pyx_t_9 = (((PyObject *)__pyx_v_next_node) != Py_None);
+    __pyx_t_10 = (__pyx_t_9 != 0);
+    if (!__pyx_t_10) break;
+
+    /* "algorithms.pyx":174
+ *     cdef int old_group
+ *     while next_node is not None:
+ *         if groups[next_node.start] == -1 and groups[next_node.end] == -1:             # <<<<<<<<<<<<<<
+ *             groups[next_node.start] = max_group
+ *             groups[next_node.end] = max_group
+ */
+    __pyx_t_9 = (((__pyx_v_groups[__pyx_v_next_node->start]) == -1L) != 0);
+    if (__pyx_t_9) {
+    } else {
+      __pyx_t_10 = __pyx_t_9;
+      goto __pyx_L11_bool_binop_done;
+    }
+    __pyx_t_9 = (((__pyx_v_groups[__pyx_v_next_node->end]) == -1L) != 0);
+    __pyx_t_10 = __pyx_t_9;
+    __pyx_L11_bool_binop_done:;
+    if (__pyx_t_10) {
+
+      /* "algorithms.pyx":175
+ *     while next_node is not None:
+ *         if groups[next_node.start] == -1 and groups[next_node.end] == -1:
+ *             groups[next_node.start] = max_group             # <<<<<<<<<<<<<<
+ *             groups[next_node.end] = max_group
+ *             max_group += 1
+ */
+      (__pyx_v_groups[__pyx_v_next_node->start]) = __pyx_v_max_group;
+
+      /* "algorithms.pyx":176
+ *         if groups[next_node.start] == -1 and groups[next_node.end] == -1:
+ *             groups[next_node.start] = max_group
+ *             groups[next_node.end] = max_group             # <<<<<<<<<<<<<<
+ *             max_group += 1
+ *             result.set(next_node.start, next_node.end, next_node.data)
+ */
+      (__pyx_v_groups[__pyx_v_next_node->end]) = __pyx_v_max_group;
+
+      /* "algorithms.pyx":177
+ *             groups[next_node.start] = max_group
+ *             groups[next_node.end] = max_group
+ *             max_group += 1             # <<<<<<<<<<<<<<
+ *             result.set(next_node.start, next_node.end, next_node.data)
+ *             result.set(next_node.end, next_node.start, next_node.data)
+ */
+      __pyx_v_max_group = (__pyx_v_max_group + 1);
+
+      /* "algorithms.pyx":178
+ *             groups[next_node.end] = max_group
+ *             max_group += 1
+ *             result.set(next_node.start, next_node.end, next_node.data)             # <<<<<<<<<<<<<<
+ *             result.set(next_node.end, next_node.start, next_node.data)
+ *             visited_count += 1
+ */
+      (void)(((struct __pyx_vtabstruct_6matrix_Matrix *)__pyx_v_result->__pyx_vtab)->set(__pyx_v_result, __pyx_v_next_node->start, __pyx_v_next_node->end, __pyx_v_next_node->data, 0));
+
+      /* "algorithms.pyx":179
+ *             max_group += 1
+ *             result.set(next_node.start, next_node.end, next_node.data)
+ *             result.set(next_node.end, next_node.start, next_node.data)             # <<<<<<<<<<<<<<
+ *             visited_count += 1
+ *         elif groups[next_node.start] != -1 and groups[next_node.end] == -1 \
+ */
+      (void)(((struct __pyx_vtabstruct_6matrix_Matrix *)__pyx_v_result->__pyx_vtab)->set(__pyx_v_result, __pyx_v_next_node->end, __pyx_v_next_node->start, __pyx_v_next_node->data, 0));
+
+      /* "algorithms.pyx":180
+ *             result.set(next_node.start, next_node.end, next_node.data)
+ *             result.set(next_node.end, next_node.start, next_node.data)
+ *             visited_count += 1             # <<<<<<<<<<<<<<
+ *         elif groups[next_node.start] != -1 and groups[next_node.end] == -1 \
+ *                 or groups[next_node.start] == -1 and groups[next_node.end] != -1:
+ */
+      __pyx_v_visited_count = (__pyx_v_visited_count + 1);
+
+      /* "algorithms.pyx":174
+ *     cdef int old_group
+ *     while next_node is not None:
+ *         if groups[next_node.start] == -1 and groups[next_node.end] == -1:             # <<<<<<<<<<<<<<
+ *             groups[next_node.start] = max_group
+ *             groups[next_node.end] = max_group
+ */
+      goto __pyx_L10;
+    }
+
+    /* "algorithms.pyx":181
+ *             result.set(next_node.end, next_node.start, next_node.data)
+ *             visited_count += 1
+ *         elif groups[next_node.start] != -1 and groups[next_node.end] == -1 \             # <<<<<<<<<<<<<<
+ *                 or groups[next_node.start] == -1 and groups[next_node.end] != -1:
+ *             groups[next_node.start] = max(groups[next_node.start], groups[next_node.end])
+ */
+    __pyx_t_9 = (((__pyx_v_groups[__pyx_v_next_node->start]) != -1L) != 0);
+    if (!__pyx_t_9) {
+      goto __pyx_L14_next_or;
+    } else {
+    }
+    __pyx_t_9 = (((__pyx_v_groups[__pyx_v_next_node->end]) == -1L) != 0);
+    if (!__pyx_t_9) {
+    } else {
+      __pyx_t_10 = __pyx_t_9;
+      goto __pyx_L13_bool_binop_done;
+    }
+    __pyx_L14_next_or:;
+
+    /* "algorithms.pyx":182
+ *             visited_count += 1
+ *         elif groups[next_node.start] != -1 and groups[next_node.end] == -1 \
+ *                 or groups[next_node.start] == -1 and groups[next_node.end] != -1:             # <<<<<<<<<<<<<<
+ *             groups[next_node.start] = max(groups[next_node.start], groups[next_node.end])
+ *             groups[next_node.end] = max(groups[next_node.start], groups[next_node.end])
+ */
+    __pyx_t_9 = (((__pyx_v_groups[__pyx_v_next_node->start]) == -1L) != 0);
+    if (__pyx_t_9) {
+    } else {
+      __pyx_t_10 = __pyx_t_9;
+      goto __pyx_L13_bool_binop_done;
+    }
+    __pyx_t_9 = (((__pyx_v_groups[__pyx_v_next_node->end]) != -1L) != 0);
+    __pyx_t_10 = __pyx_t_9;
+    __pyx_L13_bool_binop_done:;
+
+    /* "algorithms.pyx":181
+ *             result.set(next_node.end, next_node.start, next_node.data)
+ *             visited_count += 1
+ *         elif groups[next_node.start] != -1 and groups[next_node.end] == -1 \             # <<<<<<<<<<<<<<
+ *                 or groups[next_node.start] == -1 and groups[next_node.end] != -1:
+ *             groups[next_node.start] = max(groups[next_node.start], groups[next_node.end])
+ */
+    if (__pyx_t_10) {
+
+      /* "algorithms.pyx":183
+ *         elif groups[next_node.start] != -1 and groups[next_node.end] == -1 \
+ *                 or groups[next_node.start] == -1 and groups[next_node.end] != -1:
+ *             groups[next_node.start] = max(groups[next_node.start], groups[next_node.end])             # <<<<<<<<<<<<<<
+ *             groups[next_node.end] = max(groups[next_node.start], groups[next_node.end])
+ *             result.set(next_node.start, next_node.end, next_node.data)
+ */
+      __pyx_t_3 = (__pyx_v_groups[__pyx_v_next_node->end]);
+      __pyx_t_4 = (__pyx_v_groups[__pyx_v_next_node->start]);
+      if (((__pyx_t_3 > __pyx_t_4) != 0)) {
+        __pyx_t_5 = __pyx_t_3;
+      } else {
+        __pyx_t_5 = __pyx_t_4;
+      }
+      (__pyx_v_groups[__pyx_v_next_node->start]) = __pyx_t_5;
+
+      /* "algorithms.pyx":184
+ *                 or groups[next_node.start] == -1 and groups[next_node.end] != -1:
+ *             groups[next_node.start] = max(groups[next_node.start], groups[next_node.end])
+ *             groups[next_node.end] = max(groups[next_node.start], groups[next_node.end])             # <<<<<<<<<<<<<<
+ *             result.set(next_node.start, next_node.end, next_node.data)
+ *             result.set(next_node.end, next_node.start, next_node.data)
+ */
+      __pyx_t_5 = (__pyx_v_groups[__pyx_v_next_node->end]);
+      __pyx_t_3 = (__pyx_v_groups[__pyx_v_next_node->start]);
+      if (((__pyx_t_5 > __pyx_t_3) != 0)) {
+        __pyx_t_4 = __pyx_t_5;
+      } else {
+        __pyx_t_4 = __pyx_t_3;
+      }
+      (__pyx_v_groups[__pyx_v_next_node->end]) = __pyx_t_4;
+
+      /* "algorithms.pyx":185
+ *             groups[next_node.start] = max(groups[next_node.start], groups[next_node.end])
+ *             groups[next_node.end] = max(groups[next_node.start], groups[next_node.end])
+ *             result.set(next_node.start, next_node.end, next_node.data)             # <<<<<<<<<<<<<<
+ *             result.set(next_node.end, next_node.start, next_node.data)
+ *             visited_count += 1
+ */
+      (void)(((struct __pyx_vtabstruct_6matrix_Matrix *)__pyx_v_result->__pyx_vtab)->set(__pyx_v_result, __pyx_v_next_node->start, __pyx_v_next_node->end, __pyx_v_next_node->data, 0));
+
+      /* "algorithms.pyx":186
+ *             groups[next_node.end] = max(groups[next_node.start], groups[next_node.end])
+ *             result.set(next_node.start, next_node.end, next_node.data)
+ *             result.set(next_node.end, next_node.start, next_node.data)             # <<<<<<<<<<<<<<
+ *             visited_count += 1
+ *         elif groups[next_node.start] != -1 and groups[next_node.end] != -1:
+ */
+      (void)(((struct __pyx_vtabstruct_6matrix_Matrix *)__pyx_v_result->__pyx_vtab)->set(__pyx_v_result, __pyx_v_next_node->end, __pyx_v_next_node->start, __pyx_v_next_node->data, 0));
+
+      /* "algorithms.pyx":187
+ *             result.set(next_node.start, next_node.end, next_node.data)
+ *             result.set(next_node.end, next_node.start, next_node.data)
+ *             visited_count += 1             # <<<<<<<<<<<<<<
+ *         elif groups[next_node.start] != -1 and groups[next_node.end] != -1:
+ *             if groups[next_node.start] != groups[next_node.end]:
+ */
+      __pyx_v_visited_count = (__pyx_v_visited_count + 1);
+
+      /* "algorithms.pyx":181
+ *             result.set(next_node.end, next_node.start, next_node.data)
+ *             visited_count += 1
+ *         elif groups[next_node.start] != -1 and groups[next_node.end] == -1 \             # <<<<<<<<<<<<<<
+ *                 or groups[next_node.start] == -1 and groups[next_node.end] != -1:
+ *             groups[next_node.start] = max(groups[next_node.start], groups[next_node.end])
+ */
+      goto __pyx_L10;
+    }
+
+    /* "algorithms.pyx":188
+ *             result.set(next_node.end, next_node.start, next_node.data)
+ *             visited_count += 1
+ *         elif groups[next_node.start] != -1 and groups[next_node.end] != -1:             # <<<<<<<<<<<<<<
+ *             if groups[next_node.start] != groups[next_node.end]:
+ *                 j = 0
+ */
+    __pyx_t_9 = (((__pyx_v_groups[__pyx_v_next_node->start]) != -1L) != 0);
+    if (__pyx_t_9) {
+    } else {
+      __pyx_t_10 = __pyx_t_9;
+      goto __pyx_L17_bool_binop_done;
+    }
+    __pyx_t_9 = (((__pyx_v_groups[__pyx_v_next_node->end]) != -1L) != 0);
+    __pyx_t_10 = __pyx_t_9;
+    __pyx_L17_bool_binop_done:;
+    if (__pyx_t_10) {
+
+      /* "algorithms.pyx":189
+ *             visited_count += 1
+ *         elif groups[next_node.start] != -1 and groups[next_node.end] != -1:
+ *             if groups[next_node.start] != groups[next_node.end]:             # <<<<<<<<<<<<<<
+ *                 j = 0
+ *                 old_group = groups[next_node.end]
+ */
+      __pyx_t_10 = (((__pyx_v_groups[__pyx_v_next_node->start]) != (__pyx_v_groups[__pyx_v_next_node->end])) != 0);
+      if (__pyx_t_10) {
+
+        /* "algorithms.pyx":190
+ *         elif groups[next_node.start] != -1 and groups[next_node.end] != -1:
+ *             if groups[next_node.start] != groups[next_node.end]:
+ *                 j = 0             # <<<<<<<<<<<<<<
+ *                 old_group = groups[next_node.end]
+ *                 for j in range(graph.getsize()):
+ */
+        __pyx_v_j = 0;
+
+        /* "algorithms.pyx":191
+ *             if groups[next_node.start] != groups[next_node.end]:
+ *                 j = 0
+ *                 old_group = groups[next_node.end]             # <<<<<<<<<<<<<<
+ *                 for j in range(graph.getsize()):
+ *                     if groups[j] == old_group:
+ */
+        __pyx_v_old_group = (__pyx_v_groups[__pyx_v_next_node->end]);
+
+        /* "algorithms.pyx":192
+ *                 j = 0
+ *                 old_group = groups[next_node.end]
+ *                 for j in range(graph.getsize()):             # <<<<<<<<<<<<<<
+ *                     if groups[j] == old_group:
+ *                         groups[j] = groups[next_node.start]
+ */
+        __pyx_t_2 = ((struct __pyx_vtabstruct_6matrix_Matrix *)__pyx_v_graph->__pyx_vtab)->getsize(__pyx_v_graph, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 192, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_2);
+        __pyx_t_6 = __Pyx_PyInt_As_long(__pyx_t_2); if (unlikely((__pyx_t_6 == (long)-1) && PyErr_Occurred())) __PYX_ERR(0, 192, __pyx_L1_error)
+        __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+        __pyx_t_7 = __pyx_t_6;
+        for (__pyx_t_4 = 0; __pyx_t_4 < __pyx_t_7; __pyx_t_4+=1) {
+          __pyx_v_j = __pyx_t_4;
+
+          /* "algorithms.pyx":193
+ *                 old_group = groups[next_node.end]
+ *                 for j in range(graph.getsize()):
+ *                     if groups[j] == old_group:             # <<<<<<<<<<<<<<
+ *                         groups[j] = groups[next_node.start]
+ *                 result.set(next_node.start, next_node.end, next_node.data)
+ */
+          __pyx_t_10 = (((__pyx_v_groups[__pyx_v_j]) == __pyx_v_old_group) != 0);
+          if (__pyx_t_10) {
+
+            /* "algorithms.pyx":194
+ *                 for j in range(graph.getsize()):
+ *                     if groups[j] == old_group:
+ *                         groups[j] = groups[next_node.start]             # <<<<<<<<<<<<<<
+ *                 result.set(next_node.start, next_node.end, next_node.data)
+ *                 result.set(next_node.end, next_node.start, next_node.data)
+ */
+            (__pyx_v_groups[__pyx_v_j]) = (__pyx_v_groups[__pyx_v_next_node->start]);
+
+            /* "algorithms.pyx":193
+ *                 old_group = groups[next_node.end]
+ *                 for j in range(graph.getsize()):
+ *                     if groups[j] == old_group:             # <<<<<<<<<<<<<<
+ *                         groups[j] = groups[next_node.start]
+ *                 result.set(next_node.start, next_node.end, next_node.data)
+ */
+          }
+        }
+
+        /* "algorithms.pyx":195
+ *                     if groups[j] == old_group:
+ *                         groups[j] = groups[next_node.start]
+ *                 result.set(next_node.start, next_node.end, next_node.data)             # <<<<<<<<<<<<<<
+ *                 result.set(next_node.end, next_node.start, next_node.data)
+ *                 visited_count += 1
+ */
+        (void)(((struct __pyx_vtabstruct_6matrix_Matrix *)__pyx_v_result->__pyx_vtab)->set(__pyx_v_result, __pyx_v_next_node->start, __pyx_v_next_node->end, __pyx_v_next_node->data, 0));
+
+        /* "algorithms.pyx":196
+ *                         groups[j] = groups[next_node.start]
+ *                 result.set(next_node.start, next_node.end, next_node.data)
+ *                 result.set(next_node.end, next_node.start, next_node.data)             # <<<<<<<<<<<<<<
+ *                 visited_count += 1
+ *         if visited_count == graph.getsize():
+ */
+        (void)(((struct __pyx_vtabstruct_6matrix_Matrix *)__pyx_v_result->__pyx_vtab)->set(__pyx_v_result, __pyx_v_next_node->end, __pyx_v_next_node->start, __pyx_v_next_node->data, 0));
+
+        /* "algorithms.pyx":197
+ *                 result.set(next_node.start, next_node.end, next_node.data)
+ *                 result.set(next_node.end, next_node.start, next_node.data)
+ *                 visited_count += 1             # <<<<<<<<<<<<<<
+ *         if visited_count == graph.getsize():
+ *             break
+ */
+        __pyx_v_visited_count = (__pyx_v_visited_count + 1);
+
+        /* "algorithms.pyx":189
+ *             visited_count += 1
+ *         elif groups[next_node.start] != -1 and groups[next_node.end] != -1:
+ *             if groups[next_node.start] != groups[next_node.end]:             # <<<<<<<<<<<<<<
+ *                 j = 0
+ *                 old_group = groups[next_node.end]
+ */
+      }
+
+      /* "algorithms.pyx":188
+ *             result.set(next_node.end, next_node.start, next_node.data)
+ *             visited_count += 1
+ *         elif groups[next_node.start] != -1 and groups[next_node.end] != -1:             # <<<<<<<<<<<<<<
+ *             if groups[next_node.start] != groups[next_node.end]:
+ *                 j = 0
+ */
+    }
+    __pyx_L10:;
+
+    /* "algorithms.pyx":198
+ *                 result.set(next_node.end, next_node.start, next_node.data)
+ *                 visited_count += 1
+ *         if visited_count == graph.getsize():             # <<<<<<<<<<<<<<
+ *             break
+ *         next_node = queue.queue_pop()
+ */
+    __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_v_visited_count); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 198, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_2);
+    __pyx_t_1 = ((struct __pyx_vtabstruct_6matrix_Matrix *)__pyx_v_graph->__pyx_vtab)->getsize(__pyx_v_graph, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 198, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __pyx_t_11 = PyObject_RichCompare(__pyx_t_2, __pyx_t_1, Py_EQ); __Pyx_XGOTREF(__pyx_t_11); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 198, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+    __pyx_t_10 = __Pyx_PyObject_IsTrue(__pyx_t_11); if (unlikely(__pyx_t_10 < 0)) __PYX_ERR(0, 198, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
+    if (__pyx_t_10) {
+
+      /* "algorithms.pyx":199
+ *                 visited_count += 1
+ *         if visited_count == graph.getsize():
+ *             break             # <<<<<<<<<<<<<<
+ *         next_node = queue.queue_pop()
+ * 
+ */
+      goto __pyx_L9_break;
+
+      /* "algorithms.pyx":198
+ *                 result.set(next_node.end, next_node.start, next_node.data)
+ *                 visited_count += 1
+ *         if visited_count == graph.getsize():             # <<<<<<<<<<<<<<
+ *             break
+ *         next_node = queue.queue_pop()
+ */
+    }
+
+    /* "algorithms.pyx":200
+ *         if visited_count == graph.getsize():
+ *             break
+ *         next_node = queue.queue_pop()             # <<<<<<<<<<<<<<
+ * 
+ *     PyMem_Free(groups)
+ */
+    __pyx_t_11 = ((PyObject *)((struct __pyx_vtabstruct_13priorityqueue_PriorityQueue *)__pyx_v_queue->__pyx_vtab)->queue_pop(__pyx_v_queue)); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 200, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_11);
+    __Pyx_DECREF_SET(__pyx_v_next_node, ((struct __pyx_obj_13priorityqueue_CNode *)__pyx_t_11));
+    __pyx_t_11 = 0;
+  }
+  __pyx_L9_break:;
+
+  /* "algorithms.pyx":202
+ *         next_node = queue.queue_pop()
+ * 
+ *     PyMem_Free(groups)             # <<<<<<<<<<<<<<
+ *     return result
+ * 
+ */
+  PyMem_Free(__pyx_v_groups);
+
+  /* "algorithms.pyx":203
+ * 
+ *     PyMem_Free(groups)
+ *     return result             # <<<<<<<<<<<<<<
+ * 
+ * 
+ */
+  __Pyx_XDECREF(((PyObject *)__pyx_r));
+  __Pyx_INCREF(((PyObject *)__pyx_v_result));
+  __pyx_r = __pyx_v_result;
+  goto __pyx_L0;
+
+  /* "algorithms.pyx":156
+ *     return result
+ * 
+ * cpdef Matrix kruskal_matrix(Matrix graph, tuple args):             # <<<<<<<<<<<<<<
+ *     cdef int i = 03
+ *     cdef int visited_count = 0
+ */
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_XDECREF(__pyx_t_11);
+  __Pyx_AddTraceback("algorithms.kruskal_matrix", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = 0;
+  __pyx_L0:;
+  __Pyx_XDECREF((PyObject *)__pyx_v_result);
+  __Pyx_XDECREF((PyObject *)__pyx_v_queue);
+  __Pyx_XDECREF((PyObject *)__pyx_v_next_node);
+  __Pyx_XGIVEREF((PyObject *)__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* Python wrapper */
+static PyObject *__pyx_pw_10algorithms_7kruskal_matrix(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyObject *__pyx_pw_10algorithms_7kruskal_matrix(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+  struct __pyx_obj_6matrix_Matrix *__pyx_v_graph = 0;
+  PyObject *__pyx_v_args = 0;
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("kruskal_matrix (wrapper)", 0);
+  {
+    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_graph,&__pyx_n_s_args,0};
+    PyObject* values[2] = {0,0};
+    if (unlikely(__pyx_kwds)) {
+      Py_ssize_t kw_args;
+      const Py_ssize_t pos_args = PyTuple_GET_SIZE(__pyx_args);
+      switch (pos_args) {
+        case  2: values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
+        CYTHON_FALLTHROUGH;
+        case  1: values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
+        CYTHON_FALLTHROUGH;
+        case  0: break;
+        default: goto __pyx_L5_argtuple_error;
+      }
+      kw_args = PyDict_Size(__pyx_kwds);
+      switch (pos_args) {
+        case  0:
+        if (likely((values[0] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_graph)) != 0)) kw_args--;
+        else goto __pyx_L5_argtuple_error;
+        CYTHON_FALLTHROUGH;
+        case  1:
+        if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_args)) != 0)) kw_args--;
+        else {
+          __Pyx_RaiseArgtupleInvalid("kruskal_matrix", 1, 2, 2, 1); __PYX_ERR(0, 156, __pyx_L3_error)
+        }
+      }
+      if (unlikely(kw_args > 0)) {
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "kruskal_matrix") < 0)) __PYX_ERR(0, 156, __pyx_L3_error)
+      }
+    } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
+      goto __pyx_L5_argtuple_error;
+    } else {
+      values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
+      values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
+    }
+    __pyx_v_graph = ((struct __pyx_obj_6matrix_Matrix *)values[0]);
+    __pyx_v_args = ((PyObject*)values[1]);
+  }
+  goto __pyx_L4_argument_unpacking_done;
+  __pyx_L5_argtuple_error:;
+  __Pyx_RaiseArgtupleInvalid("kruskal_matrix", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 156, __pyx_L3_error)
+  __pyx_L3_error:;
+  __Pyx_AddTraceback("algorithms.kruskal_matrix", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_RefNannyFinishContext();
+  return NULL;
+  __pyx_L4_argument_unpacking_done:;
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_graph), __pyx_ptype_6matrix_Matrix, 1, "graph", 0))) __PYX_ERR(0, 156, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_args), (&PyTuple_Type), 1, "args", 1))) __PYX_ERR(0, 156, __pyx_L1_error)
+  __pyx_r = __pyx_pf_10algorithms_6kruskal_matrix(__pyx_self, __pyx_v_graph, __pyx_v_args);
+
+  /* function exit code */
+  goto __pyx_L0;
+  __pyx_L1_error:;
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_10algorithms_6kruskal_matrix(CYTHON_UNUSED PyObject *__pyx_self, struct __pyx_obj_6matrix_Matrix *__pyx_v_graph, PyObject *__pyx_v_args) {
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  __Pyx_RefNannySetupContext("kruskal_matrix", 0);
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_1 = ((PyObject *)__pyx_f_10algorithms_kruskal_matrix(__pyx_v_graph, __pyx_v_args, 0)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 156, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_r = __pyx_t_1;
+  __pyx_t_1 = 0;
+  goto __pyx_L0;
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_AddTraceback("algorithms.kruskal_matrix", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "algorithms.pyx":206
  * 
  * 
  * cpdef CPath dijkstra_list(ListGraph graph, tuple args):             # <<<<<<<<<<<<<<
@@ -2931,7 +4018,7 @@ static PyObject *__pyx_pf_10algorithms_4kruskal_list(CYTHON_UNUSED PyObject *__p
  *     cdef int* distances = <int*> PyMem_Malloc(graph.getsize()*sizeof(int))
  */
 
-static PyObject *__pyx_pw_10algorithms_7dijkstra_list(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyObject *__pyx_pw_10algorithms_9dijkstra_list(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
 static struct __pyx_obj_5cpath_CPath *__pyx_f_10algorithms_dijkstra_list(struct __pyx_obj_11linked_list_ListGraph *__pyx_v_graph, PyObject *__pyx_v_args, CYTHON_UNUSED int __pyx_skip_dispatch) {
   int __pyx_v_start;
   int __pyx_v_end;
@@ -2960,7 +4047,7 @@ static struct __pyx_obj_5cpath_CPath *__pyx_f_10algorithms_dijkstra_list(struct 
   PyObject *__pyx_t_13 = NULL;
   __Pyx_RefNannySetupContext("dijkstra_list", 0);
 
-  /* "algorithms.pyx":130
+  /* "algorithms.pyx":207
  * 
  * cpdef CPath dijkstra_list(ListGraph graph, tuple args):
  *     cdef int start = args[0], end = args[1]             # <<<<<<<<<<<<<<
@@ -2969,62 +4056,62 @@ static struct __pyx_obj_5cpath_CPath *__pyx_f_10algorithms_dijkstra_list(struct 
  */
   if (unlikely(__pyx_v_args == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-    __PYX_ERR(0, 130, __pyx_L1_error)
+    __PYX_ERR(0, 207, __pyx_L1_error)
   }
-  __pyx_t_1 = __Pyx_GetItemInt_Tuple(__pyx_v_args, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 130, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_GetItemInt_Tuple(__pyx_v_args, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 207, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyInt_As_int(__pyx_t_1); if (unlikely((__pyx_t_2 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 130, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyInt_As_int(__pyx_t_1); if (unlikely((__pyx_t_2 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 207, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_start = __pyx_t_2;
   if (unlikely(__pyx_v_args == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-    __PYX_ERR(0, 130, __pyx_L1_error)
+    __PYX_ERR(0, 207, __pyx_L1_error)
   }
-  __pyx_t_1 = __Pyx_GetItemInt_Tuple(__pyx_v_args, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 130, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_GetItemInt_Tuple(__pyx_v_args, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 207, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyInt_As_int(__pyx_t_1); if (unlikely((__pyx_t_2 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 130, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyInt_As_int(__pyx_t_1); if (unlikely((__pyx_t_2 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 207, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_end = __pyx_t_2;
 
-  /* "algorithms.pyx":131
+  /* "algorithms.pyx":208
  * cpdef CPath dijkstra_list(ListGraph graph, tuple args):
  *     cdef int start = args[0], end = args[1]
  *     cdef int* distances = <int*> PyMem_Malloc(graph.getsize()*sizeof(int))             # <<<<<<<<<<<<<<
  *     cdef int* prevs = <int*> PyMem_Malloc(graph.getsize()*sizeof(int))
  *     cdef int i=0
  */
-  __pyx_t_1 = ((struct __pyx_vtabstruct_11linked_list_ListGraph *)__pyx_v_graph->__pyx_vtab)->getsize(__pyx_v_graph, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 131, __pyx_L1_error)
+  __pyx_t_1 = ((struct __pyx_vtabstruct_11linked_list_ListGraph *)__pyx_v_graph->__pyx_vtab)->getsize(__pyx_v_graph, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 208, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = __Pyx_PyInt_FromSize_t((sizeof(int))); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 131, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyInt_FromSize_t((sizeof(int))); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 208, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = PyNumber_Multiply(__pyx_t_1, __pyx_t_3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 131, __pyx_L1_error)
+  __pyx_t_4 = PyNumber_Multiply(__pyx_t_1, __pyx_t_3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 208, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_5 = __Pyx_PyInt_As_size_t(__pyx_t_4); if (unlikely((__pyx_t_5 == (size_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 131, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyInt_As_size_t(__pyx_t_4); if (unlikely((__pyx_t_5 == (size_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 208, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_v_distances = ((int *)PyMem_Malloc(__pyx_t_5));
 
-  /* "algorithms.pyx":132
+  /* "algorithms.pyx":209
  *     cdef int start = args[0], end = args[1]
  *     cdef int* distances = <int*> PyMem_Malloc(graph.getsize()*sizeof(int))
  *     cdef int* prevs = <int*> PyMem_Malloc(graph.getsize()*sizeof(int))             # <<<<<<<<<<<<<<
  *     cdef int i=0
  *     if graph.get_connections(start).size == 0:
  */
-  __pyx_t_4 = ((struct __pyx_vtabstruct_11linked_list_ListGraph *)__pyx_v_graph->__pyx_vtab)->getsize(__pyx_v_graph, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 132, __pyx_L1_error)
+  __pyx_t_4 = ((struct __pyx_vtabstruct_11linked_list_ListGraph *)__pyx_v_graph->__pyx_vtab)->getsize(__pyx_v_graph, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 209, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_3 = __Pyx_PyInt_FromSize_t((sizeof(int))); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 132, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyInt_FromSize_t((sizeof(int))); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 209, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_1 = PyNumber_Multiply(__pyx_t_4, __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 132, __pyx_L1_error)
+  __pyx_t_1 = PyNumber_Multiply(__pyx_t_4, __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 209, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_5 = __Pyx_PyInt_As_size_t(__pyx_t_1); if (unlikely((__pyx_t_5 == (size_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 132, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyInt_As_size_t(__pyx_t_1); if (unlikely((__pyx_t_5 == (size_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 209, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_prevs = ((int *)PyMem_Malloc(__pyx_t_5));
 
-  /* "algorithms.pyx":133
+  /* "algorithms.pyx":210
  *     cdef int* distances = <int*> PyMem_Malloc(graph.getsize()*sizeof(int))
  *     cdef int* prevs = <int*> PyMem_Malloc(graph.getsize()*sizeof(int))
  *     cdef int i=0             # <<<<<<<<<<<<<<
@@ -3033,7 +4120,7 @@ static struct __pyx_obj_5cpath_CPath *__pyx_f_10algorithms_dijkstra_list(struct 
  */
   __pyx_v_i = 0;
 
-  /* "algorithms.pyx":134
+  /* "algorithms.pyx":211
  *     cdef int* prevs = <int*> PyMem_Malloc(graph.getsize()*sizeof(int))
  *     cdef int i=0
  *     if graph.get_connections(start).size == 0:             # <<<<<<<<<<<<<<
@@ -3043,7 +4130,7 @@ static struct __pyx_obj_5cpath_CPath *__pyx_f_10algorithms_dijkstra_list(struct 
   __pyx_t_6 = ((((struct __pyx_vtabstruct_11linked_list_ListGraph *)__pyx_v_graph->__pyx_vtab)->get_connections(__pyx_v_graph, __pyx_v_start)->size == 0) != 0);
   if (__pyx_t_6) {
 
-    /* "algorithms.pyx":135
+    /* "algorithms.pyx":212
  *     cdef int i=0
  *     if graph.get_connections(start).size == 0:
  *         return None             # <<<<<<<<<<<<<<
@@ -3054,7 +4141,7 @@ static struct __pyx_obj_5cpath_CPath *__pyx_f_10algorithms_dijkstra_list(struct 
     __pyx_r = ((struct __pyx_obj_5cpath_CPath *)Py_None); __Pyx_INCREF(Py_None);
     goto __pyx_L0;
 
-    /* "algorithms.pyx":134
+    /* "algorithms.pyx":211
  *     cdef int* prevs = <int*> PyMem_Malloc(graph.getsize()*sizeof(int))
  *     cdef int i=0
  *     if graph.get_connections(start).size == 0:             # <<<<<<<<<<<<<<
@@ -3063,22 +4150,22 @@ static struct __pyx_obj_5cpath_CPath *__pyx_f_10algorithms_dijkstra_list(struct 
  */
   }
 
-  /* "algorithms.pyx":136
+  /* "algorithms.pyx":213
  *     if graph.get_connections(start).size == 0:
  *         return None
  *     for i in range(graph.getsize()):             # <<<<<<<<<<<<<<
  *         distances[i] = MAX_INT
  *         prevs[i] = -1
  */
-  __pyx_t_1 = ((struct __pyx_vtabstruct_11linked_list_ListGraph *)__pyx_v_graph->__pyx_vtab)->getsize(__pyx_v_graph, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 136, __pyx_L1_error)
+  __pyx_t_1 = ((struct __pyx_vtabstruct_11linked_list_ListGraph *)__pyx_v_graph->__pyx_vtab)->getsize(__pyx_v_graph, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 213, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_7 = __Pyx_PyInt_As_long(__pyx_t_1); if (unlikely((__pyx_t_7 == (long)-1) && PyErr_Occurred())) __PYX_ERR(0, 136, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyInt_As_long(__pyx_t_1); if (unlikely((__pyx_t_7 == (long)-1) && PyErr_Occurred())) __PYX_ERR(0, 213, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_8 = __pyx_t_7;
   for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_8; __pyx_t_2+=1) {
     __pyx_v_i = __pyx_t_2;
 
-    /* "algorithms.pyx":137
+    /* "algorithms.pyx":214
  *         return None
  *     for i in range(graph.getsize()):
  *         distances[i] = MAX_INT             # <<<<<<<<<<<<<<
@@ -3087,7 +4174,7 @@ static struct __pyx_obj_5cpath_CPath *__pyx_f_10algorithms_dijkstra_list(struct 
  */
     (__pyx_v_distances[__pyx_v_i]) = __pyx_v_10algorithms_MAX_INT;
 
-    /* "algorithms.pyx":138
+    /* "algorithms.pyx":215
  *     for i in range(graph.getsize()):
  *         distances[i] = MAX_INT
  *         prevs[i] = -1             # <<<<<<<<<<<<<<
@@ -3097,7 +4184,7 @@ static struct __pyx_obj_5cpath_CPath *__pyx_f_10algorithms_dijkstra_list(struct 
     (__pyx_v_prevs[__pyx_v_i]) = -1;
   }
 
-  /* "algorithms.pyx":139
+  /* "algorithms.pyx":216
  *         distances[i] = MAX_INT
  *         prevs[i] = -1
  *     distances[start] = 0             # <<<<<<<<<<<<<<
@@ -3106,19 +4193,19 @@ static struct __pyx_obj_5cpath_CPath *__pyx_f_10algorithms_dijkstra_list(struct 
  */
   (__pyx_v_distances[__pyx_v_start]) = 0;
 
-  /* "algorithms.pyx":140
+  /* "algorithms.pyx":217
  *         prevs[i] = -1
  *     distances[start] = 0
  *     cdef PriorityQueue queue = PriorityQueue()             # <<<<<<<<<<<<<<
  *     i = 0
  *     for i in range(graph.size):
  */
-  __pyx_t_1 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_13priorityqueue_PriorityQueue)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 140, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_13priorityqueue_PriorityQueue)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 217, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_queue = ((struct __pyx_obj_13priorityqueue_PriorityQueue *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "algorithms.pyx":141
+  /* "algorithms.pyx":218
  *     distances[start] = 0
  *     cdef PriorityQueue queue = PriorityQueue()
  *     i = 0             # <<<<<<<<<<<<<<
@@ -3127,7 +4214,7 @@ static struct __pyx_obj_5cpath_CPath *__pyx_f_10algorithms_dijkstra_list(struct 
  */
   __pyx_v_i = 0;
 
-  /* "algorithms.pyx":142
+  /* "algorithms.pyx":219
  *     cdef PriorityQueue queue = PriorityQueue()
  *     i = 0
  *     for i in range(graph.size):             # <<<<<<<<<<<<<<
@@ -3139,7 +4226,7 @@ static struct __pyx_obj_5cpath_CPath *__pyx_f_10algorithms_dijkstra_list(struct 
   for (__pyx_t_10 = 0; __pyx_t_10 < __pyx_t_9; __pyx_t_10+=1) {
     __pyx_v_i = __pyx_t_10;
 
-    /* "algorithms.pyx":143
+    /* "algorithms.pyx":220
  *     i = 0
  *     for i in range(graph.size):
  *         queue.add(distances[i], i, 0)             # <<<<<<<<<<<<<<
@@ -3149,19 +4236,19 @@ static struct __pyx_obj_5cpath_CPath *__pyx_f_10algorithms_dijkstra_list(struct 
     (void)(((struct __pyx_vtabstruct_13priorityqueue_PriorityQueue *)__pyx_v_queue->__pyx_vtab)->add(__pyx_v_queue, (__pyx_v_distances[__pyx_v_i]), __pyx_v_i, 0, 0));
   }
 
-  /* "algorithms.pyx":144
+  /* "algorithms.pyx":221
  *     for i in range(graph.size):
  *         queue.add(distances[i], i, 0)
  *     cdef CNode next_node = queue.queue_pop()             # <<<<<<<<<<<<<<
  *     cdef DoublyLinkedList* connections
  * 
  */
-  __pyx_t_1 = ((PyObject *)((struct __pyx_vtabstruct_13priorityqueue_PriorityQueue *)__pyx_v_queue->__pyx_vtab)->queue_pop(__pyx_v_queue)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 144, __pyx_L1_error)
+  __pyx_t_1 = ((PyObject *)((struct __pyx_vtabstruct_13priorityqueue_PriorityQueue *)__pyx_v_queue->__pyx_vtab)->queue_pop(__pyx_v_queue)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 221, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_next_node = ((struct __pyx_obj_13priorityqueue_CNode *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "algorithms.pyx":147
+  /* "algorithms.pyx":224
  *     cdef DoublyLinkedList* connections
  * 
  *     while next_node is not None:             # <<<<<<<<<<<<<<
@@ -3173,7 +4260,7 @@ static struct __pyx_obj_5cpath_CPath *__pyx_f_10algorithms_dijkstra_list(struct 
     __pyx_t_11 = (__pyx_t_6 != 0);
     if (!__pyx_t_11) break;
 
-    /* "algorithms.pyx":148
+    /* "algorithms.pyx":225
  * 
  *     while next_node is not None:
  *         if next_node.data == MAX_INT:             # <<<<<<<<<<<<<<
@@ -3183,7 +4270,7 @@ static struct __pyx_obj_5cpath_CPath *__pyx_f_10algorithms_dijkstra_list(struct 
     __pyx_t_11 = ((__pyx_v_next_node->data == __pyx_v_10algorithms_MAX_INT) != 0);
     if (__pyx_t_11) {
 
-      /* "algorithms.pyx":149
+      /* "algorithms.pyx":226
  *     while next_node is not None:
  *         if next_node.data == MAX_INT:
  *             break             # <<<<<<<<<<<<<<
@@ -3192,7 +4279,7 @@ static struct __pyx_obj_5cpath_CPath *__pyx_f_10algorithms_dijkstra_list(struct 
  */
       goto __pyx_L9_break;
 
-      /* "algorithms.pyx":148
+      /* "algorithms.pyx":225
  * 
  *     while next_node is not None:
  *         if next_node.data == MAX_INT:             # <<<<<<<<<<<<<<
@@ -3201,7 +4288,7 @@ static struct __pyx_obj_5cpath_CPath *__pyx_f_10algorithms_dijkstra_list(struct 
  */
     }
 
-    /* "algorithms.pyx":150
+    /* "algorithms.pyx":227
  *         if next_node.data == MAX_INT:
  *             break
  *         connections = graph.get_connections(next_node.start)             # <<<<<<<<<<<<<<
@@ -3210,7 +4297,7 @@ static struct __pyx_obj_5cpath_CPath *__pyx_f_10algorithms_dijkstra_list(struct 
  */
     __pyx_v_connections = ((struct __pyx_vtabstruct_11linked_list_ListGraph *)__pyx_v_graph->__pyx_vtab)->get_connections(__pyx_v_graph, __pyx_v_next_node->start);
 
-    /* "algorithms.pyx":151
+    /* "algorithms.pyx":228
  *             break
  *         connections = graph.get_connections(next_node.start)
  *         i = 0             # <<<<<<<<<<<<<<
@@ -3219,7 +4306,7 @@ static struct __pyx_obj_5cpath_CPath *__pyx_f_10algorithms_dijkstra_list(struct 
  */
     __pyx_v_i = 0;
 
-    /* "algorithms.pyx":152
+    /* "algorithms.pyx":229
  *         connections = graph.get_connections(next_node.start)
  *         i = 0
  *         for i in range(connections.size):             # <<<<<<<<<<<<<<
@@ -3231,7 +4318,7 @@ static struct __pyx_obj_5cpath_CPath *__pyx_f_10algorithms_dijkstra_list(struct 
     for (__pyx_t_10 = 0; __pyx_t_10 < __pyx_t_9; __pyx_t_10+=1) {
       __pyx_v_i = __pyx_t_10;
 
-      /* "algorithms.pyx":153
+      /* "algorithms.pyx":230
  *         i = 0
  *         for i in range(connections.size):
  *             if distances[next_node.start]+connections.get(i).weight < distances[connections.get(i).value]:             # <<<<<<<<<<<<<<
@@ -3241,7 +4328,7 @@ static struct __pyx_obj_5cpath_CPath *__pyx_f_10algorithms_dijkstra_list(struct 
       __pyx_t_11 = ((((__pyx_v_distances[__pyx_v_next_node->start]) + __pyx_v_connections->get(__pyx_v_i).weight) < (__pyx_v_distances[__pyx_v_connections->get(__pyx_v_i).value])) != 0);
       if (__pyx_t_11) {
 
-        /* "algorithms.pyx":154
+        /* "algorithms.pyx":231
  *         for i in range(connections.size):
  *             if distances[next_node.start]+connections.get(i).weight < distances[connections.get(i).value]:
  *                 distances[connections.get(i).value] = distances[next_node.start]+connections.get(i).weight             # <<<<<<<<<<<<<<
@@ -3250,7 +4337,7 @@ static struct __pyx_obj_5cpath_CPath *__pyx_f_10algorithms_dijkstra_list(struct 
  */
         (__pyx_v_distances[__pyx_v_connections->get(__pyx_v_i).value]) = ((__pyx_v_distances[__pyx_v_next_node->start]) + __pyx_v_connections->get(__pyx_v_i).weight);
 
-        /* "algorithms.pyx":155
+        /* "algorithms.pyx":232
  *             if distances[next_node.start]+connections.get(i).weight < distances[connections.get(i).value]:
  *                 distances[connections.get(i).value] = distances[next_node.start]+connections.get(i).weight
  *                 prevs[connections.get(i).value] = next_node.start             # <<<<<<<<<<<<<<
@@ -3260,7 +4347,7 @@ static struct __pyx_obj_5cpath_CPath *__pyx_f_10algorithms_dijkstra_list(struct 
         __pyx_t_12 = __pyx_v_next_node->start;
         (__pyx_v_prevs[__pyx_v_connections->get(__pyx_v_i).value]) = __pyx_t_12;
 
-        /* "algorithms.pyx":156
+        /* "algorithms.pyx":233
  *                 distances[connections.get(i).value] = distances[next_node.start]+connections.get(i).weight
  *                 prevs[connections.get(i).value] = next_node.start
  *                 queue.queue_update_node(connections.get(i).value,             # <<<<<<<<<<<<<<
@@ -3269,7 +4356,7 @@ static struct __pyx_obj_5cpath_CPath *__pyx_f_10algorithms_dijkstra_list(struct 
  */
         (void)(((struct __pyx_vtabstruct_13priorityqueue_PriorityQueue *)__pyx_v_queue->__pyx_vtab)->queue_update_node(__pyx_v_queue, __pyx_v_connections->get(__pyx_v_i).value, (__pyx_v_distances[__pyx_v_connections->get(__pyx_v_i).value])));
 
-        /* "algorithms.pyx":153
+        /* "algorithms.pyx":230
  *         i = 0
  *         for i in range(connections.size):
  *             if distances[next_node.start]+connections.get(i).weight < distances[connections.get(i).value]:             # <<<<<<<<<<<<<<
@@ -3279,33 +4366,33 @@ static struct __pyx_obj_5cpath_CPath *__pyx_f_10algorithms_dijkstra_list(struct 
       }
     }
 
-    /* "algorithms.pyx":159
+    /* "algorithms.pyx":236
  *                                         distances[connections.get(i).value])
  * 
  *         next_node = queue.queue_pop()             # <<<<<<<<<<<<<<
  * 
  *     cpdef CPath result = CPath('list')
  */
-    __pyx_t_1 = ((PyObject *)((struct __pyx_vtabstruct_13priorityqueue_PriorityQueue *)__pyx_v_queue->__pyx_vtab)->queue_pop(__pyx_v_queue)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 159, __pyx_L1_error)
+    __pyx_t_1 = ((PyObject *)((struct __pyx_vtabstruct_13priorityqueue_PriorityQueue *)__pyx_v_queue->__pyx_vtab)->queue_pop(__pyx_v_queue)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 236, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF_SET(__pyx_v_next_node, ((struct __pyx_obj_13priorityqueue_CNode *)__pyx_t_1));
     __pyx_t_1 = 0;
   }
   __pyx_L9_break:;
 
-  /* "algorithms.pyx":161
+  /* "algorithms.pyx":238
  *         next_node = queue.queue_pop()
  * 
  *     cpdef CPath result = CPath('list')             # <<<<<<<<<<<<<<
  *     cdef int currid = end
  *     if prevs[currid] == -1:
  */
-  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_5cpath_CPath), __pyx_tuple_, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 161, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_5cpath_CPath), __pyx_tuple_, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 238, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_result = ((struct __pyx_obj_5cpath_CPath *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "algorithms.pyx":162
+  /* "algorithms.pyx":239
  * 
  *     cpdef CPath result = CPath('list')
  *     cdef int currid = end             # <<<<<<<<<<<<<<
@@ -3314,7 +4401,7 @@ static struct __pyx_obj_5cpath_CPath *__pyx_f_10algorithms_dijkstra_list(struct 
  */
   __pyx_v_currid = __pyx_v_end;
 
-  /* "algorithms.pyx":163
+  /* "algorithms.pyx":240
  *     cpdef CPath result = CPath('list')
  *     cdef int currid = end
  *     if prevs[currid] == -1:             # <<<<<<<<<<<<<<
@@ -3324,7 +4411,7 @@ static struct __pyx_obj_5cpath_CPath *__pyx_f_10algorithms_dijkstra_list(struct 
   __pyx_t_11 = (((__pyx_v_prevs[__pyx_v_currid]) == -1L) != 0);
   if (__pyx_t_11) {
 
-    /* "algorithms.pyx":164
+    /* "algorithms.pyx":241
  *     cdef int currid = end
  *     if prevs[currid] == -1:
  *         return None             # <<<<<<<<<<<<<<
@@ -3335,7 +4422,7 @@ static struct __pyx_obj_5cpath_CPath *__pyx_f_10algorithms_dijkstra_list(struct 
     __pyx_r = ((struct __pyx_obj_5cpath_CPath *)Py_None); __Pyx_INCREF(Py_None);
     goto __pyx_L0;
 
-    /* "algorithms.pyx":163
+    /* "algorithms.pyx":240
  *     cpdef CPath result = CPath('list')
  *     cdef int currid = end
  *     if prevs[currid] == -1:             # <<<<<<<<<<<<<<
@@ -3344,7 +4431,7 @@ static struct __pyx_obj_5cpath_CPath *__pyx_f_10algorithms_dijkstra_list(struct 
  */
   }
 
-  /* "algorithms.pyx":165
+  /* "algorithms.pyx":242
  *     if prevs[currid] == -1:
  *         return None
  *     while currid != start:             # <<<<<<<<<<<<<<
@@ -3355,20 +4442,20 @@ static struct __pyx_obj_5cpath_CPath *__pyx_f_10algorithms_dijkstra_list(struct 
     __pyx_t_11 = ((__pyx_v_currid != __pyx_v_start) != 0);
     if (!__pyx_t_11) break;
 
-    /* "algorithms.pyx":166
+    /* "algorithms.pyx":243
  *         return None
  *     while currid != start:
  *         result.add(CPathNode(prevs[currid], currid, distances[currid]-distances[prevs[currid]]))             # <<<<<<<<<<<<<<
  *         currid = prevs[currid]
  *     PyMem_Free(distances)
  */
-    __pyx_t_1 = __Pyx_PyInt_From_int((__pyx_v_prevs[__pyx_v_currid])); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 166, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyInt_From_int((__pyx_v_prevs[__pyx_v_currid])); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 243, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_currid); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 166, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_currid); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 243, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_4 = __Pyx_PyInt_From_int(((__pyx_v_distances[__pyx_v_currid]) - (__pyx_v_distances[(__pyx_v_prevs[__pyx_v_currid])]))); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 166, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyInt_From_int(((__pyx_v_distances[__pyx_v_currid]) - (__pyx_v_distances[(__pyx_v_prevs[__pyx_v_currid])]))); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 243, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_13 = PyTuple_New(3); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 166, __pyx_L1_error)
+    __pyx_t_13 = PyTuple_New(3); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 243, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_13);
     __Pyx_GIVEREF(__pyx_t_1);
     PyTuple_SET_ITEM(__pyx_t_13, 0, __pyx_t_1);
@@ -3379,13 +4466,13 @@ static struct __pyx_obj_5cpath_CPath *__pyx_f_10algorithms_dijkstra_list(struct 
     __pyx_t_1 = 0;
     __pyx_t_3 = 0;
     __pyx_t_4 = 0;
-    __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_5cpath_CPathNode), __pyx_t_13, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 166, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_5cpath_CPathNode), __pyx_t_13, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 243, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
     ((struct __pyx_vtabstruct_5cpath_CPath *)__pyx_v_result->__pyx_vtab)->add(__pyx_v_result, ((struct __pyx_obj_5cpath_CPathNode *)__pyx_t_4));
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-    /* "algorithms.pyx":167
+    /* "algorithms.pyx":244
  *     while currid != start:
  *         result.add(CPathNode(prevs[currid], currid, distances[currid]-distances[prevs[currid]]))
  *         currid = prevs[currid]             # <<<<<<<<<<<<<<
@@ -3395,7 +4482,7 @@ static struct __pyx_obj_5cpath_CPath *__pyx_f_10algorithms_dijkstra_list(struct 
     __pyx_v_currid = (__pyx_v_prevs[__pyx_v_currid]);
   }
 
-  /* "algorithms.pyx":168
+  /* "algorithms.pyx":245
  *         result.add(CPathNode(prevs[currid], currid, distances[currid]-distances[prevs[currid]]))
  *         currid = prevs[currid]
  *     PyMem_Free(distances)             # <<<<<<<<<<<<<<
@@ -3404,7 +4491,7 @@ static struct __pyx_obj_5cpath_CPath *__pyx_f_10algorithms_dijkstra_list(struct 
  */
   PyMem_Free(__pyx_v_distances);
 
-  /* "algorithms.pyx":169
+  /* "algorithms.pyx":246
  *         currid = prevs[currid]
  *     PyMem_Free(distances)
  *     PyMem_Free(prevs)             # <<<<<<<<<<<<<<
@@ -3413,7 +4500,7 @@ static struct __pyx_obj_5cpath_CPath *__pyx_f_10algorithms_dijkstra_list(struct 
  */
   PyMem_Free(__pyx_v_prevs);
 
-  /* "algorithms.pyx":170
+  /* "algorithms.pyx":247
  *     PyMem_Free(distances)
  *     PyMem_Free(prevs)
  *     del queue             # <<<<<<<<<<<<<<
@@ -3423,7 +4510,7 @@ static struct __pyx_obj_5cpath_CPath *__pyx_f_10algorithms_dijkstra_list(struct 
   __Pyx_DECREF(((PyObject *)__pyx_v_queue));
   __pyx_v_queue = NULL;
 
-  /* "algorithms.pyx":171
+  /* "algorithms.pyx":248
  *     PyMem_Free(prevs)
  *     del queue
  *     return result             # <<<<<<<<<<<<<<
@@ -3435,7 +4522,7 @@ static struct __pyx_obj_5cpath_CPath *__pyx_f_10algorithms_dijkstra_list(struct 
   __pyx_r = __pyx_v_result;
   goto __pyx_L0;
 
-  /* "algorithms.pyx":129
+  /* "algorithms.pyx":206
  * 
  * 
  * cpdef CPath dijkstra_list(ListGraph graph, tuple args):             # <<<<<<<<<<<<<<
@@ -3461,8 +4548,8 @@ static struct __pyx_obj_5cpath_CPath *__pyx_f_10algorithms_dijkstra_list(struct 
 }
 
 /* Python wrapper */
-static PyObject *__pyx_pw_10algorithms_7dijkstra_list(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static PyObject *__pyx_pw_10algorithms_7dijkstra_list(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_10algorithms_9dijkstra_list(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyObject *__pyx_pw_10algorithms_9dijkstra_list(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   struct __pyx_obj_11linked_list_ListGraph *__pyx_v_graph = 0;
   PyObject *__pyx_v_args = 0;
   PyObject *__pyx_r = 0;
@@ -3491,11 +4578,11 @@ static PyObject *__pyx_pw_10algorithms_7dijkstra_list(PyObject *__pyx_self, PyOb
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_args)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("dijkstra_list", 1, 2, 2, 1); __PYX_ERR(0, 129, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("dijkstra_list", 1, 2, 2, 1); __PYX_ERR(0, 206, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "dijkstra_list") < 0)) __PYX_ERR(0, 129, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "dijkstra_list") < 0)) __PYX_ERR(0, 206, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -3508,15 +4595,15 @@ static PyObject *__pyx_pw_10algorithms_7dijkstra_list(PyObject *__pyx_self, PyOb
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("dijkstra_list", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 129, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("dijkstra_list", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 206, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("algorithms.dijkstra_list", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_graph), __pyx_ptype_11linked_list_ListGraph, 1, "graph", 0))) __PYX_ERR(0, 129, __pyx_L1_error)
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_args), (&PyTuple_Type), 1, "args", 1))) __PYX_ERR(0, 129, __pyx_L1_error)
-  __pyx_r = __pyx_pf_10algorithms_6dijkstra_list(__pyx_self, __pyx_v_graph, __pyx_v_args);
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_graph), __pyx_ptype_11linked_list_ListGraph, 1, "graph", 0))) __PYX_ERR(0, 206, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_args), (&PyTuple_Type), 1, "args", 1))) __PYX_ERR(0, 206, __pyx_L1_error)
+  __pyx_r = __pyx_pf_10algorithms_8dijkstra_list(__pyx_self, __pyx_v_graph, __pyx_v_args);
 
   /* function exit code */
   goto __pyx_L0;
@@ -3527,13 +4614,13 @@ static PyObject *__pyx_pw_10algorithms_7dijkstra_list(PyObject *__pyx_self, PyOb
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_10algorithms_6dijkstra_list(CYTHON_UNUSED PyObject *__pyx_self, struct __pyx_obj_11linked_list_ListGraph *__pyx_v_graph, PyObject *__pyx_v_args) {
+static PyObject *__pyx_pf_10algorithms_8dijkstra_list(CYTHON_UNUSED PyObject *__pyx_self, struct __pyx_obj_11linked_list_ListGraph *__pyx_v_graph, PyObject *__pyx_v_args) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("dijkstra_list", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = ((PyObject *)__pyx_f_10algorithms_dijkstra_list(__pyx_v_graph, __pyx_v_args, 0)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 129, __pyx_L1_error)
+  __pyx_t_1 = ((PyObject *)__pyx_f_10algorithms_dijkstra_list(__pyx_v_graph, __pyx_v_args, 0)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 206, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -3550,7 +4637,7 @@ static PyObject *__pyx_pf_10algorithms_6dijkstra_list(CYTHON_UNUSED PyObject *__
   return __pyx_r;
 }
 
-/* "algorithms.pyx":174
+/* "algorithms.pyx":251
  * 
  * 
  * cpdef CPath dijkstra_matrix(Matrix graph, tuple args):             # <<<<<<<<<<<<<<
@@ -3558,7 +4645,7 @@ static PyObject *__pyx_pf_10algorithms_6dijkstra_list(CYTHON_UNUSED PyObject *__
  *     cdef int* distances = <int*> PyMem_Malloc(graph.getsize()*sizeof(int))
  */
 
-static PyObject *__pyx_pw_10algorithms_9dijkstra_matrix(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyObject *__pyx_pw_10algorithms_11dijkstra_matrix(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
 static struct __pyx_obj_5cpath_CPath *__pyx_f_10algorithms_dijkstra_matrix(struct __pyx_obj_6matrix_Matrix *__pyx_v_graph, PyObject *__pyx_v_args, CYTHON_UNUSED int __pyx_skip_dispatch) {
   int __pyx_v_start;
   int __pyx_v_end;
@@ -3586,7 +4673,7 @@ static struct __pyx_obj_5cpath_CPath *__pyx_f_10algorithms_dijkstra_matrix(struc
   PyObject *__pyx_t_12 = NULL;
   __Pyx_RefNannySetupContext("dijkstra_matrix", 0);
 
-  /* "algorithms.pyx":175
+  /* "algorithms.pyx":252
  * 
  * cpdef CPath dijkstra_matrix(Matrix graph, tuple args):
  *     cdef int start = args[0], end = args[1]             # <<<<<<<<<<<<<<
@@ -3595,62 +4682,62 @@ static struct __pyx_obj_5cpath_CPath *__pyx_f_10algorithms_dijkstra_matrix(struc
  */
   if (unlikely(__pyx_v_args == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-    __PYX_ERR(0, 175, __pyx_L1_error)
+    __PYX_ERR(0, 252, __pyx_L1_error)
   }
-  __pyx_t_1 = __Pyx_GetItemInt_Tuple(__pyx_v_args, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 175, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_GetItemInt_Tuple(__pyx_v_args, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 252, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyInt_As_int(__pyx_t_1); if (unlikely((__pyx_t_2 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 175, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyInt_As_int(__pyx_t_1); if (unlikely((__pyx_t_2 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 252, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_start = __pyx_t_2;
   if (unlikely(__pyx_v_args == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-    __PYX_ERR(0, 175, __pyx_L1_error)
+    __PYX_ERR(0, 252, __pyx_L1_error)
   }
-  __pyx_t_1 = __Pyx_GetItemInt_Tuple(__pyx_v_args, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 175, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_GetItemInt_Tuple(__pyx_v_args, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 252, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyInt_As_int(__pyx_t_1); if (unlikely((__pyx_t_2 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 175, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyInt_As_int(__pyx_t_1); if (unlikely((__pyx_t_2 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 252, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_end = __pyx_t_2;
 
-  /* "algorithms.pyx":176
+  /* "algorithms.pyx":253
  * cpdef CPath dijkstra_matrix(Matrix graph, tuple args):
  *     cdef int start = args[0], end = args[1]
  *     cdef int* distances = <int*> PyMem_Malloc(graph.getsize()*sizeof(int))             # <<<<<<<<<<<<<<
  *     cdef int* prevs = <int*> PyMem_Malloc(graph.getsize()*sizeof(int))
  *     cdef int i=0
  */
-  __pyx_t_1 = ((struct __pyx_vtabstruct_6matrix_Matrix *)__pyx_v_graph->__pyx_vtab)->getsize(__pyx_v_graph, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 176, __pyx_L1_error)
+  __pyx_t_1 = ((struct __pyx_vtabstruct_6matrix_Matrix *)__pyx_v_graph->__pyx_vtab)->getsize(__pyx_v_graph, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 253, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = __Pyx_PyInt_FromSize_t((sizeof(int))); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 176, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyInt_FromSize_t((sizeof(int))); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 253, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = PyNumber_Multiply(__pyx_t_1, __pyx_t_3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 176, __pyx_L1_error)
+  __pyx_t_4 = PyNumber_Multiply(__pyx_t_1, __pyx_t_3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 253, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_5 = __Pyx_PyInt_As_size_t(__pyx_t_4); if (unlikely((__pyx_t_5 == (size_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 176, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyInt_As_size_t(__pyx_t_4); if (unlikely((__pyx_t_5 == (size_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 253, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_v_distances = ((int *)PyMem_Malloc(__pyx_t_5));
 
-  /* "algorithms.pyx":177
+  /* "algorithms.pyx":254
  *     cdef int start = args[0], end = args[1]
  *     cdef int* distances = <int*> PyMem_Malloc(graph.getsize()*sizeof(int))
  *     cdef int* prevs = <int*> PyMem_Malloc(graph.getsize()*sizeof(int))             # <<<<<<<<<<<<<<
  *     cdef int i=0
  *     cdef bool no_return = False
  */
-  __pyx_t_4 = ((struct __pyx_vtabstruct_6matrix_Matrix *)__pyx_v_graph->__pyx_vtab)->getsize(__pyx_v_graph, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 177, __pyx_L1_error)
+  __pyx_t_4 = ((struct __pyx_vtabstruct_6matrix_Matrix *)__pyx_v_graph->__pyx_vtab)->getsize(__pyx_v_graph, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 254, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_3 = __Pyx_PyInt_FromSize_t((sizeof(int))); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 177, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyInt_FromSize_t((sizeof(int))); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 254, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_1 = PyNumber_Multiply(__pyx_t_4, __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 177, __pyx_L1_error)
+  __pyx_t_1 = PyNumber_Multiply(__pyx_t_4, __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 254, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_5 = __Pyx_PyInt_As_size_t(__pyx_t_1); if (unlikely((__pyx_t_5 == (size_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 177, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyInt_As_size_t(__pyx_t_1); if (unlikely((__pyx_t_5 == (size_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 254, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_prevs = ((int *)PyMem_Malloc(__pyx_t_5));
 
-  /* "algorithms.pyx":178
+  /* "algorithms.pyx":255
  *     cdef int* distances = <int*> PyMem_Malloc(graph.getsize()*sizeof(int))
  *     cdef int* prevs = <int*> PyMem_Malloc(graph.getsize()*sizeof(int))
  *     cdef int i=0             # <<<<<<<<<<<<<<
@@ -3659,7 +4746,7 @@ static struct __pyx_obj_5cpath_CPath *__pyx_f_10algorithms_dijkstra_matrix(struc
  */
   __pyx_v_i = 0;
 
-  /* "algorithms.pyx":179
+  /* "algorithms.pyx":256
  *     cdef int* prevs = <int*> PyMem_Malloc(graph.getsize()*sizeof(int))
  *     cdef int i=0
  *     cdef bool no_return = False             # <<<<<<<<<<<<<<
@@ -3668,22 +4755,22 @@ static struct __pyx_obj_5cpath_CPath *__pyx_f_10algorithms_dijkstra_matrix(struc
  */
   __pyx_v_no_return = 0;
 
-  /* "algorithms.pyx":180
+  /* "algorithms.pyx":257
  *     cdef int i=0
  *     cdef bool no_return = False
  *     for i in range(graph.getsize()):             # <<<<<<<<<<<<<<
  *         if graph.matrix[start].array[i] != 0:
  *             no_return = True
  */
-  __pyx_t_1 = ((struct __pyx_vtabstruct_6matrix_Matrix *)__pyx_v_graph->__pyx_vtab)->getsize(__pyx_v_graph, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 180, __pyx_L1_error)
+  __pyx_t_1 = ((struct __pyx_vtabstruct_6matrix_Matrix *)__pyx_v_graph->__pyx_vtab)->getsize(__pyx_v_graph, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 257, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_6 = __Pyx_PyInt_As_long(__pyx_t_1); if (unlikely((__pyx_t_6 == (long)-1) && PyErr_Occurred())) __PYX_ERR(0, 180, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyInt_As_long(__pyx_t_1); if (unlikely((__pyx_t_6 == (long)-1) && PyErr_Occurred())) __PYX_ERR(0, 257, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_7 = __pyx_t_6;
   for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_7; __pyx_t_2+=1) {
     __pyx_v_i = __pyx_t_2;
 
-    /* "algorithms.pyx":181
+    /* "algorithms.pyx":258
  *     cdef bool no_return = False
  *     for i in range(graph.getsize()):
  *         if graph.matrix[start].array[i] != 0:             # <<<<<<<<<<<<<<
@@ -3693,7 +4780,7 @@ static struct __pyx_obj_5cpath_CPath *__pyx_f_10algorithms_dijkstra_matrix(struc
     __pyx_t_8 = ((((__pyx_v_graph->matrix[__pyx_v_start])->array[__pyx_v_i]) != 0) != 0);
     if (__pyx_t_8) {
 
-      /* "algorithms.pyx":182
+      /* "algorithms.pyx":259
  *     for i in range(graph.getsize()):
  *         if graph.matrix[start].array[i] != 0:
  *             no_return = True             # <<<<<<<<<<<<<<
@@ -3702,7 +4789,7 @@ static struct __pyx_obj_5cpath_CPath *__pyx_f_10algorithms_dijkstra_matrix(struc
  */
       __pyx_v_no_return = 1;
 
-      /* "algorithms.pyx":181
+      /* "algorithms.pyx":258
  *     cdef bool no_return = False
  *     for i in range(graph.getsize()):
  *         if graph.matrix[start].array[i] != 0:             # <<<<<<<<<<<<<<
@@ -3711,7 +4798,7 @@ static struct __pyx_obj_5cpath_CPath *__pyx_f_10algorithms_dijkstra_matrix(struc
  */
     }
 
-    /* "algorithms.pyx":183
+    /* "algorithms.pyx":260
  *         if graph.matrix[start].array[i] != 0:
  *             no_return = True
  *         distances[i] = MAX_INT             # <<<<<<<<<<<<<<
@@ -3720,7 +4807,7 @@ static struct __pyx_obj_5cpath_CPath *__pyx_f_10algorithms_dijkstra_matrix(struc
  */
     (__pyx_v_distances[__pyx_v_i]) = __pyx_v_10algorithms_MAX_INT;
 
-    /* "algorithms.pyx":184
+    /* "algorithms.pyx":261
  *             no_return = True
  *         distances[i] = MAX_INT
  *         prevs[i] = -1             # <<<<<<<<<<<<<<
@@ -3730,7 +4817,7 @@ static struct __pyx_obj_5cpath_CPath *__pyx_f_10algorithms_dijkstra_matrix(struc
     (__pyx_v_prevs[__pyx_v_i]) = -1;
   }
 
-  /* "algorithms.pyx":185
+  /* "algorithms.pyx":262
  *         distances[i] = MAX_INT
  *         prevs[i] = -1
  *     if not no_return:             # <<<<<<<<<<<<<<
@@ -3740,7 +4827,7 @@ static struct __pyx_obj_5cpath_CPath *__pyx_f_10algorithms_dijkstra_matrix(struc
   __pyx_t_8 = ((!(__pyx_v_no_return != 0)) != 0);
   if (__pyx_t_8) {
 
-    /* "algorithms.pyx":186
+    /* "algorithms.pyx":263
  *         prevs[i] = -1
  *     if not no_return:
  *         return None             # <<<<<<<<<<<<<<
@@ -3751,7 +4838,7 @@ static struct __pyx_obj_5cpath_CPath *__pyx_f_10algorithms_dijkstra_matrix(struc
     __pyx_r = ((struct __pyx_obj_5cpath_CPath *)Py_None); __Pyx_INCREF(Py_None);
     goto __pyx_L0;
 
-    /* "algorithms.pyx":185
+    /* "algorithms.pyx":262
  *         distances[i] = MAX_INT
  *         prevs[i] = -1
  *     if not no_return:             # <<<<<<<<<<<<<<
@@ -3760,7 +4847,7 @@ static struct __pyx_obj_5cpath_CPath *__pyx_f_10algorithms_dijkstra_matrix(struc
  */
   }
 
-  /* "algorithms.pyx":187
+  /* "algorithms.pyx":264
  *     if not no_return:
  *         return None
  *     distances[start] = 0             # <<<<<<<<<<<<<<
@@ -3769,19 +4856,19 @@ static struct __pyx_obj_5cpath_CPath *__pyx_f_10algorithms_dijkstra_matrix(struc
  */
   (__pyx_v_distances[__pyx_v_start]) = 0;
 
-  /* "algorithms.pyx":188
+  /* "algorithms.pyx":265
  *         return None
  *     distances[start] = 0
  *     cdef PriorityQueue queue = PriorityQueue()             # <<<<<<<<<<<<<<
  *     i = 0
  *     for i in range(graph.size):
  */
-  __pyx_t_1 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_13priorityqueue_PriorityQueue)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 188, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_13priorityqueue_PriorityQueue)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 265, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_queue = ((struct __pyx_obj_13priorityqueue_PriorityQueue *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "algorithms.pyx":189
+  /* "algorithms.pyx":266
  *     distances[start] = 0
  *     cdef PriorityQueue queue = PriorityQueue()
  *     i = 0             # <<<<<<<<<<<<<<
@@ -3790,7 +4877,7 @@ static struct __pyx_obj_5cpath_CPath *__pyx_f_10algorithms_dijkstra_matrix(struc
  */
   __pyx_v_i = 0;
 
-  /* "algorithms.pyx":190
+  /* "algorithms.pyx":267
  *     cdef PriorityQueue queue = PriorityQueue()
  *     i = 0
  *     for i in range(graph.size):             # <<<<<<<<<<<<<<
@@ -3802,7 +4889,7 @@ static struct __pyx_obj_5cpath_CPath *__pyx_f_10algorithms_dijkstra_matrix(struc
   for (__pyx_t_10 = 0; __pyx_t_10 < __pyx_t_9; __pyx_t_10+=1) {
     __pyx_v_i = __pyx_t_10;
 
-    /* "algorithms.pyx":191
+    /* "algorithms.pyx":268
  *     i = 0
  *     for i in range(graph.size):
  *         queue.add(distances[i], i, 0)             # <<<<<<<<<<<<<<
@@ -3812,19 +4899,19 @@ static struct __pyx_obj_5cpath_CPath *__pyx_f_10algorithms_dijkstra_matrix(struc
     (void)(((struct __pyx_vtabstruct_13priorityqueue_PriorityQueue *)__pyx_v_queue->__pyx_vtab)->add(__pyx_v_queue, (__pyx_v_distances[__pyx_v_i]), __pyx_v_i, 0, 0));
   }
 
-  /* "algorithms.pyx":192
+  /* "algorithms.pyx":269
  *     for i in range(graph.size):
  *         queue.add(distances[i], i, 0)
  *     cdef CNode next_node = queue.queue_pop()             # <<<<<<<<<<<<<<
  * 
  *     while next_node is not None:
  */
-  __pyx_t_1 = ((PyObject *)((struct __pyx_vtabstruct_13priorityqueue_PriorityQueue *)__pyx_v_queue->__pyx_vtab)->queue_pop(__pyx_v_queue)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 192, __pyx_L1_error)
+  __pyx_t_1 = ((PyObject *)((struct __pyx_vtabstruct_13priorityqueue_PriorityQueue *)__pyx_v_queue->__pyx_vtab)->queue_pop(__pyx_v_queue)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 269, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_next_node = ((struct __pyx_obj_13priorityqueue_CNode *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "algorithms.pyx":194
+  /* "algorithms.pyx":271
  *     cdef CNode next_node = queue.queue_pop()
  * 
  *     while next_node is not None:             # <<<<<<<<<<<<<<
@@ -3836,7 +4923,7 @@ static struct __pyx_obj_5cpath_CPath *__pyx_f_10algorithms_dijkstra_matrix(struc
     __pyx_t_11 = (__pyx_t_8 != 0);
     if (!__pyx_t_11) break;
 
-    /* "algorithms.pyx":195
+    /* "algorithms.pyx":272
  * 
  *     while next_node is not None:
  *         if next_node.data == MAX_INT:             # <<<<<<<<<<<<<<
@@ -3846,7 +4933,7 @@ static struct __pyx_obj_5cpath_CPath *__pyx_f_10algorithms_dijkstra_matrix(struc
     __pyx_t_11 = ((__pyx_v_next_node->data == __pyx_v_10algorithms_MAX_INT) != 0);
     if (__pyx_t_11) {
 
-      /* "algorithms.pyx":196
+      /* "algorithms.pyx":273
  *     while next_node is not None:
  *         if next_node.data == MAX_INT:
  *             break             # <<<<<<<<<<<<<<
@@ -3855,7 +4942,7 @@ static struct __pyx_obj_5cpath_CPath *__pyx_f_10algorithms_dijkstra_matrix(struc
  */
       goto __pyx_L10_break;
 
-      /* "algorithms.pyx":195
+      /* "algorithms.pyx":272
  * 
  *     while next_node is not None:
  *         if next_node.data == MAX_INT:             # <<<<<<<<<<<<<<
@@ -3864,7 +4951,7 @@ static struct __pyx_obj_5cpath_CPath *__pyx_f_10algorithms_dijkstra_matrix(struc
  */
     }
 
-    /* "algorithms.pyx":197
+    /* "algorithms.pyx":274
  *         if next_node.data == MAX_INT:
  *             break
  *         i = 0             # <<<<<<<<<<<<<<
@@ -3873,22 +4960,22 @@ static struct __pyx_obj_5cpath_CPath *__pyx_f_10algorithms_dijkstra_matrix(struc
  */
     __pyx_v_i = 0;
 
-    /* "algorithms.pyx":198
+    /* "algorithms.pyx":275
  *             break
  *         i = 0
  *         for i in range(graph.getsize()):             # <<<<<<<<<<<<<<
  *             if graph.get(next_node.start, i) != 0 :
  *                 if distances[next_node.start]+graph.get(next_node.start, i) < distances[i]:
  */
-    __pyx_t_1 = ((struct __pyx_vtabstruct_6matrix_Matrix *)__pyx_v_graph->__pyx_vtab)->getsize(__pyx_v_graph, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 198, __pyx_L1_error)
+    __pyx_t_1 = ((struct __pyx_vtabstruct_6matrix_Matrix *)__pyx_v_graph->__pyx_vtab)->getsize(__pyx_v_graph, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 275, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_6 = __Pyx_PyInt_As_long(__pyx_t_1); if (unlikely((__pyx_t_6 == (long)-1) && PyErr_Occurred())) __PYX_ERR(0, 198, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyInt_As_long(__pyx_t_1); if (unlikely((__pyx_t_6 == (long)-1) && PyErr_Occurred())) __PYX_ERR(0, 275, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __pyx_t_7 = __pyx_t_6;
     for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_7; __pyx_t_2+=1) {
       __pyx_v_i = __pyx_t_2;
 
-      /* "algorithms.pyx":199
+      /* "algorithms.pyx":276
  *         i = 0
  *         for i in range(graph.getsize()):
  *             if graph.get(next_node.start, i) != 0 :             # <<<<<<<<<<<<<<
@@ -3898,7 +4985,7 @@ static struct __pyx_obj_5cpath_CPath *__pyx_f_10algorithms_dijkstra_matrix(struc
       __pyx_t_11 = ((((struct __pyx_vtabstruct_6matrix_Matrix *)__pyx_v_graph->__pyx_vtab)->get(__pyx_v_graph, __pyx_v_next_node->start, __pyx_v_i, 0) != 0) != 0);
       if (__pyx_t_11) {
 
-        /* "algorithms.pyx":200
+        /* "algorithms.pyx":277
  *         for i in range(graph.getsize()):
  *             if graph.get(next_node.start, i) != 0 :
  *                 if distances[next_node.start]+graph.get(next_node.start, i) < distances[i]:             # <<<<<<<<<<<<<<
@@ -3908,7 +4995,7 @@ static struct __pyx_obj_5cpath_CPath *__pyx_f_10algorithms_dijkstra_matrix(struc
         __pyx_t_11 = ((((__pyx_v_distances[__pyx_v_next_node->start]) + ((struct __pyx_vtabstruct_6matrix_Matrix *)__pyx_v_graph->__pyx_vtab)->get(__pyx_v_graph, __pyx_v_next_node->start, __pyx_v_i, 0)) < (__pyx_v_distances[__pyx_v_i])) != 0);
         if (__pyx_t_11) {
 
-          /* "algorithms.pyx":201
+          /* "algorithms.pyx":278
  *             if graph.get(next_node.start, i) != 0 :
  *                 if distances[next_node.start]+graph.get(next_node.start, i) < distances[i]:
  *                     distances[i] = distances[next_node.start]+graph.get(next_node.start, i)             # <<<<<<<<<<<<<<
@@ -3917,7 +5004,7 @@ static struct __pyx_obj_5cpath_CPath *__pyx_f_10algorithms_dijkstra_matrix(struc
  */
           (__pyx_v_distances[__pyx_v_i]) = ((__pyx_v_distances[__pyx_v_next_node->start]) + ((struct __pyx_vtabstruct_6matrix_Matrix *)__pyx_v_graph->__pyx_vtab)->get(__pyx_v_graph, __pyx_v_next_node->start, __pyx_v_i, 0));
 
-          /* "algorithms.pyx":202
+          /* "algorithms.pyx":279
  *                 if distances[next_node.start]+graph.get(next_node.start, i) < distances[i]:
  *                     distances[i] = distances[next_node.start]+graph.get(next_node.start, i)
  *                     prevs[i] = next_node.start             # <<<<<<<<<<<<<<
@@ -3927,7 +5014,7 @@ static struct __pyx_obj_5cpath_CPath *__pyx_f_10algorithms_dijkstra_matrix(struc
           __pyx_t_9 = __pyx_v_next_node->start;
           (__pyx_v_prevs[__pyx_v_i]) = __pyx_t_9;
 
-          /* "algorithms.pyx":203
+          /* "algorithms.pyx":280
  *                     distances[i] = distances[next_node.start]+graph.get(next_node.start, i)
  *                     prevs[i] = next_node.start
  *                     queue.queue_update_node(i, distances[i])             # <<<<<<<<<<<<<<
@@ -3936,7 +5023,7 @@ static struct __pyx_obj_5cpath_CPath *__pyx_f_10algorithms_dijkstra_matrix(struc
  */
           (void)(((struct __pyx_vtabstruct_13priorityqueue_PriorityQueue *)__pyx_v_queue->__pyx_vtab)->queue_update_node(__pyx_v_queue, __pyx_v_i, (__pyx_v_distances[__pyx_v_i])));
 
-          /* "algorithms.pyx":200
+          /* "algorithms.pyx":277
  *         for i in range(graph.getsize()):
  *             if graph.get(next_node.start, i) != 0 :
  *                 if distances[next_node.start]+graph.get(next_node.start, i) < distances[i]:             # <<<<<<<<<<<<<<
@@ -3945,7 +5032,7 @@ static struct __pyx_obj_5cpath_CPath *__pyx_f_10algorithms_dijkstra_matrix(struc
  */
         }
 
-        /* "algorithms.pyx":199
+        /* "algorithms.pyx":276
  *         i = 0
  *         for i in range(graph.getsize()):
  *             if graph.get(next_node.start, i) != 0 :             # <<<<<<<<<<<<<<
@@ -3955,33 +5042,33 @@ static struct __pyx_obj_5cpath_CPath *__pyx_f_10algorithms_dijkstra_matrix(struc
       }
     }
 
-    /* "algorithms.pyx":205
+    /* "algorithms.pyx":282
  *                     queue.queue_update_node(i, distances[i])
  * 
  *         next_node = queue.queue_pop()             # <<<<<<<<<<<<<<
  * 
  *     cpdef CPath result = CPath('matrix')
  */
-    __pyx_t_1 = ((PyObject *)((struct __pyx_vtabstruct_13priorityqueue_PriorityQueue *)__pyx_v_queue->__pyx_vtab)->queue_pop(__pyx_v_queue)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 205, __pyx_L1_error)
+    __pyx_t_1 = ((PyObject *)((struct __pyx_vtabstruct_13priorityqueue_PriorityQueue *)__pyx_v_queue->__pyx_vtab)->queue_pop(__pyx_v_queue)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 282, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF_SET(__pyx_v_next_node, ((struct __pyx_obj_13priorityqueue_CNode *)__pyx_t_1));
     __pyx_t_1 = 0;
   }
   __pyx_L10_break:;
 
-  /* "algorithms.pyx":207
+  /* "algorithms.pyx":284
  *         next_node = queue.queue_pop()
  * 
  *     cpdef CPath result = CPath('matrix')             # <<<<<<<<<<<<<<
  *     cdef int currid = end
  *     if prevs[currid] == -1:
  */
-  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_5cpath_CPath), __pyx_tuple__2, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 207, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_5cpath_CPath), __pyx_tuple__2, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 284, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_result = ((struct __pyx_obj_5cpath_CPath *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "algorithms.pyx":208
+  /* "algorithms.pyx":285
  * 
  *     cpdef CPath result = CPath('matrix')
  *     cdef int currid = end             # <<<<<<<<<<<<<<
@@ -3990,7 +5077,7 @@ static struct __pyx_obj_5cpath_CPath *__pyx_f_10algorithms_dijkstra_matrix(struc
  */
   __pyx_v_currid = __pyx_v_end;
 
-  /* "algorithms.pyx":209
+  /* "algorithms.pyx":286
  *     cpdef CPath result = CPath('matrix')
  *     cdef int currid = end
  *     if prevs[currid] == -1:             # <<<<<<<<<<<<<<
@@ -4000,7 +5087,7 @@ static struct __pyx_obj_5cpath_CPath *__pyx_f_10algorithms_dijkstra_matrix(struc
   __pyx_t_11 = (((__pyx_v_prevs[__pyx_v_currid]) == -1L) != 0);
   if (__pyx_t_11) {
 
-    /* "algorithms.pyx":210
+    /* "algorithms.pyx":287
  *     cdef int currid = end
  *     if prevs[currid] == -1:
  *         return None             # <<<<<<<<<<<<<<
@@ -4011,7 +5098,7 @@ static struct __pyx_obj_5cpath_CPath *__pyx_f_10algorithms_dijkstra_matrix(struc
     __pyx_r = ((struct __pyx_obj_5cpath_CPath *)Py_None); __Pyx_INCREF(Py_None);
     goto __pyx_L0;
 
-    /* "algorithms.pyx":209
+    /* "algorithms.pyx":286
  *     cpdef CPath result = CPath('matrix')
  *     cdef int currid = end
  *     if prevs[currid] == -1:             # <<<<<<<<<<<<<<
@@ -4020,7 +5107,7 @@ static struct __pyx_obj_5cpath_CPath *__pyx_f_10algorithms_dijkstra_matrix(struc
  */
   }
 
-  /* "algorithms.pyx":211
+  /* "algorithms.pyx":288
  *     if prevs[currid] == -1:
  *         return None
  *     while currid != start:             # <<<<<<<<<<<<<<
@@ -4031,20 +5118,20 @@ static struct __pyx_obj_5cpath_CPath *__pyx_f_10algorithms_dijkstra_matrix(struc
     __pyx_t_11 = ((__pyx_v_currid != __pyx_v_start) != 0);
     if (!__pyx_t_11) break;
 
-    /* "algorithms.pyx":212
+    /* "algorithms.pyx":289
  *         return None
  *     while currid != start:
  *         result.add(CPathNode(prevs[currid], currid, distances[currid]-distances[prevs[currid]]))             # <<<<<<<<<<<<<<
  *         currid = prevs[currid]
  *     PyMem_Free(distances)
  */
-    __pyx_t_1 = __Pyx_PyInt_From_int((__pyx_v_prevs[__pyx_v_currid])); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 212, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyInt_From_int((__pyx_v_prevs[__pyx_v_currid])); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 289, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_currid); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 212, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_currid); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 289, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_4 = __Pyx_PyInt_From_int(((__pyx_v_distances[__pyx_v_currid]) - (__pyx_v_distances[(__pyx_v_prevs[__pyx_v_currid])]))); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 212, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyInt_From_int(((__pyx_v_distances[__pyx_v_currid]) - (__pyx_v_distances[(__pyx_v_prevs[__pyx_v_currid])]))); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 289, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_12 = PyTuple_New(3); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 212, __pyx_L1_error)
+    __pyx_t_12 = PyTuple_New(3); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 289, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_12);
     __Pyx_GIVEREF(__pyx_t_1);
     PyTuple_SET_ITEM(__pyx_t_12, 0, __pyx_t_1);
@@ -4055,13 +5142,13 @@ static struct __pyx_obj_5cpath_CPath *__pyx_f_10algorithms_dijkstra_matrix(struc
     __pyx_t_1 = 0;
     __pyx_t_3 = 0;
     __pyx_t_4 = 0;
-    __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_5cpath_CPathNode), __pyx_t_12, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 212, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_5cpath_CPathNode), __pyx_t_12, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 289, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
     ((struct __pyx_vtabstruct_5cpath_CPath *)__pyx_v_result->__pyx_vtab)->add(__pyx_v_result, ((struct __pyx_obj_5cpath_CPathNode *)__pyx_t_4));
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-    /* "algorithms.pyx":213
+    /* "algorithms.pyx":290
  *     while currid != start:
  *         result.add(CPathNode(prevs[currid], currid, distances[currid]-distances[prevs[currid]]))
  *         currid = prevs[currid]             # <<<<<<<<<<<<<<
@@ -4071,7 +5158,7 @@ static struct __pyx_obj_5cpath_CPath *__pyx_f_10algorithms_dijkstra_matrix(struc
     __pyx_v_currid = (__pyx_v_prevs[__pyx_v_currid]);
   }
 
-  /* "algorithms.pyx":214
+  /* "algorithms.pyx":291
  *         result.add(CPathNode(prevs[currid], currid, distances[currid]-distances[prevs[currid]]))
  *         currid = prevs[currid]
  *     PyMem_Free(distances)             # <<<<<<<<<<<<<<
@@ -4080,7 +5167,7 @@ static struct __pyx_obj_5cpath_CPath *__pyx_f_10algorithms_dijkstra_matrix(struc
  */
   PyMem_Free(__pyx_v_distances);
 
-  /* "algorithms.pyx":215
+  /* "algorithms.pyx":292
  *         currid = prevs[currid]
  *     PyMem_Free(distances)
  *     PyMem_Free(prevs)             # <<<<<<<<<<<<<<
@@ -4089,7 +5176,7 @@ static struct __pyx_obj_5cpath_CPath *__pyx_f_10algorithms_dijkstra_matrix(struc
  */
   PyMem_Free(__pyx_v_prevs);
 
-  /* "algorithms.pyx":216
+  /* "algorithms.pyx":293
  *     PyMem_Free(distances)
  *     PyMem_Free(prevs)
  *     del queue             # <<<<<<<<<<<<<<
@@ -4099,19 +5186,19 @@ static struct __pyx_obj_5cpath_CPath *__pyx_f_10algorithms_dijkstra_matrix(struc
   __Pyx_DECREF(((PyObject *)__pyx_v_queue));
   __pyx_v_queue = NULL;
 
-  /* "algorithms.pyx":217
+  /* "algorithms.pyx":294
  *     PyMem_Free(prevs)
  *     del queue
  *     return result             # <<<<<<<<<<<<<<
  * 
- * cpdef ListGraph ford_bellman(ListGraph graph, tuple args):
+ * cpdef CPath ford_bellman_list(ListGraph graph, tuple args):
  */
   __Pyx_XDECREF(((PyObject *)__pyx_r));
   __Pyx_INCREF(((PyObject *)__pyx_v_result));
   __pyx_r = __pyx_v_result;
   goto __pyx_L0;
 
-  /* "algorithms.pyx":174
+  /* "algorithms.pyx":251
  * 
  * 
  * cpdef CPath dijkstra_matrix(Matrix graph, tuple args):             # <<<<<<<<<<<<<<
@@ -4137,8 +5224,8 @@ static struct __pyx_obj_5cpath_CPath *__pyx_f_10algorithms_dijkstra_matrix(struc
 }
 
 /* Python wrapper */
-static PyObject *__pyx_pw_10algorithms_9dijkstra_matrix(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static PyObject *__pyx_pw_10algorithms_9dijkstra_matrix(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_10algorithms_11dijkstra_matrix(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyObject *__pyx_pw_10algorithms_11dijkstra_matrix(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   struct __pyx_obj_6matrix_Matrix *__pyx_v_graph = 0;
   PyObject *__pyx_v_args = 0;
   PyObject *__pyx_r = 0;
@@ -4167,11 +5254,11 @@ static PyObject *__pyx_pw_10algorithms_9dijkstra_matrix(PyObject *__pyx_self, Py
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_args)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("dijkstra_matrix", 1, 2, 2, 1); __PYX_ERR(0, 174, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("dijkstra_matrix", 1, 2, 2, 1); __PYX_ERR(0, 251, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "dijkstra_matrix") < 0)) __PYX_ERR(0, 174, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "dijkstra_matrix") < 0)) __PYX_ERR(0, 251, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -4184,15 +5271,15 @@ static PyObject *__pyx_pw_10algorithms_9dijkstra_matrix(PyObject *__pyx_self, Py
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("dijkstra_matrix", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 174, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("dijkstra_matrix", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 251, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("algorithms.dijkstra_matrix", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_graph), __pyx_ptype_6matrix_Matrix, 1, "graph", 0))) __PYX_ERR(0, 174, __pyx_L1_error)
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_args), (&PyTuple_Type), 1, "args", 1))) __PYX_ERR(0, 174, __pyx_L1_error)
-  __pyx_r = __pyx_pf_10algorithms_8dijkstra_matrix(__pyx_self, __pyx_v_graph, __pyx_v_args);
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_graph), __pyx_ptype_6matrix_Matrix, 1, "graph", 0))) __PYX_ERR(0, 251, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_args), (&PyTuple_Type), 1, "args", 1))) __PYX_ERR(0, 251, __pyx_L1_error)
+  __pyx_r = __pyx_pf_10algorithms_10dijkstra_matrix(__pyx_self, __pyx_v_graph, __pyx_v_args);
 
   /* function exit code */
   goto __pyx_L0;
@@ -4203,13 +5290,13 @@ static PyObject *__pyx_pw_10algorithms_9dijkstra_matrix(PyObject *__pyx_self, Py
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_10algorithms_8dijkstra_matrix(CYTHON_UNUSED PyObject *__pyx_self, struct __pyx_obj_6matrix_Matrix *__pyx_v_graph, PyObject *__pyx_v_args) {
+static PyObject *__pyx_pf_10algorithms_10dijkstra_matrix(CYTHON_UNUSED PyObject *__pyx_self, struct __pyx_obj_6matrix_Matrix *__pyx_v_graph, PyObject *__pyx_v_args) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("dijkstra_matrix", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = ((PyObject *)__pyx_f_10algorithms_dijkstra_matrix(__pyx_v_graph, __pyx_v_args, 0)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 174, __pyx_L1_error)
+  __pyx_t_1 = ((PyObject *)__pyx_f_10algorithms_dijkstra_matrix(__pyx_v_graph, __pyx_v_args, 0)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 251, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -4226,51 +5313,483 @@ static PyObject *__pyx_pf_10algorithms_8dijkstra_matrix(CYTHON_UNUSED PyObject *
   return __pyx_r;
 }
 
-/* "algorithms.pyx":219
+/* "algorithms.pyx":296
  *     return result
  * 
- * cpdef ListGraph ford_bellman(ListGraph graph, tuple args):             # <<<<<<<<<<<<<<
- *     return graph
+ * cpdef CPath ford_bellman_list(ListGraph graph, tuple args):             # <<<<<<<<<<<<<<
+ *     cdef int start = args[0], end = args[1]
+ *     cdef int* distances = <int*> PyMem_Malloc(graph.getsize()*sizeof(int))
  */
 
-static PyObject *__pyx_pw_10algorithms_11ford_bellman(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static struct __pyx_obj_11linked_list_ListGraph *__pyx_f_10algorithms_ford_bellman(struct __pyx_obj_11linked_list_ListGraph *__pyx_v_graph, CYTHON_UNUSED PyObject *__pyx_v_args, CYTHON_UNUSED int __pyx_skip_dispatch) {
-  struct __pyx_obj_11linked_list_ListGraph *__pyx_r = NULL;
+static PyObject *__pyx_pw_10algorithms_13ford_bellman_list(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static struct __pyx_obj_5cpath_CPath *__pyx_f_10algorithms_ford_bellman_list(struct __pyx_obj_11linked_list_ListGraph *__pyx_v_graph, PyObject *__pyx_v_args, CYTHON_UNUSED int __pyx_skip_dispatch) {
+  int __pyx_v_start;
+  int __pyx_v_end;
+  int *__pyx_v_distances;
+  int *__pyx_v_prevs;
+  int __pyx_v_i;
+  DoublyLinkedList *__pyx_v_connections;
+  bool __pyx_v_change;
+  int __pyx_v_j;
+  struct __pyx_obj_5cpath_CPath *__pyx_v_result = 0;
+  int __pyx_v_currid;
+  struct __pyx_obj_5cpath_CPath *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("ford_bellman", 0);
+  PyObject *__pyx_t_1 = NULL;
+  int __pyx_t_2;
+  PyObject *__pyx_t_3 = NULL;
+  PyObject *__pyx_t_4 = NULL;
+  size_t __pyx_t_5;
+  long __pyx_t_6;
+  long __pyx_t_7;
+  int __pyx_t_8;
+  int __pyx_t_9;
+  int __pyx_t_10;
+  int __pyx_t_11;
+  int __pyx_t_12;
+  PyObject *__pyx_t_13 = NULL;
+  __Pyx_RefNannySetupContext("ford_bellman_list", 0);
 
-  /* "algorithms.pyx":220
+  /* "algorithms.pyx":297
  * 
- * cpdef ListGraph ford_bellman(ListGraph graph, tuple args):
- *     return graph             # <<<<<<<<<<<<<<
+ * cpdef CPath ford_bellman_list(ListGraph graph, tuple args):
+ *     cdef int start = args[0], end = args[1]             # <<<<<<<<<<<<<<
+ *     cdef int* distances = <int*> PyMem_Malloc(graph.getsize()*sizeof(int))
+ *     cdef int* prevs = <int*> PyMem_Malloc(graph.getsize()*sizeof(int))
+ */
+  if (unlikely(__pyx_v_args == Py_None)) {
+    PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
+    __PYX_ERR(0, 297, __pyx_L1_error)
+  }
+  __pyx_t_1 = __Pyx_GetItemInt_Tuple(__pyx_v_args, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 297, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_2 = __Pyx_PyInt_As_int(__pyx_t_1); if (unlikely((__pyx_t_2 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 297, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_v_start = __pyx_t_2;
+  if (unlikely(__pyx_v_args == Py_None)) {
+    PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
+    __PYX_ERR(0, 297, __pyx_L1_error)
+  }
+  __pyx_t_1 = __Pyx_GetItemInt_Tuple(__pyx_v_args, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 297, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_2 = __Pyx_PyInt_As_int(__pyx_t_1); if (unlikely((__pyx_t_2 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 297, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_v_end = __pyx_t_2;
+
+  /* "algorithms.pyx":298
+ * cpdef CPath ford_bellman_list(ListGraph graph, tuple args):
+ *     cdef int start = args[0], end = args[1]
+ *     cdef int* distances = <int*> PyMem_Malloc(graph.getsize()*sizeof(int))             # <<<<<<<<<<<<<<
+ *     cdef int* prevs = <int*> PyMem_Malloc(graph.getsize()*sizeof(int))
+ * 
+ */
+  __pyx_t_1 = ((struct __pyx_vtabstruct_11linked_list_ListGraph *)__pyx_v_graph->__pyx_vtab)->getsize(__pyx_v_graph, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 298, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_3 = __Pyx_PyInt_FromSize_t((sizeof(int))); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 298, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_4 = PyNumber_Multiply(__pyx_t_1, __pyx_t_3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 298, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __pyx_t_5 = __Pyx_PyInt_As_size_t(__pyx_t_4); if (unlikely((__pyx_t_5 == (size_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 298, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __pyx_v_distances = ((int *)PyMem_Malloc(__pyx_t_5));
+
+  /* "algorithms.pyx":299
+ *     cdef int start = args[0], end = args[1]
+ *     cdef int* distances = <int*> PyMem_Malloc(graph.getsize()*sizeof(int))
+ *     cdef int* prevs = <int*> PyMem_Malloc(graph.getsize()*sizeof(int))             # <<<<<<<<<<<<<<
+ * 
+ *     cdef int i = 0
+ */
+  __pyx_t_4 = ((struct __pyx_vtabstruct_11linked_list_ListGraph *)__pyx_v_graph->__pyx_vtab)->getsize(__pyx_v_graph, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 299, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  __pyx_t_3 = __Pyx_PyInt_FromSize_t((sizeof(int))); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 299, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_1 = PyNumber_Multiply(__pyx_t_4, __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 299, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __pyx_t_5 = __Pyx_PyInt_As_size_t(__pyx_t_1); if (unlikely((__pyx_t_5 == (size_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 299, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_v_prevs = ((int *)PyMem_Malloc(__pyx_t_5));
+
+  /* "algorithms.pyx":301
+ *     cdef int* prevs = <int*> PyMem_Malloc(graph.getsize()*sizeof(int))
+ * 
+ *     cdef int i = 0             # <<<<<<<<<<<<<<
+ *     for i in range(graph.getsize()):
+ *         distances[i] = MAX_INT
+ */
+  __pyx_v_i = 0;
+
+  /* "algorithms.pyx":302
+ * 
+ *     cdef int i = 0
+ *     for i in range(graph.getsize()):             # <<<<<<<<<<<<<<
+ *         distances[i] = MAX_INT
+ *         prevs[i] = -1
+ */
+  __pyx_t_1 = ((struct __pyx_vtabstruct_11linked_list_ListGraph *)__pyx_v_graph->__pyx_vtab)->getsize(__pyx_v_graph, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 302, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_6 = __Pyx_PyInt_As_long(__pyx_t_1); if (unlikely((__pyx_t_6 == (long)-1) && PyErr_Occurred())) __PYX_ERR(0, 302, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_7 = __pyx_t_6;
+  for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_7; __pyx_t_2+=1) {
+    __pyx_v_i = __pyx_t_2;
+
+    /* "algorithms.pyx":303
+ *     cdef int i = 0
+ *     for i in range(graph.getsize()):
+ *         distances[i] = MAX_INT             # <<<<<<<<<<<<<<
+ *         prevs[i] = -1
+ *     distances[start] = 0
+ */
+    (__pyx_v_distances[__pyx_v_i]) = __pyx_v_10algorithms_MAX_INT;
+
+    /* "algorithms.pyx":304
+ *     for i in range(graph.getsize()):
+ *         distances[i] = MAX_INT
+ *         prevs[i] = -1             # <<<<<<<<<<<<<<
+ *     distances[start] = 0
+ * 
+ */
+    (__pyx_v_prevs[__pyx_v_i]) = -1;
+  }
+
+  /* "algorithms.pyx":305
+ *         distances[i] = MAX_INT
+ *         prevs[i] = -1
+ *     distances[start] = 0             # <<<<<<<<<<<<<<
+ * 
+ *     cdef DoublyLinkedList* connections
+ */
+  (__pyx_v_distances[__pyx_v_start]) = 0;
+
+  /* "algorithms.pyx":308
+ * 
+ *     cdef DoublyLinkedList* connections
+ *     cdef bool change = True             # <<<<<<<<<<<<<<
+ *     cdef int j = 0
+ *     while change:
+ */
+  __pyx_v_change = 1;
+
+  /* "algorithms.pyx":309
+ *     cdef DoublyLinkedList* connections
+ *     cdef bool change = True
+ *     cdef int j = 0             # <<<<<<<<<<<<<<
+ *     while change:
+ *         change = False
+ */
+  __pyx_v_j = 0;
+
+  /* "algorithms.pyx":310
+ *     cdef bool change = True
+ *     cdef int j = 0
+ *     while change:             # <<<<<<<<<<<<<<
+ *         change = False
+ *         i = 0
+ */
+  while (1) {
+    __pyx_t_8 = (__pyx_v_change != 0);
+    if (!__pyx_t_8) break;
+
+    /* "algorithms.pyx":311
+ *     cdef int j = 0
+ *     while change:
+ *         change = False             # <<<<<<<<<<<<<<
+ *         i = 0
+ *         for i in range(graph.getsize()):
+ */
+    __pyx_v_change = 0;
+
+    /* "algorithms.pyx":312
+ *     while change:
+ *         change = False
+ *         i = 0             # <<<<<<<<<<<<<<
+ *         for i in range(graph.getsize()):
+ *             connections = graph.get_connections(i)
+ */
+    __pyx_v_i = 0;
+
+    /* "algorithms.pyx":313
+ *         change = False
+ *         i = 0
+ *         for i in range(graph.getsize()):             # <<<<<<<<<<<<<<
+ *             connections = graph.get_connections(i)
+ *             j = 0
+ */
+    __pyx_t_1 = ((struct __pyx_vtabstruct_11linked_list_ListGraph *)__pyx_v_graph->__pyx_vtab)->getsize(__pyx_v_graph, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 313, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __pyx_t_6 = __Pyx_PyInt_As_long(__pyx_t_1); if (unlikely((__pyx_t_6 == (long)-1) && PyErr_Occurred())) __PYX_ERR(0, 313, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+    __pyx_t_7 = __pyx_t_6;
+    for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_7; __pyx_t_2+=1) {
+      __pyx_v_i = __pyx_t_2;
+
+      /* "algorithms.pyx":314
+ *         i = 0
+ *         for i in range(graph.getsize()):
+ *             connections = graph.get_connections(i)             # <<<<<<<<<<<<<<
+ *             j = 0
+ *             for j in range(connections.size):
+ */
+      __pyx_v_connections = ((struct __pyx_vtabstruct_11linked_list_ListGraph *)__pyx_v_graph->__pyx_vtab)->get_connections(__pyx_v_graph, __pyx_v_i);
+
+      /* "algorithms.pyx":315
+ *         for i in range(graph.getsize()):
+ *             connections = graph.get_connections(i)
+ *             j = 0             # <<<<<<<<<<<<<<
+ *             for j in range(connections.size):
+ *                 if distances[connections.get(j).value] != MAX_INT:
+ */
+      __pyx_v_j = 0;
+
+      /* "algorithms.pyx":316
+ *             connections = graph.get_connections(i)
+ *             j = 0
+ *             for j in range(connections.size):             # <<<<<<<<<<<<<<
+ *                 if distances[connections.get(j).value] != MAX_INT:
+ *                     if distances[i] > distances[connections.get(j).value] + connections.get(j).weight:
+ */
+      __pyx_t_9 = __pyx_v_connections->size;
+      __pyx_t_10 = __pyx_t_9;
+      for (__pyx_t_11 = 0; __pyx_t_11 < __pyx_t_10; __pyx_t_11+=1) {
+        __pyx_v_j = __pyx_t_11;
+
+        /* "algorithms.pyx":317
+ *             j = 0
+ *             for j in range(connections.size):
+ *                 if distances[connections.get(j).value] != MAX_INT:             # <<<<<<<<<<<<<<
+ *                     if distances[i] > distances[connections.get(j).value] + connections.get(j).weight:
+ *                         change = True
+ */
+        __pyx_t_8 = (((__pyx_v_distances[__pyx_v_connections->get(__pyx_v_j).value]) != __pyx_v_10algorithms_MAX_INT) != 0);
+        if (__pyx_t_8) {
+
+          /* "algorithms.pyx":318
+ *             for j in range(connections.size):
+ *                 if distances[connections.get(j).value] != MAX_INT:
+ *                     if distances[i] > distances[connections.get(j).value] + connections.get(j).weight:             # <<<<<<<<<<<<<<
+ *                         change = True
+ *                         distances[i] = distances[connections.get(j).value] + connections.get(j).weight
+ */
+          __pyx_t_8 = (((__pyx_v_distances[__pyx_v_i]) > ((__pyx_v_distances[__pyx_v_connections->get(__pyx_v_j).value]) + __pyx_v_connections->get(__pyx_v_j).weight)) != 0);
+          if (__pyx_t_8) {
+
+            /* "algorithms.pyx":319
+ *                 if distances[connections.get(j).value] != MAX_INT:
+ *                     if distances[i] > distances[connections.get(j).value] + connections.get(j).weight:
+ *                         change = True             # <<<<<<<<<<<<<<
+ *                         distances[i] = distances[connections.get(j).value] + connections.get(j).weight
+ *                         prevs[i] = connections.get(j).value
+ */
+            __pyx_v_change = 1;
+
+            /* "algorithms.pyx":320
+ *                     if distances[i] > distances[connections.get(j).value] + connections.get(j).weight:
+ *                         change = True
+ *                         distances[i] = distances[connections.get(j).value] + connections.get(j).weight             # <<<<<<<<<<<<<<
+ *                         prevs[i] = connections.get(j).value
+ * 
+ */
+            (__pyx_v_distances[__pyx_v_i]) = ((__pyx_v_distances[__pyx_v_connections->get(__pyx_v_j).value]) + __pyx_v_connections->get(__pyx_v_j).weight);
+
+            /* "algorithms.pyx":321
+ *                         change = True
+ *                         distances[i] = distances[connections.get(j).value] + connections.get(j).weight
+ *                         prevs[i] = connections.get(j).value             # <<<<<<<<<<<<<<
+ * 
+ *     cpdef CPath result = CPath('list')
+ */
+            __pyx_t_12 = __pyx_v_connections->get(__pyx_v_j).value;
+            (__pyx_v_prevs[__pyx_v_i]) = __pyx_t_12;
+
+            /* "algorithms.pyx":318
+ *             for j in range(connections.size):
+ *                 if distances[connections.get(j).value] != MAX_INT:
+ *                     if distances[i] > distances[connections.get(j).value] + connections.get(j).weight:             # <<<<<<<<<<<<<<
+ *                         change = True
+ *                         distances[i] = distances[connections.get(j).value] + connections.get(j).weight
+ */
+          }
+
+          /* "algorithms.pyx":317
+ *             j = 0
+ *             for j in range(connections.size):
+ *                 if distances[connections.get(j).value] != MAX_INT:             # <<<<<<<<<<<<<<
+ *                     if distances[i] > distances[connections.get(j).value] + connections.get(j).weight:
+ *                         change = True
+ */
+        }
+      }
+    }
+  }
+
+  /* "algorithms.pyx":323
+ *                         prevs[i] = connections.get(j).value
+ * 
+ *     cpdef CPath result = CPath('list')             # <<<<<<<<<<<<<<
+ *     cdef int currid = end
+ *     if prevs[currid] == -1:
+ */
+  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_5cpath_CPath), __pyx_tuple_, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 323, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_v_result = ((struct __pyx_obj_5cpath_CPath *)__pyx_t_1);
+  __pyx_t_1 = 0;
+
+  /* "algorithms.pyx":324
+ * 
+ *     cpdef CPath result = CPath('list')
+ *     cdef int currid = end             # <<<<<<<<<<<<<<
+ *     if prevs[currid] == -1:
+ *         return None
+ */
+  __pyx_v_currid = __pyx_v_end;
+
+  /* "algorithms.pyx":325
+ *     cpdef CPath result = CPath('list')
+ *     cdef int currid = end
+ *     if prevs[currid] == -1:             # <<<<<<<<<<<<<<
+ *         return None
+ *     while currid != start:
+ */
+  __pyx_t_8 = (((__pyx_v_prevs[__pyx_v_currid]) == -1L) != 0);
+  if (__pyx_t_8) {
+
+    /* "algorithms.pyx":326
+ *     cdef int currid = end
+ *     if prevs[currid] == -1:
+ *         return None             # <<<<<<<<<<<<<<
+ *     while currid != start:
+ *         result.add(CPathNode(prevs[currid], currid, distances[currid]-distances[prevs[currid]]))
+ */
+    __Pyx_XDECREF(((PyObject *)__pyx_r));
+    __pyx_r = ((struct __pyx_obj_5cpath_CPath *)Py_None); __Pyx_INCREF(Py_None);
+    goto __pyx_L0;
+
+    /* "algorithms.pyx":325
+ *     cpdef CPath result = CPath('list')
+ *     cdef int currid = end
+ *     if prevs[currid] == -1:             # <<<<<<<<<<<<<<
+ *         return None
+ *     while currid != start:
+ */
+  }
+
+  /* "algorithms.pyx":327
+ *     if prevs[currid] == -1:
+ *         return None
+ *     while currid != start:             # <<<<<<<<<<<<<<
+ *         result.add(CPathNode(prevs[currid], currid, distances[currid]-distances[prevs[currid]]))
+ *         currid = prevs[currid]
+ */
+  while (1) {
+    __pyx_t_8 = ((__pyx_v_currid != __pyx_v_start) != 0);
+    if (!__pyx_t_8) break;
+
+    /* "algorithms.pyx":328
+ *         return None
+ *     while currid != start:
+ *         result.add(CPathNode(prevs[currid], currid, distances[currid]-distances[prevs[currid]]))             # <<<<<<<<<<<<<<
+ *         currid = prevs[currid]
+ *     PyMem_Free(distances)
+ */
+    __pyx_t_1 = __Pyx_PyInt_From_int((__pyx_v_prevs[__pyx_v_currid])); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 328, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_currid); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 328, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_3);
+    __pyx_t_4 = __Pyx_PyInt_From_int(((__pyx_v_distances[__pyx_v_currid]) - (__pyx_v_distances[(__pyx_v_prevs[__pyx_v_currid])]))); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 328, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_4);
+    __pyx_t_13 = PyTuple_New(3); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 328, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_13);
+    __Pyx_GIVEREF(__pyx_t_1);
+    PyTuple_SET_ITEM(__pyx_t_13, 0, __pyx_t_1);
+    __Pyx_GIVEREF(__pyx_t_3);
+    PyTuple_SET_ITEM(__pyx_t_13, 1, __pyx_t_3);
+    __Pyx_GIVEREF(__pyx_t_4);
+    PyTuple_SET_ITEM(__pyx_t_13, 2, __pyx_t_4);
+    __pyx_t_1 = 0;
+    __pyx_t_3 = 0;
+    __pyx_t_4 = 0;
+    __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_5cpath_CPathNode), __pyx_t_13, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 328, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_4);
+    __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
+    ((struct __pyx_vtabstruct_5cpath_CPath *)__pyx_v_result->__pyx_vtab)->add(__pyx_v_result, ((struct __pyx_obj_5cpath_CPathNode *)__pyx_t_4));
+    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+
+    /* "algorithms.pyx":329
+ *     while currid != start:
+ *         result.add(CPathNode(prevs[currid], currid, distances[currid]-distances[prevs[currid]]))
+ *         currid = prevs[currid]             # <<<<<<<<<<<<<<
+ *     PyMem_Free(distances)
+ *     PyMem_Free(prevs)
+ */
+    __pyx_v_currid = (__pyx_v_prevs[__pyx_v_currid]);
+  }
+
+  /* "algorithms.pyx":330
+ *         result.add(CPathNode(prevs[currid], currid, distances[currid]-distances[prevs[currid]]))
+ *         currid = prevs[currid]
+ *     PyMem_Free(distances)             # <<<<<<<<<<<<<<
+ *     PyMem_Free(prevs)
+ *     return result
+ */
+  PyMem_Free(__pyx_v_distances);
+
+  /* "algorithms.pyx":331
+ *         currid = prevs[currid]
+ *     PyMem_Free(distances)
+ *     PyMem_Free(prevs)             # <<<<<<<<<<<<<<
+ *     return result
+ * 
+ */
+  PyMem_Free(__pyx_v_prevs);
+
+  /* "algorithms.pyx":332
+ *     PyMem_Free(distances)
+ *     PyMem_Free(prevs)
+ *     return result             # <<<<<<<<<<<<<<
+ * 
+ * cpdef CPath ford_bellman_matrix(Matrix graph, tuple args):
  */
   __Pyx_XDECREF(((PyObject *)__pyx_r));
-  __Pyx_INCREF(((PyObject *)__pyx_v_graph));
-  __pyx_r = __pyx_v_graph;
+  __Pyx_INCREF(((PyObject *)__pyx_v_result));
+  __pyx_r = __pyx_v_result;
   goto __pyx_L0;
 
-  /* "algorithms.pyx":219
+  /* "algorithms.pyx":296
  *     return result
  * 
- * cpdef ListGraph ford_bellman(ListGraph graph, tuple args):             # <<<<<<<<<<<<<<
- *     return graph
+ * cpdef CPath ford_bellman_list(ListGraph graph, tuple args):             # <<<<<<<<<<<<<<
+ *     cdef int start = args[0], end = args[1]
+ *     cdef int* distances = <int*> PyMem_Malloc(graph.getsize()*sizeof(int))
  */
 
   /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_XDECREF(__pyx_t_3);
+  __Pyx_XDECREF(__pyx_t_4);
+  __Pyx_XDECREF(__pyx_t_13);
+  __Pyx_AddTraceback("algorithms.ford_bellman_list", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = 0;
   __pyx_L0:;
+  __Pyx_XDECREF((PyObject *)__pyx_v_result);
   __Pyx_XGIVEREF((PyObject *)__pyx_r);
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
 /* Python wrapper */
-static PyObject *__pyx_pw_10algorithms_11ford_bellman(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static PyObject *__pyx_pw_10algorithms_11ford_bellman(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_10algorithms_13ford_bellman_list(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyObject *__pyx_pw_10algorithms_13ford_bellman_list(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   struct __pyx_obj_11linked_list_ListGraph *__pyx_v_graph = 0;
   PyObject *__pyx_v_args = 0;
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("ford_bellman (wrapper)", 0);
+  __Pyx_RefNannySetupContext("ford_bellman_list (wrapper)", 0);
   {
     static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_graph,&__pyx_n_s_args,0};
     PyObject* values[2] = {0,0};
@@ -4294,11 +5813,11 @@ static PyObject *__pyx_pw_10algorithms_11ford_bellman(PyObject *__pyx_self, PyOb
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_args)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("ford_bellman", 1, 2, 2, 1); __PYX_ERR(0, 219, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("ford_bellman_list", 1, 2, 2, 1); __PYX_ERR(0, 296, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "ford_bellman") < 0)) __PYX_ERR(0, 219, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "ford_bellman_list") < 0)) __PYX_ERR(0, 296, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -4311,15 +5830,15 @@ static PyObject *__pyx_pw_10algorithms_11ford_bellman(PyObject *__pyx_self, PyOb
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("ford_bellman", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 219, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("ford_bellman_list", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 296, __pyx_L3_error)
   __pyx_L3_error:;
-  __Pyx_AddTraceback("algorithms.ford_bellman", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("algorithms.ford_bellman_list", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_graph), __pyx_ptype_11linked_list_ListGraph, 1, "graph", 0))) __PYX_ERR(0, 219, __pyx_L1_error)
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_args), (&PyTuple_Type), 1, "args", 1))) __PYX_ERR(0, 219, __pyx_L1_error)
-  __pyx_r = __pyx_pf_10algorithms_10ford_bellman(__pyx_self, __pyx_v_graph, __pyx_v_args);
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_graph), __pyx_ptype_11linked_list_ListGraph, 1, "graph", 0))) __PYX_ERR(0, 296, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_args), (&PyTuple_Type), 1, "args", 1))) __PYX_ERR(0, 296, __pyx_L1_error)
+  __pyx_r = __pyx_pf_10algorithms_12ford_bellman_list(__pyx_self, __pyx_v_graph, __pyx_v_args);
 
   /* function exit code */
   goto __pyx_L0;
@@ -4330,13 +5849,13 @@ static PyObject *__pyx_pw_10algorithms_11ford_bellman(PyObject *__pyx_self, PyOb
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_10algorithms_10ford_bellman(CYTHON_UNUSED PyObject *__pyx_self, struct __pyx_obj_11linked_list_ListGraph *__pyx_v_graph, PyObject *__pyx_v_args) {
+static PyObject *__pyx_pf_10algorithms_12ford_bellman_list(CYTHON_UNUSED PyObject *__pyx_self, struct __pyx_obj_11linked_list_ListGraph *__pyx_v_graph, PyObject *__pyx_v_args) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
-  __Pyx_RefNannySetupContext("ford_bellman", 0);
+  __Pyx_RefNannySetupContext("ford_bellman_list", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = ((PyObject *)__pyx_f_10algorithms_ford_bellman(__pyx_v_graph, __pyx_v_args, 0)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 219, __pyx_L1_error)
+  __pyx_t_1 = ((PyObject *)__pyx_f_10algorithms_ford_bellman_list(__pyx_v_graph, __pyx_v_args, 0)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 296, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -4345,7 +5864,563 @@ static PyObject *__pyx_pf_10algorithms_10ford_bellman(CYTHON_UNUSED PyObject *__
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("algorithms.ford_bellman", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("algorithms.ford_bellman_list", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "algorithms.pyx":334
+ *     return result
+ * 
+ * cpdef CPath ford_bellman_matrix(Matrix graph, tuple args):             # <<<<<<<<<<<<<<
+ *     cdef int start = args[0], end = args[1]
+ *     cdef int* distances = <int*> PyMem_Malloc(graph.getsize()*sizeof(int))
+ */
+
+static PyObject *__pyx_pw_10algorithms_15ford_bellman_matrix(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static struct __pyx_obj_5cpath_CPath *__pyx_f_10algorithms_ford_bellman_matrix(struct __pyx_obj_6matrix_Matrix *__pyx_v_graph, PyObject *__pyx_v_args, CYTHON_UNUSED int __pyx_skip_dispatch) {
+  int __pyx_v_start;
+  int __pyx_v_end;
+  int *__pyx_v_distances;
+  int *__pyx_v_prevs;
+  int __pyx_v_i;
+  bool __pyx_v_change;
+  int __pyx_v_j;
+  struct __pyx_obj_5cpath_CPath *__pyx_v_result = 0;
+  int __pyx_v_currid;
+  struct __pyx_obj_5cpath_CPath *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  int __pyx_t_2;
+  PyObject *__pyx_t_3 = NULL;
+  PyObject *__pyx_t_4 = NULL;
+  size_t __pyx_t_5;
+  long __pyx_t_6;
+  long __pyx_t_7;
+  int __pyx_t_8;
+  long __pyx_t_9;
+  long __pyx_t_10;
+  int __pyx_t_11;
+  int __pyx_t_12;
+  PyObject *__pyx_t_13 = NULL;
+  __Pyx_RefNannySetupContext("ford_bellman_matrix", 0);
+
+  /* "algorithms.pyx":335
+ * 
+ * cpdef CPath ford_bellman_matrix(Matrix graph, tuple args):
+ *     cdef int start = args[0], end = args[1]             # <<<<<<<<<<<<<<
+ *     cdef int* distances = <int*> PyMem_Malloc(graph.getsize()*sizeof(int))
+ *     cdef int* prevs = <int*> PyMem_Malloc(graph.getsize()*sizeof(int))
+ */
+  if (unlikely(__pyx_v_args == Py_None)) {
+    PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
+    __PYX_ERR(0, 335, __pyx_L1_error)
+  }
+  __pyx_t_1 = __Pyx_GetItemInt_Tuple(__pyx_v_args, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 335, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_2 = __Pyx_PyInt_As_int(__pyx_t_1); if (unlikely((__pyx_t_2 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 335, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_v_start = __pyx_t_2;
+  if (unlikely(__pyx_v_args == Py_None)) {
+    PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
+    __PYX_ERR(0, 335, __pyx_L1_error)
+  }
+  __pyx_t_1 = __Pyx_GetItemInt_Tuple(__pyx_v_args, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 335, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_2 = __Pyx_PyInt_As_int(__pyx_t_1); if (unlikely((__pyx_t_2 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 335, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_v_end = __pyx_t_2;
+
+  /* "algorithms.pyx":336
+ * cpdef CPath ford_bellman_matrix(Matrix graph, tuple args):
+ *     cdef int start = args[0], end = args[1]
+ *     cdef int* distances = <int*> PyMem_Malloc(graph.getsize()*sizeof(int))             # <<<<<<<<<<<<<<
+ *     cdef int* prevs = <int*> PyMem_Malloc(graph.getsize()*sizeof(int))
+ * 
+ */
+  __pyx_t_1 = ((struct __pyx_vtabstruct_6matrix_Matrix *)__pyx_v_graph->__pyx_vtab)->getsize(__pyx_v_graph, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 336, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_3 = __Pyx_PyInt_FromSize_t((sizeof(int))); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 336, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_4 = PyNumber_Multiply(__pyx_t_1, __pyx_t_3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 336, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __pyx_t_5 = __Pyx_PyInt_As_size_t(__pyx_t_4); if (unlikely((__pyx_t_5 == (size_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 336, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __pyx_v_distances = ((int *)PyMem_Malloc(__pyx_t_5));
+
+  /* "algorithms.pyx":337
+ *     cdef int start = args[0], end = args[1]
+ *     cdef int* distances = <int*> PyMem_Malloc(graph.getsize()*sizeof(int))
+ *     cdef int* prevs = <int*> PyMem_Malloc(graph.getsize()*sizeof(int))             # <<<<<<<<<<<<<<
+ * 
+ *     cdef int i = 0
+ */
+  __pyx_t_4 = ((struct __pyx_vtabstruct_6matrix_Matrix *)__pyx_v_graph->__pyx_vtab)->getsize(__pyx_v_graph, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 337, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  __pyx_t_3 = __Pyx_PyInt_FromSize_t((sizeof(int))); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 337, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_1 = PyNumber_Multiply(__pyx_t_4, __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 337, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __pyx_t_5 = __Pyx_PyInt_As_size_t(__pyx_t_1); if (unlikely((__pyx_t_5 == (size_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 337, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_v_prevs = ((int *)PyMem_Malloc(__pyx_t_5));
+
+  /* "algorithms.pyx":339
+ *     cdef int* prevs = <int*> PyMem_Malloc(graph.getsize()*sizeof(int))
+ * 
+ *     cdef int i = 0             # <<<<<<<<<<<<<<
+ *     for i in range(graph.getsize()):
+ *         distances[i] = MAX_INT
+ */
+  __pyx_v_i = 0;
+
+  /* "algorithms.pyx":340
+ * 
+ *     cdef int i = 0
+ *     for i in range(graph.getsize()):             # <<<<<<<<<<<<<<
+ *         distances[i] = MAX_INT
+ *         prevs[i] = -1
+ */
+  __pyx_t_1 = ((struct __pyx_vtabstruct_6matrix_Matrix *)__pyx_v_graph->__pyx_vtab)->getsize(__pyx_v_graph, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 340, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_6 = __Pyx_PyInt_As_long(__pyx_t_1); if (unlikely((__pyx_t_6 == (long)-1) && PyErr_Occurred())) __PYX_ERR(0, 340, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_7 = __pyx_t_6;
+  for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_7; __pyx_t_2+=1) {
+    __pyx_v_i = __pyx_t_2;
+
+    /* "algorithms.pyx":341
+ *     cdef int i = 0
+ *     for i in range(graph.getsize()):
+ *         distances[i] = MAX_INT             # <<<<<<<<<<<<<<
+ *         prevs[i] = -1
+ *     distances[start] = 0
+ */
+    (__pyx_v_distances[__pyx_v_i]) = __pyx_v_10algorithms_MAX_INT;
+
+    /* "algorithms.pyx":342
+ *     for i in range(graph.getsize()):
+ *         distances[i] = MAX_INT
+ *         prevs[i] = -1             # <<<<<<<<<<<<<<
+ *     distances[start] = 0
+ * 
+ */
+    (__pyx_v_prevs[__pyx_v_i]) = -1;
+  }
+
+  /* "algorithms.pyx":343
+ *         distances[i] = MAX_INT
+ *         prevs[i] = -1
+ *     distances[start] = 0             # <<<<<<<<<<<<<<
+ * 
+ *     cdef bool change = True
+ */
+  (__pyx_v_distances[__pyx_v_start]) = 0;
+
+  /* "algorithms.pyx":345
+ *     distances[start] = 0
+ * 
+ *     cdef bool change = True             # <<<<<<<<<<<<<<
+ *     cdef int j = 0
+ *     while change:
+ */
+  __pyx_v_change = 1;
+
+  /* "algorithms.pyx":346
+ * 
+ *     cdef bool change = True
+ *     cdef int j = 0             # <<<<<<<<<<<<<<
+ *     while change:
+ *         change = False
+ */
+  __pyx_v_j = 0;
+
+  /* "algorithms.pyx":347
+ *     cdef bool change = True
+ *     cdef int j = 0
+ *     while change:             # <<<<<<<<<<<<<<
+ *         change = False
+ *         i = 0
+ */
+  while (1) {
+    __pyx_t_8 = (__pyx_v_change != 0);
+    if (!__pyx_t_8) break;
+
+    /* "algorithms.pyx":348
+ *     cdef int j = 0
+ *     while change:
+ *         change = False             # <<<<<<<<<<<<<<
+ *         i = 0
+ *         for i in range(graph.getsize()):
+ */
+    __pyx_v_change = 0;
+
+    /* "algorithms.pyx":349
+ *     while change:
+ *         change = False
+ *         i = 0             # <<<<<<<<<<<<<<
+ *         for i in range(graph.getsize()):
+ *             j = 0
+ */
+    __pyx_v_i = 0;
+
+    /* "algorithms.pyx":350
+ *         change = False
+ *         i = 0
+ *         for i in range(graph.getsize()):             # <<<<<<<<<<<<<<
+ *             j = 0
+ *             for j in range(graph.getsize()):
+ */
+    __pyx_t_1 = ((struct __pyx_vtabstruct_6matrix_Matrix *)__pyx_v_graph->__pyx_vtab)->getsize(__pyx_v_graph, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 350, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __pyx_t_6 = __Pyx_PyInt_As_long(__pyx_t_1); if (unlikely((__pyx_t_6 == (long)-1) && PyErr_Occurred())) __PYX_ERR(0, 350, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+    __pyx_t_7 = __pyx_t_6;
+    for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_7; __pyx_t_2+=1) {
+      __pyx_v_i = __pyx_t_2;
+
+      /* "algorithms.pyx":351
+ *         i = 0
+ *         for i in range(graph.getsize()):
+ *             j = 0             # <<<<<<<<<<<<<<
+ *             for j in range(graph.getsize()):
+ *                 if graph.get(i, j) != 0 and distances[i] != MAX_INT:
+ */
+      __pyx_v_j = 0;
+
+      /* "algorithms.pyx":352
+ *         for i in range(graph.getsize()):
+ *             j = 0
+ *             for j in range(graph.getsize()):             # <<<<<<<<<<<<<<
+ *                 if graph.get(i, j) != 0 and distances[i] != MAX_INT:
+ *                     if distances[j] > distances[i] + graph.get(i,j):
+ */
+      __pyx_t_1 = ((struct __pyx_vtabstruct_6matrix_Matrix *)__pyx_v_graph->__pyx_vtab)->getsize(__pyx_v_graph, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 352, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_1);
+      __pyx_t_9 = __Pyx_PyInt_As_long(__pyx_t_1); if (unlikely((__pyx_t_9 == (long)-1) && PyErr_Occurred())) __PYX_ERR(0, 352, __pyx_L1_error)
+      __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+      __pyx_t_10 = __pyx_t_9;
+      for (__pyx_t_11 = 0; __pyx_t_11 < __pyx_t_10; __pyx_t_11+=1) {
+        __pyx_v_j = __pyx_t_11;
+
+        /* "algorithms.pyx":353
+ *             j = 0
+ *             for j in range(graph.getsize()):
+ *                 if graph.get(i, j) != 0 and distances[i] != MAX_INT:             # <<<<<<<<<<<<<<
+ *                     if distances[j] > distances[i] + graph.get(i,j):
+ *                         change = True
+ */
+        __pyx_t_12 = ((((struct __pyx_vtabstruct_6matrix_Matrix *)__pyx_v_graph->__pyx_vtab)->get(__pyx_v_graph, __pyx_v_i, __pyx_v_j, 0) != 0) != 0);
+        if (__pyx_t_12) {
+        } else {
+          __pyx_t_8 = __pyx_t_12;
+          goto __pyx_L12_bool_binop_done;
+        }
+        __pyx_t_12 = (((__pyx_v_distances[__pyx_v_i]) != __pyx_v_10algorithms_MAX_INT) != 0);
+        __pyx_t_8 = __pyx_t_12;
+        __pyx_L12_bool_binop_done:;
+        if (__pyx_t_8) {
+
+          /* "algorithms.pyx":354
+ *             for j in range(graph.getsize()):
+ *                 if graph.get(i, j) != 0 and distances[i] != MAX_INT:
+ *                     if distances[j] > distances[i] + graph.get(i,j):             # <<<<<<<<<<<<<<
+ *                         change = True
+ *                         distances[j] = distances[i] + graph.get(i,j)
+ */
+          __pyx_t_8 = (((__pyx_v_distances[__pyx_v_j]) > ((__pyx_v_distances[__pyx_v_i]) + ((struct __pyx_vtabstruct_6matrix_Matrix *)__pyx_v_graph->__pyx_vtab)->get(__pyx_v_graph, __pyx_v_i, __pyx_v_j, 0))) != 0);
+          if (__pyx_t_8) {
+
+            /* "algorithms.pyx":355
+ *                 if graph.get(i, j) != 0 and distances[i] != MAX_INT:
+ *                     if distances[j] > distances[i] + graph.get(i,j):
+ *                         change = True             # <<<<<<<<<<<<<<
+ *                         distances[j] = distances[i] + graph.get(i,j)
+ *                         prevs[j] = i
+ */
+            __pyx_v_change = 1;
+
+            /* "algorithms.pyx":356
+ *                     if distances[j] > distances[i] + graph.get(i,j):
+ *                         change = True
+ *                         distances[j] = distances[i] + graph.get(i,j)             # <<<<<<<<<<<<<<
+ *                         prevs[j] = i
+ * 
+ */
+            (__pyx_v_distances[__pyx_v_j]) = ((__pyx_v_distances[__pyx_v_i]) + ((struct __pyx_vtabstruct_6matrix_Matrix *)__pyx_v_graph->__pyx_vtab)->get(__pyx_v_graph, __pyx_v_i, __pyx_v_j, 0));
+
+            /* "algorithms.pyx":357
+ *                         change = True
+ *                         distances[j] = distances[i] + graph.get(i,j)
+ *                         prevs[j] = i             # <<<<<<<<<<<<<<
+ * 
+ *     cpdef CPath result = CPath('matrix')
+ */
+            (__pyx_v_prevs[__pyx_v_j]) = __pyx_v_i;
+
+            /* "algorithms.pyx":354
+ *             for j in range(graph.getsize()):
+ *                 if graph.get(i, j) != 0 and distances[i] != MAX_INT:
+ *                     if distances[j] > distances[i] + graph.get(i,j):             # <<<<<<<<<<<<<<
+ *                         change = True
+ *                         distances[j] = distances[i] + graph.get(i,j)
+ */
+          }
+
+          /* "algorithms.pyx":353
+ *             j = 0
+ *             for j in range(graph.getsize()):
+ *                 if graph.get(i, j) != 0 and distances[i] != MAX_INT:             # <<<<<<<<<<<<<<
+ *                     if distances[j] > distances[i] + graph.get(i,j):
+ *                         change = True
+ */
+        }
+      }
+    }
+  }
+
+  /* "algorithms.pyx":359
+ *                         prevs[j] = i
+ * 
+ *     cpdef CPath result = CPath('matrix')             # <<<<<<<<<<<<<<
+ *     cdef int currid = end
+ *     if prevs[currid] == -1:
+ */
+  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_5cpath_CPath), __pyx_tuple__2, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 359, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_v_result = ((struct __pyx_obj_5cpath_CPath *)__pyx_t_1);
+  __pyx_t_1 = 0;
+
+  /* "algorithms.pyx":360
+ * 
+ *     cpdef CPath result = CPath('matrix')
+ *     cdef int currid = end             # <<<<<<<<<<<<<<
+ *     if prevs[currid] == -1:
+ *         return None
+ */
+  __pyx_v_currid = __pyx_v_end;
+
+  /* "algorithms.pyx":361
+ *     cpdef CPath result = CPath('matrix')
+ *     cdef int currid = end
+ *     if prevs[currid] == -1:             # <<<<<<<<<<<<<<
+ *         return None
+ *     while currid != start:
+ */
+  __pyx_t_8 = (((__pyx_v_prevs[__pyx_v_currid]) == -1L) != 0);
+  if (__pyx_t_8) {
+
+    /* "algorithms.pyx":362
+ *     cdef int currid = end
+ *     if prevs[currid] == -1:
+ *         return None             # <<<<<<<<<<<<<<
+ *     while currid != start:
+ *         result.add(CPathNode(prevs[currid], currid, distances[currid]-distances[prevs[currid]]))
+ */
+    __Pyx_XDECREF(((PyObject *)__pyx_r));
+    __pyx_r = ((struct __pyx_obj_5cpath_CPath *)Py_None); __Pyx_INCREF(Py_None);
+    goto __pyx_L0;
+
+    /* "algorithms.pyx":361
+ *     cpdef CPath result = CPath('matrix')
+ *     cdef int currid = end
+ *     if prevs[currid] == -1:             # <<<<<<<<<<<<<<
+ *         return None
+ *     while currid != start:
+ */
+  }
+
+  /* "algorithms.pyx":363
+ *     if prevs[currid] == -1:
+ *         return None
+ *     while currid != start:             # <<<<<<<<<<<<<<
+ *         result.add(CPathNode(prevs[currid], currid, distances[currid]-distances[prevs[currid]]))
+ *         currid = prevs[currid]
+ */
+  while (1) {
+    __pyx_t_8 = ((__pyx_v_currid != __pyx_v_start) != 0);
+    if (!__pyx_t_8) break;
+
+    /* "algorithms.pyx":364
+ *         return None
+ *     while currid != start:
+ *         result.add(CPathNode(prevs[currid], currid, distances[currid]-distances[prevs[currid]]))             # <<<<<<<<<<<<<<
+ *         currid = prevs[currid]
+ *     PyMem_Free(distances)
+ */
+    __pyx_t_1 = __Pyx_PyInt_From_int((__pyx_v_prevs[__pyx_v_currid])); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 364, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_currid); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 364, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_3);
+    __pyx_t_4 = __Pyx_PyInt_From_int(((__pyx_v_distances[__pyx_v_currid]) - (__pyx_v_distances[(__pyx_v_prevs[__pyx_v_currid])]))); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 364, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_4);
+    __pyx_t_13 = PyTuple_New(3); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 364, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_13);
+    __Pyx_GIVEREF(__pyx_t_1);
+    PyTuple_SET_ITEM(__pyx_t_13, 0, __pyx_t_1);
+    __Pyx_GIVEREF(__pyx_t_3);
+    PyTuple_SET_ITEM(__pyx_t_13, 1, __pyx_t_3);
+    __Pyx_GIVEREF(__pyx_t_4);
+    PyTuple_SET_ITEM(__pyx_t_13, 2, __pyx_t_4);
+    __pyx_t_1 = 0;
+    __pyx_t_3 = 0;
+    __pyx_t_4 = 0;
+    __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_5cpath_CPathNode), __pyx_t_13, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 364, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_4);
+    __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
+    ((struct __pyx_vtabstruct_5cpath_CPath *)__pyx_v_result->__pyx_vtab)->add(__pyx_v_result, ((struct __pyx_obj_5cpath_CPathNode *)__pyx_t_4));
+    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+
+    /* "algorithms.pyx":365
+ *     while currid != start:
+ *         result.add(CPathNode(prevs[currid], currid, distances[currid]-distances[prevs[currid]]))
+ *         currid = prevs[currid]             # <<<<<<<<<<<<<<
+ *     PyMem_Free(distances)
+ *     PyMem_Free(prevs)
+ */
+    __pyx_v_currid = (__pyx_v_prevs[__pyx_v_currid]);
+  }
+
+  /* "algorithms.pyx":366
+ *         result.add(CPathNode(prevs[currid], currid, distances[currid]-distances[prevs[currid]]))
+ *         currid = prevs[currid]
+ *     PyMem_Free(distances)             # <<<<<<<<<<<<<<
+ *     PyMem_Free(prevs)
+ *     return result
+ */
+  PyMem_Free(__pyx_v_distances);
+
+  /* "algorithms.pyx":367
+ *         currid = prevs[currid]
+ *     PyMem_Free(distances)
+ *     PyMem_Free(prevs)             # <<<<<<<<<<<<<<
+ *     return result
+ */
+  PyMem_Free(__pyx_v_prevs);
+
+  /* "algorithms.pyx":368
+ *     PyMem_Free(distances)
+ *     PyMem_Free(prevs)
+ *     return result             # <<<<<<<<<<<<<<
+ */
+  __Pyx_XDECREF(((PyObject *)__pyx_r));
+  __Pyx_INCREF(((PyObject *)__pyx_v_result));
+  __pyx_r = __pyx_v_result;
+  goto __pyx_L0;
+
+  /* "algorithms.pyx":334
+ *     return result
+ * 
+ * cpdef CPath ford_bellman_matrix(Matrix graph, tuple args):             # <<<<<<<<<<<<<<
+ *     cdef int start = args[0], end = args[1]
+ *     cdef int* distances = <int*> PyMem_Malloc(graph.getsize()*sizeof(int))
+ */
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_XDECREF(__pyx_t_3);
+  __Pyx_XDECREF(__pyx_t_4);
+  __Pyx_XDECREF(__pyx_t_13);
+  __Pyx_AddTraceback("algorithms.ford_bellman_matrix", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = 0;
+  __pyx_L0:;
+  __Pyx_XDECREF((PyObject *)__pyx_v_result);
+  __Pyx_XGIVEREF((PyObject *)__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* Python wrapper */
+static PyObject *__pyx_pw_10algorithms_15ford_bellman_matrix(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyObject *__pyx_pw_10algorithms_15ford_bellman_matrix(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+  struct __pyx_obj_6matrix_Matrix *__pyx_v_graph = 0;
+  PyObject *__pyx_v_args = 0;
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("ford_bellman_matrix (wrapper)", 0);
+  {
+    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_graph,&__pyx_n_s_args,0};
+    PyObject* values[2] = {0,0};
+    if (unlikely(__pyx_kwds)) {
+      Py_ssize_t kw_args;
+      const Py_ssize_t pos_args = PyTuple_GET_SIZE(__pyx_args);
+      switch (pos_args) {
+        case  2: values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
+        CYTHON_FALLTHROUGH;
+        case  1: values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
+        CYTHON_FALLTHROUGH;
+        case  0: break;
+        default: goto __pyx_L5_argtuple_error;
+      }
+      kw_args = PyDict_Size(__pyx_kwds);
+      switch (pos_args) {
+        case  0:
+        if (likely((values[0] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_graph)) != 0)) kw_args--;
+        else goto __pyx_L5_argtuple_error;
+        CYTHON_FALLTHROUGH;
+        case  1:
+        if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_args)) != 0)) kw_args--;
+        else {
+          __Pyx_RaiseArgtupleInvalid("ford_bellman_matrix", 1, 2, 2, 1); __PYX_ERR(0, 334, __pyx_L3_error)
+        }
+      }
+      if (unlikely(kw_args > 0)) {
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "ford_bellman_matrix") < 0)) __PYX_ERR(0, 334, __pyx_L3_error)
+      }
+    } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
+      goto __pyx_L5_argtuple_error;
+    } else {
+      values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
+      values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
+    }
+    __pyx_v_graph = ((struct __pyx_obj_6matrix_Matrix *)values[0]);
+    __pyx_v_args = ((PyObject*)values[1]);
+  }
+  goto __pyx_L4_argument_unpacking_done;
+  __pyx_L5_argtuple_error:;
+  __Pyx_RaiseArgtupleInvalid("ford_bellman_matrix", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 334, __pyx_L3_error)
+  __pyx_L3_error:;
+  __Pyx_AddTraceback("algorithms.ford_bellman_matrix", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_RefNannyFinishContext();
+  return NULL;
+  __pyx_L4_argument_unpacking_done:;
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_graph), __pyx_ptype_6matrix_Matrix, 1, "graph", 0))) __PYX_ERR(0, 334, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_args), (&PyTuple_Type), 1, "args", 1))) __PYX_ERR(0, 334, __pyx_L1_error)
+  __pyx_r = __pyx_pf_10algorithms_14ford_bellman_matrix(__pyx_self, __pyx_v_graph, __pyx_v_args);
+
+  /* function exit code */
+  goto __pyx_L0;
+  __pyx_L1_error:;
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_10algorithms_14ford_bellman_matrix(CYTHON_UNUSED PyObject *__pyx_self, struct __pyx_obj_6matrix_Matrix *__pyx_v_graph, PyObject *__pyx_v_args) {
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  __Pyx_RefNannySetupContext("ford_bellman_matrix", 0);
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_1 = ((PyObject *)__pyx_f_10algorithms_ford_bellman_matrix(__pyx_v_graph, __pyx_v_args, 0)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 334, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_r = __pyx_t_1;
+  __pyx_t_1 = 0;
+  goto __pyx_L0;
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_AddTraceback("algorithms.ford_bellman_matrix", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -4357,9 +6432,11 @@ static PyMethodDef __pyx_methods[] = {
   {"prim_list", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_10algorithms_1prim_list, METH_VARARGS|METH_KEYWORDS, 0},
   {"prim_matrix", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_10algorithms_3prim_matrix, METH_VARARGS|METH_KEYWORDS, 0},
   {"kruskal_list", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_10algorithms_5kruskal_list, METH_VARARGS|METH_KEYWORDS, 0},
-  {"dijkstra_list", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_10algorithms_7dijkstra_list, METH_VARARGS|METH_KEYWORDS, 0},
-  {"dijkstra_matrix", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_10algorithms_9dijkstra_matrix, METH_VARARGS|METH_KEYWORDS, 0},
-  {"ford_bellman", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_10algorithms_11ford_bellman, METH_VARARGS|METH_KEYWORDS, 0},
+  {"kruskal_matrix", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_10algorithms_7kruskal_matrix, METH_VARARGS|METH_KEYWORDS, 0},
+  {"dijkstra_list", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_10algorithms_9dijkstra_list, METH_VARARGS|METH_KEYWORDS, 0},
+  {"dijkstra_matrix", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_10algorithms_11dijkstra_matrix, METH_VARARGS|METH_KEYWORDS, 0},
+  {"ford_bellman_list", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_10algorithms_13ford_bellman_list, METH_VARARGS|METH_KEYWORDS, 0},
+  {"ford_bellman_matrix", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_10algorithms_15ford_bellman_matrix, METH_VARARGS|METH_KEYWORDS, 0},
   {0, 0, 0, 0}
 };
 
@@ -4410,8 +6487,6 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_args, __pyx_k_args, sizeof(__pyx_k_args), 0, 0, 1, 1},
   {&__pyx_n_s_cline_in_traceback, __pyx_k_cline_in_traceback, sizeof(__pyx_k_cline_in_traceback), 0, 0, 1, 1},
   {&__pyx_n_s_default_timer, __pyx_k_default_timer, sizeof(__pyx_k_default_timer), 0, 0, 1, 1},
-  {&__pyx_n_s_end, __pyx_k_end, sizeof(__pyx_k_end), 0, 0, 1, 1},
-  {&__pyx_n_s_file, __pyx_k_file, sizeof(__pyx_k_file), 0, 0, 1, 1},
   {&__pyx_n_s_graph, __pyx_k_graph, sizeof(__pyx_k_graph), 0, 0, 1, 1},
   {&__pyx_n_s_import, __pyx_k_import, sizeof(__pyx_k_import), 0, 0, 1, 1},
   {&__pyx_n_s_linked_list, __pyx_k_linked_list, sizeof(__pyx_k_linked_list), 0, 0, 1, 1},
@@ -4419,7 +6494,6 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_main, __pyx_k_main, sizeof(__pyx_k_main), 0, 0, 1, 1},
   {&__pyx_n_s_matrix, __pyx_k_matrix, sizeof(__pyx_k_matrix), 0, 0, 1, 1},
   {&__pyx_n_s_name, __pyx_k_name, sizeof(__pyx_k_name), 0, 0, 1, 1},
-  {&__pyx_n_s_print, __pyx_k_print, sizeof(__pyx_k_print), 0, 0, 1, 1},
   {&__pyx_n_s_priorityqueue, __pyx_k_priorityqueue, sizeof(__pyx_k_priorityqueue), 0, 0, 1, 1},
   {&__pyx_n_s_pyx_vtable, __pyx_k_pyx_vtable, sizeof(__pyx_k_pyx_vtable), 0, 0, 1, 1},
   {&__pyx_n_s_range, __pyx_k_range, sizeof(__pyx_k_range), 0, 0, 1, 1},
@@ -4439,25 +6513,25 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__Pyx_InitCachedConstants", 0);
 
-  /* "algorithms.pyx":161
+  /* "algorithms.pyx":238
  *         next_node = queue.queue_pop()
  * 
  *     cpdef CPath result = CPath('list')             # <<<<<<<<<<<<<<
  *     cdef int currid = end
  *     if prevs[currid] == -1:
  */
-  __pyx_tuple_ = PyTuple_Pack(1, __pyx_n_s_list); if (unlikely(!__pyx_tuple_)) __PYX_ERR(0, 161, __pyx_L1_error)
+  __pyx_tuple_ = PyTuple_Pack(1, __pyx_n_s_list); if (unlikely(!__pyx_tuple_)) __PYX_ERR(0, 238, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple_);
   __Pyx_GIVEREF(__pyx_tuple_);
 
-  /* "algorithms.pyx":207
+  /* "algorithms.pyx":284
  *         next_node = queue.queue_pop()
  * 
  *     cpdef CPath result = CPath('matrix')             # <<<<<<<<<<<<<<
  *     cdef int currid = end
  *     if prevs[currid] == -1:
  */
-  __pyx_tuple__2 = PyTuple_Pack(1, __pyx_n_s_matrix); if (unlikely(!__pyx_tuple__2)) __PYX_ERR(0, 207, __pyx_L1_error)
+  __pyx_tuple__2 = PyTuple_Pack(1, __pyx_n_s_matrix); if (unlikely(!__pyx_tuple__2)) __PYX_ERR(0, 284, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__2);
   __Pyx_GIVEREF(__pyx_tuple__2);
   __Pyx_RefNannyFinishContext();
@@ -5914,112 +7988,6 @@ static CYTHON_INLINE PyObject* __Pyx_PyInt_From_int(int value) {
     }
 }
 
-/* Print */
-#if !CYTHON_COMPILING_IN_PYPY && PY_MAJOR_VERSION < 3
-static PyObject *__Pyx_GetStdout(void) {
-    PyObject *f = PySys_GetObject((char *)"stdout");
-    if (!f) {
-        PyErr_SetString(PyExc_RuntimeError, "lost sys.stdout");
-    }
-    return f;
-}
-static int __Pyx_Print(PyObject* f, PyObject *arg_tuple, int newline) {
-    int i;
-    if (!f) {
-        if (!(f = __Pyx_GetStdout()))
-            return -1;
-    }
-    Py_INCREF(f);
-    for (i=0; i < PyTuple_GET_SIZE(arg_tuple); i++) {
-        PyObject* v;
-        if (PyFile_SoftSpace(f, 1)) {
-            if (PyFile_WriteString(" ", f) < 0)
-                goto error;
-        }
-        v = PyTuple_GET_ITEM(arg_tuple, i);
-        if (PyFile_WriteObject(v, f, Py_PRINT_RAW) < 0)
-            goto error;
-        if (PyString_Check(v)) {
-            char *s = PyString_AsString(v);
-            Py_ssize_t len = PyString_Size(v);
-            if (len > 0) {
-                switch (s[len-1]) {
-                    case ' ': break;
-                    case '\f': case '\r': case '\n': case '\t': case '\v':
-                        PyFile_SoftSpace(f, 0);
-                        break;
-                    default:  break;
-                }
-            }
-        }
-    }
-    if (newline) {
-        if (PyFile_WriteString("\n", f) < 0)
-            goto error;
-        PyFile_SoftSpace(f, 0);
-    }
-    Py_DECREF(f);
-    return 0;
-error:
-    Py_DECREF(f);
-    return -1;
-}
-#else
-static int __Pyx_Print(PyObject* stream, PyObject *arg_tuple, int newline) {
-    PyObject* kwargs = 0;
-    PyObject* result = 0;
-    PyObject* end_string;
-    if (unlikely(!__pyx_print)) {
-        __pyx_print = PyObject_GetAttr(__pyx_b, __pyx_n_s_print);
-        if (!__pyx_print)
-            return -1;
-    }
-    if (stream) {
-        kwargs = PyDict_New();
-        if (unlikely(!kwargs))
-            return -1;
-        if (unlikely(PyDict_SetItem(kwargs, __pyx_n_s_file, stream) < 0))
-            goto bad;
-        if (!newline) {
-            end_string = PyUnicode_FromStringAndSize(" ", 1);
-            if (unlikely(!end_string))
-                goto bad;
-            if (PyDict_SetItem(kwargs, __pyx_n_s_end, end_string) < 0) {
-                Py_DECREF(end_string);
-                goto bad;
-            }
-            Py_DECREF(end_string);
-        }
-    } else if (!newline) {
-        if (unlikely(!__pyx_print_kwargs)) {
-            __pyx_print_kwargs = PyDict_New();
-            if (unlikely(!__pyx_print_kwargs))
-                return -1;
-            end_string = PyUnicode_FromStringAndSize(" ", 1);
-            if (unlikely(!end_string))
-                return -1;
-            if (PyDict_SetItem(__pyx_print_kwargs, __pyx_n_s_end, end_string) < 0) {
-                Py_DECREF(end_string);
-                return -1;
-            }
-            Py_DECREF(end_string);
-        }
-        kwargs = __pyx_print_kwargs;
-    }
-    result = PyObject_Call(__pyx_print, arg_tuple, kwargs);
-    if (unlikely(kwargs) && (kwargs != __pyx_print_kwargs))
-        Py_DECREF(kwargs);
-    if (!result)
-        return -1;
-    Py_DECREF(result);
-    return 0;
-bad:
-    if (kwargs != __pyx_print_kwargs)
-        Py_XDECREF(kwargs);
-    return -1;
-}
-#endif
-
 /* CIntFromPy */
 static CYTHON_INLINE int __Pyx_PyInt_As_int(PyObject *x) {
     const int neg_one = (int) ((int) 0 - (int) 1), const_zero = (int) 0;
@@ -6586,43 +8554,6 @@ raise_neg_overflow:
         "can't convert negative value to long");
     return (long) -1;
 }
-
-/* PrintOne */
-#if !CYTHON_COMPILING_IN_PYPY && PY_MAJOR_VERSION < 3
-static int __Pyx_PrintOne(PyObject* f, PyObject *o) {
-    if (!f) {
-        if (!(f = __Pyx_GetStdout()))
-            return -1;
-    }
-    Py_INCREF(f);
-    if (PyFile_SoftSpace(f, 0)) {
-        if (PyFile_WriteString(" ", f) < 0)
-            goto error;
-    }
-    if (PyFile_WriteObject(o, f, Py_PRINT_RAW) < 0)
-        goto error;
-    if (PyFile_WriteString("\n", f) < 0)
-        goto error;
-    Py_DECREF(f);
-    return 0;
-error:
-    Py_DECREF(f);
-    return -1;
-    /* the line below is just to avoid C compiler
-     * warnings about unused functions */
-    return __Pyx_Print(f, NULL, 0);
-}
-#else
-static int __Pyx_PrintOne(PyObject* stream, PyObject *o) {
-    int res;
-    PyObject* arg_tuple = PyTuple_Pack(1, o);
-    if (unlikely(!arg_tuple))
-        return -1;
-    res = __Pyx_Print(stream, arg_tuple, 1);
-    Py_DECREF(arg_tuple);
-    return res;
-}
-#endif
 
 /* FastTypeChecks */
 #if CYTHON_COMPILING_IN_CPYTHON

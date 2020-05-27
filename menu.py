@@ -15,13 +15,13 @@ from matrix import Matrix
 
 from timeit import default_timer as timer
 
+debug = False
 
-debug = True
 
-
-class Panel:
+class Panel:    # parent class of all menu panels, responsible for drawing panels and handling option choice
 
     def __init__(self, options: dict, no_exit=False):
+        """:arg options - dict of functions to call with their display name string as key"""
         self.options = options
         if not no_exit:
             self.options['Exit'] = self.exit
@@ -70,14 +70,18 @@ class Panel:
 
 
 class MainMenu(Panel):
+    __defaults__ = ()
+
     def __init__(self):
         options = {
             'MST problem': self.mst,
             'Shortest path problem': self.spp,
-            'Maximum flow problem': self.mfp,
             'Serial test': self.serial_test
         }
         super().__init__(options)
+
+    def exit(self):
+        sys.exit(0)
 
     def mst(self):
         select_scr = Panel({
@@ -112,34 +116,38 @@ class MainMenu(Panel):
         loader.start()
 
     def ford_bellman(self):
-        loader = GraphGenerator()
+        loader = GraphGenerator(directed=True, algorithm='ford_bellman')
         loader.start()
 
     def ford_fulkerson(self):
         loader = GraphGenerator()
         loader.start()
 
-    def serial_test(self):
-        result_file = open('result.txt', 'w+')
+    def serial_test(self):  # bulk tests as specified in settings.py
+        result_file = open('result.txt', 'a')
         for algorithm in settings.algorithms:
             print(algorithm.capitalize())
+            result_file.write("%s\n" % algorithm.capitalize())
             alg_res = {}
             for representation in settings.representations:
                 print(representation.capitalize())
+                result_file.write("%s\n" % representation.capitalize())
                 rep_res = {}
                 for density in settings.densities:
-                    print('Density: {}%'.format(density*100))
+                    print('Density: {}%'.format(density * 100))
+                    result_file.write('Density: {}%\n'.format(density * 100))
                     den_res = {}
                     for serie in settings.series:
                         print('Graph size: %d' % serie)
+                        result_file.write('Graph size: %d\n' % serie)
                         results = []
                         for i in range(settings.series_entries):
                             gc.disable()
                             graph = GraphGenerator.generate_graph_nx(
-                                serie, density, representation, settings.is_directed[algorithm])
-                            function = getattr(algorithms, '%s_%s' % (algorithm, representation))
+                                serie, density, representation, settings.is_directed[algorithm])    # generate new graph
+                            function = getattr(algorithms, '%s_%s' % (algorithm, representation))   # get function
                             args = ()
-                            if algorithm == 'prim' or algorithm == 'kruskal':
+                            if algorithm == 'prim' or algorithm == 'kruskal':   # generate random arguments for function
                                 args = tuple([randint(serie)])
                             elif algorithm == 'dijkstra' or algorithm == 'ford_bellman':
                                 arg1 = randint(serie)
@@ -148,11 +156,11 @@ class MainMenu(Panel):
                                     arg2 = randint(serie)
                                 args = (arg1, arg2)
                             start = timer()
-                            function(graph, args)
+                            function(graph, args)   # time test
                             end = timer()
-                            time = (end-start)*1000
-                            print('Entry %d | Execution time: %f milliseconds' % (i+1, time))
-                            result_file.write('Entry %d | Execution time: %f milliseconds' % (i+1, time))
+                            time = (end - start) * 1000  # convert time to milliseconds
+                            print('Entry %d | Execution time: %f milliseconds' % (i + 1, time))
+                            result_file.write('Entry %d | Execution time: %f milliseconds\n' % (i + 1, time))
                             results.append(time)
                             del graph
                             gc.enable()
@@ -161,19 +169,17 @@ class MainMenu(Panel):
                         maxi = max(results)
                         mini = min(results)
                         print('Average time in series: %f' % avg)
-                        result_file.write('Average time in series: %f' % avg)
+                        result_file.write('Average time in series: %f\n' % avg)
                         print('Maximum execution time: %f' % maxi)
-                        result_file.write('Maximum execution time: %f' % maxi)
+                        result_file.write('Maximum execution time: %f\n' % maxi)
                         print('Minimum execution time: %f' % mini)
-                        result_file.write('Minimum execution time: %f' % mini)
-                        print('-'*30)
-                        result_file.write('-'*30)
+                        result_file.write('Minimum execution time: %f\n' % mini)
+                        print('-' * 30)
+                        result_file.write('-' * 30)
+                        result_file.write('\n')
                         den_res[serie] = results
                     rep_res[density] = den_res
                 alg_res[representation] = rep_res
-
-
-
 
 
 class GraphGenerator(Panel):
@@ -189,7 +195,7 @@ class GraphGenerator(Panel):
         mode_select = Panel(self.modes, no_exit=True)
         self.mode = mode_select.start()
 
-        self.algorithm_fun = getattr(algorithms, '%s_%s' % (self.algorithm, self.mode))
+        self.algorithm_fun = getattr(algorithms, '%s_%s' % (self.algorithm, self.mode))  # get proper function to test
 
         if self.mode == 'matrix':
             self.graph = Matrix(0)
@@ -215,9 +221,9 @@ class GraphGenerator(Panel):
     def generate(self):
         nodes = int(input("Number of nodes: "))
         density = float(input("Graph density in %: ").strip('%')) / 100
-        self.graph = self.generate_graph_nx(nodes, density, self.mode, self.directed)
+        self.graph = self.generate_graph(nodes, density, self.mode, self.directed)
 
-    def show(self):
+    def show(self):     # plot graph using NetworkX
         self.print_graph()
         if len(self.graph.get_edges()) != 0:
             if settings.plot_graphs:
@@ -233,7 +239,7 @@ class GraphGenerator(Panel):
         start = timer()
         result = self.algorithm_fun(self.graph, x)
         end = timer()
-        print('Execution time: %f milliseconds' % ((end-start)*1000))
+        print('Execution time: %f milliseconds' % ((end - start) * 1000))
         print(result)
         if result is None:
             print("No result.", file=sys.stderr)
@@ -243,7 +249,7 @@ class GraphGenerator(Panel):
 
     @staticmethod
     def plot_graph(edges: list, directed=False):
-        graph = nx.Graph()
+        graph = nx.Graph()  # convert own structures to networkx.Graph or networkx.DiGraph
         if directed:
             graph = nx.DiGraph()
         nodes = []
@@ -298,9 +304,111 @@ class GraphGenerator(Panel):
         return graph
 
     @staticmethod
-    def generate_graph_nx(nodes: int, density, mode, directed, force=settings.force):
+    def generate_graph(nodes, density, mode, directed, force=settings.force):
+        """
+        graph generated via algorithm:
+        1. calculate edge count
+        2. build a tree
+        3. add random edges to meet edge count
+        """
+        connected = []
+        disconnected = [i for i in range(nodes)]
+        if directed:  # calculate edge count based on node count and density
+            edge_list = [(x, y) for x in range(nodes) for y in range(nodes) if x != y]
+            edges = nodes * (nodes - 1) * density
+            if edges < nodes - 1 and not force:
+                print("Minimum graph density for this problem is {:2.0%}. "
+                      "To generate less dense graph anyway, set argument force to True."
+                      .format(float(1 / nodes)), file=sys.stderr)
+                edges = nodes - 1
+        else:
+            edge_list = [(x, y) for x in range(nodes) for y in range(nodes) if x != y]
+            edges = nodes * (nodes - 1) * density / 2
+            if edges < nodes - 1 and not force:
+                print("Minimum graph density for this problem is {:2.0%}. "
+                      "To generate less dense graph anyway, set argument force to True."
+                      .format(float(2 / nodes)), file=sys.stderr)
+                edges = nodes - 1
+        bar = ProgBar(edges, title='Generating graph', stream=sys.stdout)
+        if mode == 'list':
+            graph = ListGraph(nodes)
+            while len(disconnected) > 0:    # build a tree
+
+                if len(connected) == 0:
+                    s = randint(nodes)
+                    e = randint(nodes)
+                    connected.append(s)
+                    disconnected.remove(s)
+                else:
+                    s = connected[randint(len(connected))]  # get starting vertex randomly from already connected nodes
+                    e = disconnected[randint(len(disconnected))]    # get ending vertex randomly from not yet connected
+
+                disconnected.remove(e)
+                w = randint(1, nodes)
+                graph.add_connection(s, e, w)   # add connection
+                if not directed:
+                    graph.add_connection(e, s, w)
+                connected.append(e)
+                edge_list.remove((s, e))    # remove edge from the pool
+                if not directed:
+                    edge_list.remove((e, s))
+                edges -= 1
+                bar.update()
+
+            while edges > 0:    # add remaining edges at random
+                s, e = edge_list[randint(len(edge_list))]
+
+                edge_list.remove((s, e))
+                w = randint(nodes)
+                graph.add_connection(s, e, w)
+                if not directed:
+                    edge_list.remove((e, s))
+                    graph.add_connection(e, s, w)
+                edges -= 1
+                bar.update()
+
+        elif mode == 'matrix':
+            graph = Matrix(nodes)
+            while len(disconnected) > 0:    # build a tree
+                if len(connected) == 0:
+                    s = randint(nodes)
+                    e = randint(nodes)
+                    connected.append(s)
+                    disconnected.remove(s)
+                else:
+                    s = connected[randint(len(connected))]  # get starting vertex randomly from already connected nodes
+                    e = disconnected[randint(len(disconnected))]    # get ending vertex randomly from not yet connected
+
+                disconnected.remove(e)
+                w = randint(1, nodes)
+                graph.set(s, e, w)  # add connection
+                if not directed:
+                    graph.set(e, s, w)
+                connected.append(e)
+                edge_list.remove((s, e))    # remove edge from the pool
+                if not directed:
+                    edge_list.remove((e, s))
+                edges -= 1
+                bar.update()
+
+            bar = ProgBar(20, stream=sys.stdout)
+            while edges > 0:    # add remaining edges at random
+                s, e = edge_list[randint(len(edge_list))]
+                edge_list.remove((s, e))
+                w = randint(nodes)
+                graph.set(s, e, w)
+                if not directed:
+                    edge_list.remove((e, s))
+                    graph.set(e, s, w)
+                edges -= 1
+                bar.update()
+        print("Generated graph")
+        return graph
+
+    @staticmethod
+    def generate_graph_nx(nodes: int, density, mode, directed, force=settings.force):  # graph generation using networkx
         bar = ProgBar(20, title='Generating graph', stream=sys.stdout)
-        if directed:
+        if directed:    # calculate edge count based on node count and density
             edges = nodes * (nodes - 1) * density
             if edges < nodes - 1 and not force:
                 print("Minimum graph density for this problem is {:2.0%}. "
@@ -315,23 +423,23 @@ class GraphGenerator(Panel):
                       .format(float(2 / nodes)), file=sys.stderr)
                 edges = nodes - 1
         bar.update()
-        G = nx.generators.random_graphs.gnm_random_graph(nodes, edges, directed=directed)
+        G = nx.generators.random_graphs.gnm_random_graph(nodes, edges, directed=directed)   # generate random graph
         bar.update()
-        if not directed:
+        if not directed:    # check connectivity and generate new graph if failed
             while not nx.is_connected(G):
                 G = nx.generators.random_graphs.gnm_random_graph(nodes, edges, directed=directed)
         else:
             cont = False
 
             while not cont:
-                pas = True
+                cont = True
                 for node in G.nodes:
                     if len([x for x in G.neighbors(node)]) == 0:
-                        pas = False
+                        cont = False
                         G = nx.generators.random_graphs.gnm_random_graph(nodes, edges, directed=directed)
                         break
         bar.update()
-        if mode == 'matrix':
+        if mode == 'matrix':    # convert generated networkx graph to own structure
             ret = Matrix(nodes)
             for x, y in G.edges:
                 w = randint(1, nodes)
@@ -354,7 +462,7 @@ class GraphGenerator(Panel):
 
     @staticmethod
     def input_data(algorithm: str, rand_range):
-        if algorithm == 'prim':
+        if algorithm == 'prim' or algorithm == 'kruskal':
             inp = input('Starting vertex (leave blank to generate random): ')
             if inp == '':
                 return tuple([randint(rand_range)])
@@ -367,9 +475,7 @@ class GraphGenerator(Panel):
                     print('Index must be an integer.', file=sys.stderr)
                 except KeyError:
                     print('Index out of range - %d.' % rand_range, file=sys.stderr)
-        if algorithm == 'kruskal':
-            return None
-        if algorithm == 'dijkstra' or algorithm == 'ford_bellman':
+        elif algorithm == 'dijkstra' or algorithm == 'ford_bellman':
             inp = (input('Starting vertex (leave blank to generate random): '),
                    input('End vertex (leave blank to generate random): '))
             ret = []

@@ -1,7 +1,7 @@
 # distutils: language = c++
 # distutils: sources = Heap.cpp
 
-cdef extern from "Heap.cpp":
+cdef extern from "Heap.cpp":    # wrapping of C++ class, min type heap
     struct Node:
         int data
         int start
@@ -14,7 +14,7 @@ cdef extern from "Heap.cpp":
         void change_key(int, int)
         void hprint()
 
-cdef class CNode:
+cdef class CNode:   # heap node wrapper usable in python code
     def __cinit__(self):
         self.data = -1
         self.start = -1

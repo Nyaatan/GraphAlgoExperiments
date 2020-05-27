@@ -4,7 +4,7 @@ from cpython.mem cimport PyMem_Malloc, PyMem_Free
 
 from linked_list import ListGraph
 
-cdef extern from "DynamicArray.cpp":
+cdef extern from "DynamicArray.cpp":    # wrapping of C++ class
     cppclass DynamicArray:
         int* array
         int size
@@ -24,7 +24,7 @@ cdef extern from "DynamicArray.cpp":
 
 cdef class Matrix:
 
-    def __init__(self, size):
+    def __init__(self, size):   # allocate memory for 2D matrix and fill it with zeros
         self.size = size
         self.matrix = <DynamicArray**> PyMem_Malloc(size * sizeof(DynamicArray*))
         cpdef int i = 0
@@ -57,7 +57,7 @@ cdef class Matrix:
     cpdef int set(self, int i, int j, int value):
         self.matrix[i].array[j] = value
 
-    cpdef void resize(self, int size):
+    cpdef void resize(self, int size):  # changes size of matrix
         cpdef int i = 0
         cpdef int j = 0
         cpdef DynamicArray* temparr
@@ -81,7 +81,7 @@ cdef class Matrix:
         self.size = size
         PyMem_Free(tempmat)
 
-    def get_edges(self):
+    def get_edges(self):    # returns all edges of graph as python list
         result = []
         for x in range(self.size):
             for y in range(self.size):
